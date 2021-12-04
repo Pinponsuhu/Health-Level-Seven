@@ -25,6 +25,7 @@ Route::get('/hospital/new/patient', [HospitalController::class, 'new_patient']);
 Route::post('/save/patient', [HospitalController::class, 'store_patient'])->name('store_patient');
 Route::get('/bed/management', [HospitalController::class, 'bed_management']);
 Route::get('/fill/bed', [HospitalController::class, 'fill_bed']);
+Route::post('/update/bed/{id}',[HospitalController::class, 'update_bed_space']);
 Route::post('/bed/space', [HospitalController::class, 'store_bed']);
 Route::get('/book/appointment', [AppointmentController::class, 'book']);
 Route::get('/telephone/appointments',[AppointmentController::class, 'telephone']);

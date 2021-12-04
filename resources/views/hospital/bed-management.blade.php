@@ -44,7 +44,19 @@
                 <tr class="text-green-500 font-medium text-md">
                     <td class=" py-2 bg-green-100 px-3 text-center">{{ $bed->surname . ' ' . $bed->othernames }}</td>
                     <td class=" py-2 bg-white px-3 text-center">{{ $bed->checked_in_date }}</td>
-                    <td class=" py-2 bg-green-100 px-3 text-center">{{ $bed->status }}</td>
+                    <td class="py-2 bg-green-100 px-3 text-center">
+                        <form action="/update/bed/{{ $bed->id }}" method="POST" id="update">
+                            @csrf
+                            <select name="bed_status" onchange="this.form.submit()" class="py-2 w-full" id="bed_status">
+                                <option value="{{ $bed->status }}">{{ $bed->status }}</option>
+                                @foreach ($status as $stat)
+                                    @if ($stat != $bed->status)
+                                    <option value="{{ $stat }}">{{ $stat }}</option>
+                                    @endif
+                                @endforeach
+                                </select>
+                        </form>
+                    </td>
                     <td class=" py-2 bg-white px-3 text-center">{{ $bed->bed_number }}</td>
                     <td class=" py-2 bg-green-100 px-3 text-center">{{ $bed->ward }}</td>
                     <td class=" py-2 bg-white px-3 text-center">{{ $bed->next_of_kin }}</td>
@@ -57,4 +69,11 @@
 </main>
         <script src="{{ $chart->cdn() }}"></script>
         {{ $chart->script() }}
+        <script>
+            function update(){
+                document.getElementById('update').submit(); // your form has an id="form"
+  }
+            }
+ }
+        </script>
 @endsection

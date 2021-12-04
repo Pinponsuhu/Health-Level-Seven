@@ -45,21 +45,35 @@ class HospitalController extends Controller
     }
 
     public function bed_management(BedspaceChart $chart){
-        $beds = BedSpace::latest()->where('status','!=','Released')
-                ->where('status', '!=', 'Deceased')->get();
-        $active_bed_numbers = BedSpace::latest()->select('bed_number')->where('status','!=','Released')
-                ->where('status', '!=', 'Deceased')->orderBy('id', 'ASC')->get()->toArray();
+        $beds = BedSpace::latest()
+                ->where('status','!=','Released')
+                ->where('status', '!=', 'Deceased')
+                ->get();
+        $active_bed_numbers = BedSpace::latest()
+                ->select('bed_number')
+                ->where('status','!=','Released')
+                ->where('status', '!=', 'Deceased')
+                ->orderBy('id', 'ASC')
+                ->get()
+                ->toArray();
                 $actives = array();
                 // dd(count($active_bed_numbers));
                 $count = count($active_bed_numbers)-1;
                for($i = 0 ; $i <= $count; $i++){
                 array_push($actives,$active_bed_numbers[$i]['bed_number']);
                }
+            //    $status = BedSpace::latest()->select('status')->where('status','!=','Released')
+            //    ->where('status', '!=', 'Deceased')
+            //    ->orderBy('id', 'ASC')
+            //    ->get()
+            //    ->toArray();
+               $status = array("Undetermined","Good","Fair","Serious","Critical","Released","Deceased");
+            //    dd($status);
 
             //    dd($actives);
             // dd($active_bed_numbers[1]);
 
-        return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $beds, 'actives'=> $actives]);
+        return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $beds, 'actives'=> $actives,'status'=> $status]);
     }
     public function fill_bed(){
         return view('hospital.fill-bed');
@@ -96,5 +110,14 @@ class HospitalController extends Controller
         $bed->save();
 
         return redirect()->route('clinic_dashboard');
+    }
+    public function update_bed_space(Request $request){
+        if(isset($request->bed_status)){
+            $bed = BedSpace::find($request->id);
+            $bed->status = $request->bed_status;
+            $bed->save();
+
+            return redirect('/bed/management');
+        }
     }
 }
