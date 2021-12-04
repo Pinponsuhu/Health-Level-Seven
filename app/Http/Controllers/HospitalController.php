@@ -44,11 +44,38 @@ class HospitalController extends Controller
         return redirect()->route('clinic_dashboard');
     }
 
-    public function bed_management(BedspaceChart $chart){
+    public function bed_management(BedspaceChart $chart, Request $request){
         $beds = BedSpace::latest()
-                ->where('status','!=','Released')
-                ->where('status', '!=', 'Deceased')
-                ->get();
+        ->where('status','!=','Released')
+        ->where('status', '!=', 'Deceased')
+        ->get();
+$active_bed_numbers = BedSpace::latest()
+        ->select('bed_number')
+        ->where('status','!=','Released')
+        ->where('status', '!=', 'Deceased')
+        ->orderBy('id', 'ASC')
+        ->get()
+        ->toArray();
+        $actives = array();
+        // dd(count($active_bed_numbers));
+        $count = count($active_bed_numbers)-1;
+       for($i = 0 ; $i <= $count; $i++){
+        array_push($actives,$active_bed_numbers[$i]['bed_number']);
+       }
+    //    $status = BedSpace::latest()->select('status')->where('status','!=','Released')
+    //    ->where('status', '!=', 'Deceased')
+    //    ->orderBy('id', 'ASC')
+    //    ->get()
+    //    ->toArray();
+       $status = array("Undetermined","Good","Fair","Serious","Critical","Released","Deceased");
+    //    dd($status);
+
+    //    dd($actives);
+    // dd($active_bed_numbers[1]);
+
+return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $beds, 'actives'=> $actives,'status'=> $status]);
+    }
+    public function fill_bed(){
         $active_bed_numbers = BedSpace::latest()
                 ->select('bed_number')
                 ->where('status','!=','Released')
@@ -56,27 +83,12 @@ class HospitalController extends Controller
                 ->orderBy('id', 'ASC')
                 ->get()
                 ->toArray();
-                $actives = array();
-                // dd(count($active_bed_numbers));
-                $count = count($active_bed_numbers)-1;
+        $actives = array();
+        $count = count($active_bed_numbers)-1;
                for($i = 0 ; $i <= $count; $i++){
                 array_push($actives,$active_bed_numbers[$i]['bed_number']);
                }
-            //    $status = BedSpace::latest()->select('status')->where('status','!=','Released')
-            //    ->where('status', '!=', 'Deceased')
-            //    ->orderBy('id', 'ASC')
-            //    ->get()
-            //    ->toArray();
-               $status = array("Undetermined","Good","Fair","Serious","Critical","Released","Deceased");
-            //    dd($status);
-
-            //    dd($actives);
-            // dd($active_bed_numbers[1]);
-
-        return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $beds, 'actives'=> $actives,'status'=> $status]);
-    }
-    public function fill_bed(){
-        return view('hospital.fill-bed');
+        return view('hospital.fill-bed',['actives'=> $actives]);
     }
     public function store_bed(Request $request){
         $request->validate([
@@ -119,5 +131,20 @@ class HospitalController extends Controller
 
             return redirect('/bed/management');
         }
+    }
+
+    public function search(Request $request){
+        $search = $request->search;
+        $beds = BedSpace::latest()->where('surname', '=', $request->search)
+                                  ->orWhere('othernames','=',$request->search)
+                                  ->orWhere('status','=',$request->search)
+                                  ->orWhere('ward','=',$request->search)
+                                  ->orWhere('doctor_name','=',$request->search)
+                                  ->orWhere('bed_number','=',$request->search)
+                                  ->orWhere('checked_in_date','=',$request->search)->get();
+
+        // dd($beds);
+        $status = array("Undetermined","Good","Fair","Serious","Critical","Released","Deceased");
+        return view('hospital.search-bed',['beds'=> $beds, 'status'=> $status,'search'=> $search]);
     }
 }

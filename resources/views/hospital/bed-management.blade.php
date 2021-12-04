@@ -1,6 +1,6 @@
 @extends('layouts.hospital.app')
 @section('content')
-<main class="w-full">
+<main class="w-full h-screen overflow-y-scroll">
     <div>
         <div class="w-full bg-green-600 flex gap-x-3 py-4 px-6 items-center justify-center">
             <img src="" class="w-12 h-12" alt="">
@@ -27,6 +27,11 @@
         </section>
     </div>
     <div class="w-full px-8 mt-6 ">
+        <form action="/bed/search" class="w-8/12 mx-auto grid capitalize grid-cols-4 gap-x-3 items-center my-3" method="post">
+            @csrf
+            <input type="search" id="search" name="search" placeholder="Search Here" class="bg-green-500 col-span-3 outline-none rounded-md shadow-md px-3 h-12 py-3 text-white placeholder-green-50 block">
+            <button type="submit" class="w-full rounded-md shadow-md bg-green-500 block h-12 text-white">Search</button>
+        </form>
         <table class="w-full shadow-md">
             <thead>
                 <tr class="text-green-500 font-medium text-md">
