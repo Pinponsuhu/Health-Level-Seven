@@ -48,10 +48,18 @@ class HospitalController extends Controller
         $beds = BedSpace::latest()->where('status','!=','Released')
                 ->where('status', '!=', 'Deceased')->get();
         $active_bed_numbers = BedSpace::latest()->select('bed_number')->where('status','!=','Released')
-                ->where('status', '!=', 'Deceased')->orderBy('id', 'ASC')->get();
-            // dd($active_bed_numbers);
+                ->where('status', '!=', 'Deceased')->orderBy('id', 'ASC')->get()->toArray();
+                $actives = array();
+                // dd(count($active_bed_numbers));
+                $count = count($active_bed_numbers)-1;
+               for($i = 0 ; $i <= $count; $i++){
+                array_push($actives,$active_bed_numbers[$i]['bed_number']);
+               }
 
-        return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $beds, 'actives'=> $active_bed_numbers]);
+            //    dd($actives);
+            // dd($active_bed_numbers[1]);
+
+        return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $beds, 'actives'=> $actives]);
     }
     public function fill_bed(){
         return view('hospital.fill-bed');

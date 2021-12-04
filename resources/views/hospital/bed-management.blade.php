@@ -17,14 +17,11 @@
                 <h1 class="text-lg font-semibold text-green-600">Number of bed: 50</h1>
             </div>
                 <a href="/fill/bed" class="bg-green-500 block text-white py-3 w-24 text-center my-2 rounded-md mx-auto">Add new</a>
-            <div class="flex justify-center gap-x-3 py-4 w-full flex-wrap gap-y-3">
+            <div class="grid grid-cols-6 justify-center gap-x-3 py-4 w-full flex-wrap gap-y-3">
                 @for ($i = 1; $i <= 50; $i++)
-                    @foreach ($actives as $active)
-                        @if ($i == $active->bed_number)
-                            @break
-                        @endif
-                        <h1 class="py-3 px-4 rounded-md shadow bg-green-500 text-white">{{ $i }}</h1>
-                    @endforeach
+                    @if (!in_array($i, $actives))
+                        <h1 class="py-2 w-9 h-10 px-2 rounded-md text-center shadow bg-green-500 text-white font-medium">{{ $i }}</h1>
+                    @endif
                 @endfor
             </div>
         </section>
