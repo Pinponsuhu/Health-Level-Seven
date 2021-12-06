@@ -16,8 +16,6 @@
         <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.css') }}">
 
         <script src="{{ asset('js/all.js') }}"></script>
-        <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('js/custom-basic.js') }}"></script>
         <script src="{{ asset('js/jquery.js') }}"></script>
 
         <!-- Styles -->
@@ -46,7 +44,7 @@
 }
         </style>
     </head>
-    <body class="antialiased bg-gray-100 flex">
+    <body class="antialiased bg-gray-200 flex">
         <nav class="w-80 bg-green-600 h-screen overflow-y-scroll py-3">
             <h1 class="uppercase text-3xl font-bold text-white text-center pb-4">Menu</h1>
             <a href="/hospital/dashboard"><li class="flex text-gray-50 items-center pl-7 mt-3"><i class="fa fa-chart-pie mr-6 text-2xl"></i> <p class="text-lg">Dashboard</p></li></a>
@@ -62,19 +60,22 @@
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user-injured mr-8 text-2xl"></i> <p class="text-md">Patient management</p></li>
+                <a href="/view/all/patient"><li  class="text-md py-2 ml-16 text-white">All Patient</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-procedures mr-5 text-2xl"></i> <p class="text-md">Bed Management</p></li>
+                <a href="/bed/management"><li class="text-md py-2 ml-16 text-white">Overview</li></a>
+                    <a href="/bed/history"><li class="text-md py-2 ml-16 text-white">View All</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user-cog mr-5 text-2xl"></i> <p class="text-md">Admin</p></li>
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-calendar-check mr-7 text-2xl"></i> <p class="text-md">Appointment</p></li>
-                <li class="text-md py-3 ml-16 text-white">Urgent</li>
-                <li class="text-md py-3 ml-16 text-white">Routine</li>
-                <a href="/telephone/appointments"><li class="text-md py-3 ml-16 text-white">Telephone consultation</li></a>
-                <a href="/book/appointment"><li class="text-md py-3 ml-16 text-white">Add new</li></a>
+                <li class="text-md py-2 ml-16 text-white">Urgent</li>
+                <li class="text-md py-2 ml-16 text-white">Routine</li>
+                <a href="/telephone/appointments"><li class="text-md py-2 ml-16 text-white">Telephone consultation</li></a>
+                <a href="/book/appointment"><li class="text-md py-2 ml-16 text-white">Add new</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-clipboard-list mr-7 text-2xl"></i> <p class="text-md">Inventory</p></li>

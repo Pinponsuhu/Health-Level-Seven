@@ -20,7 +20,7 @@ class RegisteredPatient
             ->setSubtitle('All registerd patient history per day')
             ->addData('San Francisco', [6, 9, 3, 4, 10, 8])
             ->addData('Boston', [7, 3, 8, 2, 6, 4])
-            ->setHeight(300)
+            ->setHeight('70%')
             ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June']);
     }
 }

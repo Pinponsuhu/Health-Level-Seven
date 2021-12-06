@@ -8,15 +8,17 @@
                 </div>
             </div>
             <div class="mb-5 overflow-y-scroll">
-            <div class="h-80  grid gap-x-5 grid-cols-3 mt-3 px-4">
-                <section class="col-span-2 h-80 box-border bg-white w-full rounded-md shadow-md">
-                    {!! $chart->container() !!}
+            <div class="h-80 grid gap-x-5 grid-cols-3 mt-3 px-4">
+                <section class="col-span-2 h-full box-border bg-white w-full rounded-md shadow-md">
+                    <div class="h-12 w-full">
+                        {!! $chart->container() !!}
+                    </div>
                 </section>
                 <section class="col-span-1 h-full bg-white w-full rounded-md shadow-md">
                     {!! $chart2->container() !!}
                 </section>
             </div>
-            <div class="grid grid-cols-4 h-56 mt-5 px-4 gap-x-4">
+            <div class="grid grid-cols-4 h-56 mt-12 px-4 gap-x-4">
                 <section class="bg-white rounded-md shadow-md col-span-3 py-3 px-4">
                     <div class="flex items-center py-3 justify-between px-8 mb-4">
                         <p class="text-gray-500 text-lg font-semibold">Today's Appointment</p>

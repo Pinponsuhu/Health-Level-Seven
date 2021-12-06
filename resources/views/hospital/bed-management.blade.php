@@ -7,16 +7,19 @@
             <h1 class="font-bold text-white text-2xl">Hospital name</h1>
         </div>
     </div>
-    <div class="h-80 grid grid-cols-3 gap-x-3 mt-6 px-6">
+    <div class="h-80 grid grid-cols-3 gap-x-3 mt-3 px-6">
         <section class="col-span-2 bg-white py-4 px-6 rounded-md h-full shadow-md">
             {!! $chart->container() !!}
         </section>
-        <section class="relative col-span-1 overflow-y-scroll rounded-md h-full shadow-md bg-white px-6 py-4">
-            <div class="flex justify-between items-center">
-                <h1 class="text-md font-semibold">Available Beds</h1>
-                <h1 class="text-lg font-semibold text-green-600">Number of bed: 50</h1>
-            </div>
-                <a href="/fill/bed" class="bg-green-500 block text-white py-3 w-24 text-center my-2 rounded-md mx-auto">Add new</a>
+        <section class="relative col-span-1 overflow-y-scroll rounded-md h-full shadow-md bg-white px-6 py-2">
+                <h1 class="text-md mb-2 font-bold">Add new</h1>
+                <div class="flex gap-x-3 justify-center mt-2">
+                    <a href="/fill/existing/patient" class="bg-green-500 hover:bg-green-600 px-3 text-white py-2 rounded-md">Existing Patient</a>
+                    <a href="/fill/bed" class="bg-red-500 hover:bg-red-600 rounded-md text-white px-4 py-2">Emergency</a>
+                </div>
+                <div class="flex mt-2 justify-between items-center">
+                    <h1 class="text-md font-semibold">Available Beds: {{ $free_bed }}</h1>
+                </div>
             <div class="grid grid-cols-6 justify-center gap-x-3 py-4 w-full flex-wrap gap-y-3">
                 @for ($i = 1; $i <= 50; $i++)
                     @if (!in_array($i, $actives))
@@ -26,33 +29,36 @@
             </div>
         </section>
     </div>
-    <div class="w-full px-8 mt-6 ">
+    <div class="px-6 mt-3 ">
+       <div  class="w-full bg-white px-4 py-3 rounded-md shadow-md mb-5">
         <form action="/bed/search" class="w-8/12 mx-auto grid capitalize grid-cols-4 gap-x-3 items-center my-3" method="post">
             @csrf
             <input type="search" id="search" name="search" placeholder="Search Here" class="bg-green-500 col-span-3 outline-none rounded-md shadow-md px-3 h-12 py-3 text-white placeholder-green-50 block">
             <button type="submit" class="w-full rounded-md shadow-md bg-green-500 block h-12 text-white">Search</button>
         </form>
-        <table class="w-full shadow-md">
+        {{-- <h1 class="text-xl font-semibold text-green-500 text-center">Patients In Bed</h1> --}}
+        <table class="w-full shadow-md bg-white">
             <thead>
-                <tr class="text-green-500 font-medium text-md">
-                    <td class=" py-2 bg-green-100 px-3 text-center">Name</td>
-                    <td class=" py-2 bg-white px-3 text-center">Checked In Date</td>
-                    <td class=" py-2 bg-green-100 px-3 text-center">Patient Status</td>
-                    <td class=" py-2 bg-white px-3 text-center">Bed number</td>
-                    <td class=" py-2 bg-green-100 px-3 text-center">Ward</td>
-                    <td class=" py-2 bg-white px-3 text-center">Next of Kin</td>
-                    <td class=" py-2 bg-green-100 px-3 text-center">Next of Kin Number</td>
+                <tr class="text-green-50 font-medium text-md">
+                    <td class=" py-3 bg-green-500 px-3 text-center">Name</td>
+                    <td class=" py-3 bg-green-500 px-3 text-center">Checked In Date</td>
+                    <td class=" py-3 bg-green-500 px-3 text-center">Patient Status</td>
+                    <td class=" py-3 bg-green-500 px-3 text-center">Bed number</td>
+                    <td class=" py-3 bg-green-500 px-3 text-center">Ward</td>
+                    <td class=" py-3 bg-green-500 px-3 text-center">Next of Kin</td>
+                    <td class=" py-3 bg-green-500 px-3 text-center">Next of Kin Number</td>
+                    <td class=" py-3 bg-green-500 px-3 text-center">Action</td>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($beds as $bed)
                 <tr class="text-green-500 font-medium text-md">
-                    <td class=" py-2 bg-green-100 px-3 text-center">{{ $bed->surname . ' ' . $bed->othernames }}</td>
-                    <td class=" py-2 bg-white px-3 text-center">{{ $bed->checked_in_date }}</td>
-                    <td class="py-2 bg-green-100 px-3 text-center">
+                    <td class=" py-3 bg-green-100 px-3 text-center">{{ $bed->surname . ' ' . $bed->othernames }}</td>
+                    <td class=" py-3 bg-white px-3 text-center">{{ $bed->checked_in_date }}</td>
+                    <td class="py-3 bg-green-100 px-3 text-center">
                         <form action="/update/bed/{{ $bed->id }}" method="POST" id="update">
                             @csrf
-                            <select name="bed_status" onchange="this.form.submit()" class="py-2 w-full" id="bed_status">
+                            <select name="bed_status" onchange="this.form.submit()" class="py-3 w-full" id="bed_status">
                                 <option value="{{ $bed->status }}">{{ $bed->status }}</option>
                                 @foreach ($status as $stat)
                                     @if ($stat != $bed->status)
@@ -62,14 +68,16 @@
                                 </select>
                         </form>
                     </td>
-                    <td class=" py-2 bg-white px-3 text-center">{{ $bed->bed_number }}</td>
-                    <td class=" py-2 bg-green-100 px-3 text-center">{{ $bed->ward }}</td>
-                    <td class=" py-2 bg-white px-3 text-center">{{ $bed->next_of_kin }}</td>
-                    <td class=" py-2 bg-green-100 px-3 text-center">{{ $bed->next_of_kin_number }}</td>
+                    <td class=" py-3 bg-white px-3 text-center">{{ $bed->bed_number }}</td>
+                    <td class=" py-3 bg-green-100 px-3 text-center">{{ $bed->ward }}</td>
+                    <td class=" py-3 bg-white px-3 text-center">{{ $bed->next_of_kin }}</td>
+                    <td class=" py-3 bg-green-100 px-3 text-center">{{ $bed->next_of_kin_number }}</td>
+                    <td class="px-3"><a href="#" class="px-5 rounded-md py-3 bg-blue-500 text-white">More</a></td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+       </div>
     </div>
 </main>
         <script src="{{ $chart->cdn() }}"></script>

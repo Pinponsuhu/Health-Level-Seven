@@ -26,8 +26,16 @@ Route::post('/save/patient', [HospitalController::class, 'store_patient'])->name
 Route::get('/bed/management', [HospitalController::class, 'bed_management']);
 Route::get('/fill/bed', [HospitalController::class, 'fill_bed']);
 Route::post('/update/bed/{id}',[HospitalController::class, 'update_bed_space']);
+Route::get('/bed/history',[HospitalController::class, 'all_history']);
+Route::get('/view/all/patient/action',[HospitalController::class, 'all_patient_search']);
+Route::get('/view/all/patient',[HospitalController::class, 'all_patient']);
+Route::get('/patient/details/{id}',[HospitalController::class, 'patient_details']);
 Route::post('/bed/space', [HospitalController::class, 'store_bed']);
 Route::post('/bed/search', [HospitalController::class, 'search']);
+Route::get('/fill/existing/patient', [HospitalController::class, 'existing_patient']);
+Route::get('/confirm/patient',[HospitalController::class, 'confirm_identity']);
+Route::get('/use/existing/{id}', [HospitalController::class, 'use_existing']);
+Route::post('/existing/store/{id}', [HospitalController::class,'store_using_existing']);
 Route::get('/book/appointment', [AppointmentController::class, 'book']);
 Route::get('/telephone/appointments',[AppointmentController::class, 'telephone']);
 Route::post('/store/appointment', [AppointmentController::class, 'store_bookings'])->name('store_bookings');

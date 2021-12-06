@@ -13,5 +13,5 @@ class BedSpace extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['surname','othernames','status','gender','phone_number','checked_in_date','checked_in_time','bed_number','ward','next_of_kin','next_of_kin_number','doctor_name'];
+    protected $fillable = ['surname','othernames','status','gender','phone_number','checked_in_date','checked_in_time','bed_number','ward','next_of_kin','next_of_kin_number','doctor_name','PID'];
 }
