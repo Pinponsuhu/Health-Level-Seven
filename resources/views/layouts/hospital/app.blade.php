@@ -45,7 +45,7 @@
         </style>
     </head>
     <body class="antialiased bg-gray-200 flex">
-        <nav class="w-80 bg-green-600 h-screen overflow-y-scroll py-3">
+        <nav class="w-80 bg-green-600 h-screen hidden md:block overflow-y-scroll py-3">
             <h1 class="uppercase text-3xl font-bold text-white text-center pb-4">Menu</h1>
             <a href="/hospital/dashboard"><li class="flex text-gray-50 items-center pl-7 mt-3"><i class="fa fa-chart-pie mr-6 text-2xl"></i> <p class="text-lg">Dashboard</p></li></a>
             <ul class="pl-4 mt-3 pt-3">
@@ -78,7 +78,15 @@
                 <a href="/book/appointment"><li class="text-md py-2 ml-16 text-white">Add new</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
+                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-flask mr-7 text-2xl"></i> <p class="text-md">Laboratory</p></li>
+                <li class="text-md py-2 ml-16 text-white">Request</li>
+            </ul>
+            <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-clipboard-list mr-7 text-2xl"></i> <p class="text-md">Inventory</p></li>
+                <a href="/inventory/dashboard"><li class="text-md py-2 ml-16 text-white">Overview</li></a>
+                <a href="#"><li class="text-md py-2 ml-16 text-white">Assigned</li></a>
+                <a href="#"><li class="text-md py-2 ml-16 text-white">In Stock</li></a>
+                <a href="#"><li class="text-md py-2 ml-16 text-white">All Items</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-building mr-7 text-2xl"></i> <p class="text-md">Department</p></li>
@@ -87,6 +95,6 @@
         @yield('content')
 
         <div class="p-4 rounded-full bg-green-600 text-white fixed bottom-5 right-7">
-            <i class="fa fa-envelope text-3xl"></i>
+            <i class="fa fa-envelope text-2xl"></i>
         </div>
     </body>

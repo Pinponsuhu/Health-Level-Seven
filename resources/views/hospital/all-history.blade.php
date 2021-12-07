@@ -37,7 +37,7 @@
                     <td class=" py-3 bg-green-100 px-3 text-center capitalize">{{ $bed->ward }}</td>
                     <td class=" py-3 bg-white px-3 text-center capitalize">{{ $bed->next_of_kin }}</td>
                     <td class=" py-3 bg-green-100 px-3 text-center">{{ $bed->next_of_kin_number }}</td>
-                    <td class="px-2"><a href="#" class="px-5 rounded-md py-3 bg-blue-500 text-white">More</a></td>
+                    <td class="px-2"><a href="/bed/detail/{{ $bed->id }}" class="px-5 rounded-md py-3 bg-blue-500 text-white">More</a></td>
                 </tr>
                 @endforeach
             </tbody>

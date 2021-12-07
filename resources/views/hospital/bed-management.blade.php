@@ -40,13 +40,13 @@
         <table class="w-full shadow-md bg-white">
             <thead>
                 <tr class="text-green-50 font-medium text-md">
-                    <td class=" py-3 bg-green-500 px-3 text-center">Name</td>
-                    <td class=" py-3 bg-green-500 px-3 text-center">Checked In Date</td>
-                    <td class=" py-3 bg-green-500 px-3 text-center">Patient Status</td>
-                    <td class=" py-3 bg-green-500 px-3 text-center">Bed number</td>
-                    <td class=" py-3 bg-green-500 px-3 text-center">Ward</td>
-                    <td class=" py-3 bg-green-500 px-3 text-center">Next of Kin</td>
-                    <td class=" py-3 bg-green-500 px-3 text-center">Next of Kin Number</td>
+                    <td class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-200">Name</td>
+                    <td class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-200">Checked In Date</td>
+                    <td class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-200">Patient Status</td>
+                    <td class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-200">Bed number</td>
+                    <td class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-200">Ward</td>
+                    <td class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-200">Next of Kin</td>
+                    <td class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-200">Next of Kin Number</td>
                     <td class=" py-3 bg-green-500 px-3 text-center">Action</td>
                 </tr>
             </thead>
@@ -72,7 +72,7 @@
                     <td class=" py-3 bg-green-100 px-3 text-center">{{ $bed->ward }}</td>
                     <td class=" py-3 bg-white px-3 text-center">{{ $bed->next_of_kin }}</td>
                     <td class=" py-3 bg-green-100 px-3 text-center">{{ $bed->next_of_kin_number }}</td>
-                    <td class="px-3"><a href="#" class="px-5 rounded-md py-3 bg-blue-500 text-white">More</a></td>
+                    <td class="px-3"><a href="/bed/detail/{{ $bed->id }}" class="px-5 rounded-md py-3 bg-blue-500 text-white">More</a></td>
                 </tr>
                 @endforeach
             </tbody>

@@ -17,14 +17,15 @@
             </form>
             <table class="w-full shadow-md">
                 <thead>
-                    <tr class="text-green-500 font-medium text-md">
-                        <td class=" py-2 bg-green-100 px-3 text-center">Name</td>
-                        <td class=" py-2 bg-white px-3 text-center">Checked In Date</td>
-                        <td class=" py-2 bg-green-100 px-3 text-center">Patient Status</td>
-                        <td class=" py-2 bg-white px-3 text-center">Bed number</td>
-                        <td class=" py-2 bg-green-100 px-3 text-center">Ward</td>
-                        <td class=" py-2 bg-white px-3 text-center">Next of Kin</td>
-                        <td class=" py-2 bg-green-100 px-3 text-center">Next of Kin Number</td>
+                    <tr class="text-white font-medium text-md">
+                        <td class=" py-2 bg-green-500 px-3 text-center border-r-4 border-green-200">Name</td>
+                        <td class=" py-2 bg-green-500 px-3 text-center border-r-4 border-green-200">Checked In Date</td>
+                        <td class=" py-2 bg-green-500 px-3 text-center border-r-4 border-green-200">Patient Status</td>
+                        <td class=" py-2 bg-green-500 px-3 text-center border-r-4 border-green-200">Bed number</td>
+                        <td class=" py-2 bg-green-500 px-3 text-center border-r-4 border-green-200">Ward</td>
+                        <td class=" py-2 bg-green-500 px-3 text-center border-r-4 border-green-200">Next of Kin</td>
+                        <td class=" py-2 bg-green-500 px-3 text-center border-r-4 border-green-200">Next of Kin Number</td>
+                        <td class=" py-2 bg-green-500 px-3 text-center">Action</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,6 +50,7 @@
                         <td class=" py-2 bg-green-100 px-3 text-center">{{ $bed->ward }}</td>
                         <td class=" py-2 bg-white px-3 text-center">{{ $bed->next_of_kin }}</td>
                         <td class=" py-2 bg-green-100 px-3 text-center">{{ $bed->next_of_kin_number }}</td>
+                        <td class=" py-2 bg-white px-2"><a class="bg-blue-500 rounded-md text-white py-2 px-4" href="/bed/detail/{{ $bed->id }}">More</a></td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -228,4 +228,8 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
 
         return redirect()->route('clinic_dashboard');
     }
+    public function bed_detail($id){
+        $patient = BedSpace::find($id);
+        return view('hospital.in-bed-details',['patient'=> $patient]);
+    }
 }

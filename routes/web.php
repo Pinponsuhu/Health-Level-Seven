@@ -3,6 +3,7 @@
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\HospitalController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\UserControler;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,7 @@ Route::get('/view/all/patient',[HospitalController::class, 'all_patient']);
 Route::get('/patient/details/{id}',[HospitalController::class, 'patient_details']);
 Route::post('/bed/space', [HospitalController::class, 'store_bed']);
 Route::post('/bed/search', [HospitalController::class, 'search']);
+Route::get('/bed/detail/{id}', [HospitalController::class, 'bed_detail']);
 Route::get('/fill/existing/patient', [HospitalController::class, 'existing_patient']);
 Route::get('/confirm/patient',[HospitalController::class, 'confirm_identity']);
 Route::get('/use/existing/{id}', [HospitalController::class, 'use_existing']);
@@ -39,3 +41,6 @@ Route::post('/existing/store/{id}', [HospitalController::class,'store_using_exis
 Route::get('/book/appointment', [AppointmentController::class, 'book']);
 Route::get('/telephone/appointments',[AppointmentController::class, 'telephone']);
 Route::post('/store/appointment', [AppointmentController::class, 'store_bookings'])->name('store_bookings');
+Route::get('/inventory/dashboard', [InventoryController::class, 'dashboard']);
+Route::get('/add/item', [InventoryController::class, 'show_add']);
+Route::post('/store/item', [InventoryController::class, 'store_add']);
