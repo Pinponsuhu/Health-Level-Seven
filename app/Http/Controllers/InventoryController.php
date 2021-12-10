@@ -33,7 +33,6 @@ class InventoryController extends Controller
                 'name' => 'required',
                 'quantity' => 'required|numeric',
                 'shelf_number' => 'required|numeric',
-                'item_status' => 'required',
                 'item_category' => 'required',
                 'date_brought_in' => 'required|date',
                 'delivered_by' => 'required',
@@ -46,7 +45,6 @@ class InventoryController extends Controller
             $item->name = $request->name;
             $item->quantity = $request->quantity;
             $item->shelf_no = $request->shelf_number;
-            $item->item_status = $request->item_status;
             $item->item_category = $request->item_category;
             $item->date_brought_in = $request->date_brought_in;
             $item->delivered_by = $request->delivered_by;
