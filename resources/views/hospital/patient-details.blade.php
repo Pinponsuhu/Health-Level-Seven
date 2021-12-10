@@ -13,7 +13,7 @@
    <div class="px-8 mt-2">
     <div class="flex gap-x-4 bg-white shadow-md rounded-md px-6 py-4 mt-4">
         <div class="w-72 h-full">
-            <img src="{{ asset('/storage/patients/' . $patient->passport) }}" class="w-72 block rounded shadow-md h-auto" alt="">
+            <img src="{{ asset_secure('/storage/patients/' . $patient->passport) }}" class="w-72 block rounded shadow-md h-auto" alt="">
             <a href="#" class="text-md font-medium block mt-2 text-center text-green-500">Change Passport photograph</a>
         </div>
         <div class="w-full h-full">

@@ -49,7 +49,7 @@
                     </table>
                 </section>
                 <section class="hidden md:grid bg-gradient-to-br px-6 py-12 from-green-500 to-green-400 rounded-md shadow-md">
-                    <object data="{{ asset('svg/covid.svg') }}" class="w-9/12 h-auto mx-auto mb-4" type=""></object>
+                    <object data="{{ asset_secure('svg/covid.svg') }}" class="w-9/12 h-auto mx-auto mb-4" type=""></object>
                     <p class="capitalize text-2xl font-semibold text-center text-white">Covid is real</p>
                 </section>
             </div>

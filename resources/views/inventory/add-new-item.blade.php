@@ -1,6 +1,6 @@
 @extends('layouts.hospital.app')
 @section('content')
-    <main class="w-full">
+    <main class="w-full overflow-y-scroll h-screen">
         <div>
             <div class="w-full bg-green-600 flex gap-x-3 py-4 px-6 items-center justify-center">
                 <img src="" class="w-12 h-12" alt="">
@@ -40,14 +40,14 @@
                     @enderror
                 </div>
                 <div>
-                    <label class="font-semibold text-md block mb-1">Item Status</label>
-                    <select name="item_status" id="" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block">
-                        <option disabled selected>--Select Patient's Status--</option>
+                    <label class="font-semibold text-md block mb-1">Item Condition</label>
+                    <select name="item_condition" id="" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block">
+                        <option disabled selected>--Select Item Condition--</option>
                         <option value="Good">Good</option>
                         <option value="Broken Seal">Broken Seal</option>
                         <option value="Bad">Bad</option>
                     </select>
-                    @error('item_status')
+                    @error('item_condition')
                         <p class="text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>

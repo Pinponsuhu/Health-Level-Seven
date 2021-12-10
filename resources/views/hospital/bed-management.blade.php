@@ -31,7 +31,7 @@
     </div>
     <div class="px-6 mt-3 ">
        <div  class="w-full bg-white px-4 py-3 rounded-md shadow-md mb-5">
-        <form action="/bed/search" class="w-8/12 mx-auto grid capitalize grid-cols-4 gap-x-3 items-center my-3" method="post">
+        <form action="/bed/search" class="w-8/12 mx-auto grid capitalize grid-cols-4 gap-x-3 items-center my-3" method="get">
             @csrf
             <input type="search" id="search" name="search" placeholder="Search Here" class="bg-green-500 col-span-3 outline-none rounded-md shadow-md px-3 h-12 py-3 text-white placeholder-green-50 block">
             <button type="submit" class="w-full rounded-md shadow-md bg-green-500 block h-12 text-white">Search</button>

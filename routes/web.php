@@ -32,7 +32,7 @@ Route::get('/view/all/patient/action',[HospitalController::class, 'all_patient_s
 Route::get('/view/all/patient',[HospitalController::class, 'all_patient']);
 Route::get('/patient/details/{id}',[HospitalController::class, 'patient_details']);
 Route::post('/bed/space', [HospitalController::class, 'store_bed']);
-Route::post('/bed/search', [HospitalController::class, 'search']);
+Route::get('/bed/search', [HospitalController::class, 'search']);
 Route::get('/bed/detail/{id}', [HospitalController::class, 'bed_detail']);
 Route::get('/fill/existing/patient', [HospitalController::class, 'existing_patient']);
 Route::get('/confirm/patient',[HospitalController::class, 'confirm_identity']);
@@ -44,3 +44,10 @@ Route::post('/store/appointment', [AppointmentController::class, 'store_bookings
 Route::get('/inventory/dashboard', [InventoryController::class, 'dashboard']);
 Route::get('/add/item', [InventoryController::class, 'show_add']);
 Route::post('/store/item', [InventoryController::class, 'store_add']);
+Route::get('/delete/item/{id}', [InventoryController::class, 'delete_item']);
+Route::get('/all/items', [InventoryController::class, 'view_all']);
+Route::get('/item/details/{id}', [InventoryController::class, 'item_details']);
+Route::get('/assign/item/{id}', [InventoryController::class, 'assign']);
+Route::post('/store/assign', [InventoryController::class, 'store_assign']);
+Route::get('/edit/item/{id}', [InventoryController::class, 'edit_item']);
+Route::post('/store/edit/item/{id}', [InventoryController::class, 'store_edit']);

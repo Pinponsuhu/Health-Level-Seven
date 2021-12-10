@@ -12,11 +12,11 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.css') }}">
+        <link rel="stylesheet" href="{{ asset_secure('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset_secure('css/jquery.dataTables.css') }}">
 
-        <script src="{{ asset('js/all.js') }}"></script>
-        <script src="{{ asset('js/jquery.js') }}"></script>
+        <script src="{{ asset_secure('js/all.js') }}"></script>
+        <script src="{{ asset_secure('js/jquery.js') }}"></script>
 
         <!-- Styles -->
 
@@ -84,9 +84,8 @@
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-clipboard-list mr-7 text-2xl"></i> <p class="text-md">Inventory</p></li>
                 <a href="/inventory/dashboard"><li class="text-md py-2 ml-16 text-white">Overview</li></a>
-                <a href="#"><li class="text-md py-2 ml-16 text-white">Assigned</li></a>
                 <a href="#"><li class="text-md py-2 ml-16 text-white">In Stock</li></a>
-                <a href="#"><li class="text-md py-2 ml-16 text-white">All Items</li></a>
+                <a href="/all/items"><li class="text-md py-2 ml-16 text-white">All Items</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-building mr-7 text-2xl"></i> <p class="text-md">Department</p></li>
