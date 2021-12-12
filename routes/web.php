@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/login',[SuperAdminController::class, 'show_login']);
+Route::get('/login',[SuperAdminController::class, 'show_login'])->name('login');
 Route::get('/loging',[SuperAdminController::class, 'process_login']);
 Route::get('/super/admin/new/',[SuperAdminController::class, 'register']);
 Route::post('/super/admin/store/new',[SuperAdminController::class, 'store_reg']);
