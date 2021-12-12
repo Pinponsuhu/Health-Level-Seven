@@ -13,14 +13,13 @@ class AppointmentChart
         $this->chart = $chart;
     }
 
-    public function build(): \ArielMejiaDev\LarapexCharts\RadialChart
+    public function build(): \ArielMejiaDev\LarapexCharts\PieChart
     {
-        return $this->chart->radialChart()
-            ->setTitle('Passing effectiveness.')
-            ->setSubtitle('Barcelona city vs Madrid sports.')
+        return $this->chart->pieChart()
+            ->setTitle('Laboratory Test')
+            ->setSubtitle('')
             ->addData([75, 60])
             ->setLabels(['Barcelona city', 'Madrid sports'])
-            ->setHeight(290)
             ->setColors(['#D32F2F', '#03A9F4']);
     }
 }

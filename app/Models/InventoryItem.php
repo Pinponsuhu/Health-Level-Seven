@@ -13,7 +13,7 @@ class InventoryItem extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['name','item_condition','quantity','expiry_date','shelf_no','item_id','item_category','date_brought_in','delivered_by','serial_number','deliverer_number'];
+    protected $fillable = ['hospital_id','name','item_condition','quantity','expiry_date','shelf_no','item_id','item_category','date_brought_in','delivered_by','serial_number','deliverer_number'];
 
     public function assign(){
         return $this->hasMany(Assign::class);

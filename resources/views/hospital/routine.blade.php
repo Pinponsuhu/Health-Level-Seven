@@ -1,9 +1,10 @@
 @extends('layouts.hospital.app')
 @section('content')
-    <main class="w-full">
-            @include('layouts.hospital.nav')
-        <div class="px-8 mt-10">
-            <h1 class="text-center font-bold text-2xl text-green-600 my-5">Telephone Consultancy Appointments</h1>
+    <main class="w-full h-screen overflow-y-scroll">
+        @include('layouts.hospital.nav')
+        <div class="px-8 mt-4">
+            <div class="p-6 rounded-md shadow-md bg-white">
+                <h1 class="text-center font-bold text-2xl text-green-600 my-5">Pre-Booked Appointments</h1>
         <table class="w-full shadow-md display" id="basic-1">
             <thead>
                 <tr class="text-green-500 border-b-2 border-gray-300 font-medium text-md">
@@ -26,11 +27,7 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
+            </div>
+        </div>
     </main>
 @endsection
-<script>
-    $(document).ready( function () {
-    $('#basic-1').DataTable();
-} );
-</script>

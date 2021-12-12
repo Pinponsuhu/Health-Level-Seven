@@ -1,12 +1,7 @@
 @extends('layouts.hospital.app')
 @section('content')
         <main class="w-full h-screen overflow-y-scroll">
-            <div>
-                <div class="w-full bg-green-600 flex gap-x-3 py-4 px-6 items-center justify-center">
-                    <img src="" class="w-12 h-12" alt="">
-                    <h1 class="font-bold text-white text-2xl">Hospital name</h1>
-                </div>
-            </div>
+            @include('layouts.hospital.nav')
             <div class="mb-5 overflow-y-scroll">
             <div class="md:h-80 md:grid gap-x-5 md:grid-cols-4 lg:grid-cols-3 mt-3 px-4">
                 <section class="col-span-2 h-80 md:h-full p-3 box-border bg-white w-full rounded-md shadow-md">
@@ -55,8 +50,9 @@
             </div>
         </div>
         </main>
-        <script src="{{ $chart->cdn() }}"></script>
-        <script src="{{ $chart2->cdn() }}"></script>
+        {{-- <script src="{{ $chart->cdn() }}"></script>
+        <script src="{{ $chart2->cdn() }}"></script> --}}
+        <script src="{{ asset('js/apexcharts.js') }}"></script>
 
     {{ $chart->script() }}
     {{ $chart2->script() }}

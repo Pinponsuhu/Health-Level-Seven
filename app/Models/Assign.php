@@ -13,7 +13,7 @@ class Assign extends Model
 
     protected $id = 'id';
 
-    protected $fillable = ['itemr_id','assigned_to','number_of_item','issued_by','issue_to'];
+    protected $fillable = ['hospital_id','itemr_id','assigned_to','number_of_item','issued_by','issue_to'];
 
     public function item(){
         return $this->belongsTo(InventoryItem::class);

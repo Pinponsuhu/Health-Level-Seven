@@ -9,16 +9,33 @@ use Illuminate\Http\Request;
 
 class InventoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function dashboard(){
-        $meds = InventoryItem::where('item_category','=','Medicinal')->count();
-        $stationery = InventoryItem::where('item_category','=','Stationery')->count();
-        $assign_count = Assign::all()->count();
-        $stock_count = InventoryItem::where('quantity','!=','0')->count();
-        $items = InventoryItem::latest()->limit(3)->get();
+        $meds = InventoryItem::where('hospital_id','=',auth()->user()->id)
+        ->where('item_category','=','Medicinal')
+        ->count();
+        $stationery = InventoryItem::where('hospital_id','=',auth()->user()->id)
+        ->where('item_category','=','Stationery')
+        ->count();
+        $assign_count = Assign::where('hospital_id','=',auth()->user()->id)
+        ->count();
+        $stock_count = InventoryItem::where('quantity','!=','0')
+        ->where('hospital_id','=',auth()->user()->id)
+        ->count();
+        $items = InventoryItem::latest()
+        ->where('hospital_id','=',auth()->user()->id)
+        ->limit(3)
+        ->get();
         return view('inventory.dashboard',['items'=> $items,'stock_count'=>$stock_count,'assign_count'=>$assign_count,'meds'=>$meds,'stationery'=>$stationery]);
     }
     public function view_all(){
-        $items = InventoryItem::orderBy('name')->paginate(20);
+        $items = InventoryItem::orderBy('name')
+                ->where('hospital_id','=',auth()->user()->id)
+                ->paginate(20);
         return view('inventory.view-all',['items'=> $items]);
     }
     public function filter(Request $request){
@@ -48,6 +65,7 @@ class InventoryController extends Controller
             $item->item_category = $request->item_category;
             $item->date_brought_in = $request->date_brought_in;
             $item->delivered_by = $request->delivered_by;
+            $item->hospital_id = auth()->user()->id;
             $item->serial_number = $request->serial_number;
             $item->deliverer_number = $request->deliverer_number;
             $item->item_condition = $request->item_condition;
@@ -62,6 +80,7 @@ class InventoryController extends Controller
 }
 public function search_items(Request $request){
     $items = InventoryItem::orderBy('name')->where('name', '=', $request->search)
+    ->where('hospital_id','=',auth()->user()->id)
     ->orWhere('shelf_no','=',$request->search)
     ->orWhere('item_status','=',$request->search)
     ->orWhere('item_category','=',$request->search)
@@ -73,15 +92,27 @@ public function search_items(Request $request){
     }
     public function item_details($id){
         $item = InventoryItem::find($id);
-        $history_count = Assign::where('itemr_id','=',$id)->count();
-            $history = Assign::where('itemr_id','=',$id)->get();
+        if($item->hospital_id == auth()->user()->id){
+            $history_count = Assign::where('itemr_id','=',$id)
+                        ->where('hospital_id','=',auth()->user()->id)
+                        ->count();
+            $history = Assign::where('itemr_id','=',$id)
+                        ->where('hospital_id','=',auth()->user()->id)
+                        ->get();
 
 
         return view('inventory.item-details',['item'=> $item,'history'=> $history,'history_count'=>$history_count]);
+        }else{
+            return redirect()->back();
+        }
     }
     public function assign($id){
         $item = InventoryItem::find($id);
-        return view('inventory.assign-item',['item'=>$item]);
+        if($item->hospital_id == auth()->user()->id){
+            return view('inventory.assign-item',['item'=>$item]);
+        }else{
+            return redirect()->back();
+        }
     }
     public function store_assign(Request $request){
         $request->validate([
@@ -95,6 +126,7 @@ public function search_items(Request $request){
         $assign->assigned_to = $request->assigned_to;
         $assign->number_of_item = $request->number_of_item;
         $assign->issued_by = $request->issued_by;
+        $assign->hospital_id = auth()->user()->id;
         $assign->issue_to = $request->issued_to;
         $assign->save();
 
@@ -108,7 +140,11 @@ public function search_items(Request $request){
     }
     public function delete_item($id){
         $item = InventoryItem::find($id);
-        $item->delete();
+        if($item->hospital_id == auth()->user()->id){
+            $item->delete();
+        }else{
+            return redirect()->back();
+        }
 
         return redirect('/inventory/dashboard');
     }
@@ -117,7 +153,11 @@ public function search_items(Request $request){
         $category = array('Medicinal','Stationery','Hardware','Others');
         $status = array('In stock','Assigned');
         $item = InventoryItem::find($id);
-        return view('inventory.edit-item',['item'=>$item]);
+        if($item->hospital_id == auth()->user()->id){
+            return view('inventory.edit-item',['item'=>$item]);
+        }else{
+            return redirect()->back();
+        }
 
     }
     public function store_edit(Request $request){
@@ -141,6 +181,7 @@ public function search_items(Request $request){
             $item->item_category = $request->item_category;
             $item->date_brought_in = $request->date_brought_in;
             $item->delivered_by = $request->delivered_by;
+            $item->hospital_id = auth()->user()->id;
             $item->serial_number = $request->serial_number;
             $item->deliverer_number = $request->deliverer_number;
             $item->item_condition = $request->item_condition;

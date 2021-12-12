@@ -1,12 +1,7 @@
 @extends('layouts.hospital.app')
 @section('content')
 <main class="w-full h-screen overflow-y-scroll">
-    <div>
-        <div class="w-full bg-green-600 flex gap-x-3 py-4 px-6 items-center justify-center">
-            <img src="" class="w-12 h-12" alt="">
-            <h1 class="font-bold text-white text-2xl">Hospital name</h1>
-        </div>
-    </div>
+    @include('layouts.hospital.nav')
     <div class="mt-5 px-6">
         <h1 class="text-xl font-semibold text-green-500 text-center my-4 drop-shadow-sm">All Bed Space History</h1>
         <form action="/bed/search" class="w-8/12 mx-auto flex capitalize gap-x-2 items-center my-3" method="post">

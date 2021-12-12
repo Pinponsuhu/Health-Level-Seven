@@ -16,6 +16,7 @@ class InventoryItemFactory extends Factory
      */
     public function definition(){
         $cat = array('Medicinal','Stationery');
+        $id = auth()->user()->id;
         $con = array('Good','Bad');
             return [
                 'name' => $this->faker->name(),
@@ -26,6 +27,7 @@ class InventoryItemFactory extends Factory
                 'item_condition' => $con[random_int(0,1)],
                 'date_brought_in' => $this->faker->dateTimeThisMonth(),
                 'delivered_by' => $this->faker->name(),
+                'hospital_id' => $id,
                 'expiry_date' => $this->faker->dateTimeThisMonth(),
                 'item_id' => random_int(0000000,999999),
                 'deliverer_number' => random_int(000000000000,99999999999),

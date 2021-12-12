@@ -13,5 +13,5 @@ class Appointment extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['surname','othernames','preferred_date','gender','appointment_type','doctor_type','phone_number','email_address'];
+    protected $fillable = ['hospital_id','surname','othernames','preferred_date','gender','appointment_type','doctor_type','phone_number','email_address'];
 }

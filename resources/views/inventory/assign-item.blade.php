@@ -1,12 +1,7 @@
 @extends('layouts.hospital.app')
 @section('content')
     <main class="w-full h-screen overflow-y-scroll">
-        <div>
-            <div class="w-full bg-green-600 flex gap-x-3 py-4 px-6 items-center justify-center">
-                <img src="" class="w-12 h-12" alt="">
-                <h1 class="font-extrabold text-white text-2xl">Hospital name</h1>
-            </div>
-        </div>
+            @include('layouts.hospital.nav')
         <div class="mt-4 px-8">
             <div class="bg-white rounded-md  p-6  shadow-md">
                 <h1 class="font-bold text-2xl text-green-500  mb-4 col-span-2">Assignment Form</h1>

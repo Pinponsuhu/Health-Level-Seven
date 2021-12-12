@@ -20,6 +20,7 @@ class CreateHospitalsTable extends Migration
             $table->string('email_address')->unique();
             $table->string('phone_number');
             $table->string('hospital_address');
+            $table->string('hospital_admin')->unique();
             $table->string('hospital_logo');
             $table->string('password');
             $table->string('HID')->unique();

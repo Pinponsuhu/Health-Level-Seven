@@ -20,6 +20,7 @@ class CreateAppointmentsTable extends Migration
             $table->date('preferred_date');
             $table->string('gender');
             $table->string('appointment_type');
+            $table->string('hospital_id');
             $table->string('doctor_type');
             $table->string('status');
             $table->string('phone_number');

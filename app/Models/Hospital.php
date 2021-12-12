@@ -13,7 +13,7 @@ class Hospital extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['hospital_name', 'head_of_hospital', 'email_address', 'phone_number', 'hospital_address', 'hospital_logo', 'password'];
+    protected $fillable = ['hospital_id','hospital_name', 'head_of_hospital', 'email_address', 'phone_number', 'hospital_address', 'hospital_logo', 'password'];
 
     protected $hidden = [
         'password',

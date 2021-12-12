@@ -21,6 +21,7 @@ class CreateInventoryItemsTable extends Migration
             $table->string('item_id')->unique();
             $table->string('item_category');
             $table->string('date_brought_in');
+            $table->string('hospital_id');
             $table->string('delivered_by');
             $table->string('deliverer_number');
             $table->string('serial_number');
@@ -33,6 +34,7 @@ class CreateInventoryItemsTable extends Migration
             $table-> string('assigned_to');
             $table-> string('number_of_item');
             $table-> string('issued_by');
+            $table->string('hospital_id');
             $table-> string('issue_to');
             $table->foreign('itemr_id')
                   ->references('id')

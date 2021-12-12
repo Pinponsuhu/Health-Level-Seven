@@ -21,6 +21,7 @@ class CreateBedSpacesTable extends Migration
             $table->string('gender');
             $table->string('phone_number')->unique()->nullable();
             $table->string('checked_in_date');
+            $table->string('hospital_id');
             $table->string('checked_in_time');
             $table->string('bed_number');
             $table->string('ward');

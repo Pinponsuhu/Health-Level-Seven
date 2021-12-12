@@ -25,6 +25,7 @@ class CreatePatientsTable extends Migration
             $table->string('state_of_origin');
             $table->string('occupation');
             $table->string('resident_address');
+            $table->string('hospital_id');
             $table->string('next_of_kin');
             $table->string('next_of_kin_number1');
             $table->string('next_of_kin_number2')->nullable();

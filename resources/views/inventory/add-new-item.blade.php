@@ -1,12 +1,7 @@
 @extends('layouts.hospital.app')
 @section('content')
     <main class="w-full overflow-y-scroll h-screen">
-        <div>
-            <div class="w-full bg-green-600 flex gap-x-3 py-4 px-6 items-center justify-center">
-                <img src="" class="w-12 h-12" alt="">
-                <h1 class="font-bold text-white text-2xl">Hospital name</h1>
-            </div>
-        </div>
+            @include('layouts.hospital.nav')
         <div>
             <form action="/store/item" class=" w-8/12 mb-6 grid grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md shadow-md mt-8 bg-white" method="post" enctype="multipart/form-data">
                 @csrf

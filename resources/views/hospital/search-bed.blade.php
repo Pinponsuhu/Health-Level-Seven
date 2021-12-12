@@ -1,12 +1,7 @@
 @extends('layouts.hospital.app')
 @section('content')
     <main class="w-full">
-        <div>
-            <div class="w-full bg-green-600 flex gap-x-3 py-4 px-6 items-center justify-center">
-                <img src="" class="w-12 h-12" alt="">
-                <h1 class="font-bold text-white text-2xl">Hospital name</h1>
-            </div>
-        </div>
+            @include('layouts.hospital.nav')
         <section class="mt-4 px-8">
             <a href="/bed/management" class="block w-28 text-lg text-center ml-6 rounded-full py-3 shadow-md bg-green-500 text-white"><i class="fa fa-arrow-left text-sm mr-1"></i> Back</a>
             <h1 class="mt-4 mb-2 text-center text-xl font-semibold text-green-500">Search Result for: {{ $search }}</h1>

@@ -16,11 +16,9 @@ class RegPatient
     public function build(): \ArielMejiaDev\LarapexCharts\AreaChart
     {
         return $this->chart->areaChart()
-            ->setTitle('Sales during 2021.')
-            ->setSubtitle('Physical sales vs Digital sales.')
-            ->addData('Physical sales', [40, 93, 35, 42, 18, 82])
-            ->addData('Digital sales', [70, 29, 77, 28, 55, 45])
+            ->setTitle('Patient Admitted per month')
+            ->addData('Number of Patient', [40, 93, 35, 42, 18, 82,1,1,1,1,1,100])
             ->setHeight(300)
-            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June']);
+            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June','July','August','September','October','November','December']);
     }
 }

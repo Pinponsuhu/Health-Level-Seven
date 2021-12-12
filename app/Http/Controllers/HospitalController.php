@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class HospitalController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function new_patient(){
         return view('hospital.new-patient');
     }
@@ -36,8 +40,9 @@ class HospitalController extends Controller
         $patient->state_of_origin = $request->state_of_origin ;
         $patient->occupation = $request->occupation ;
         $patient->resident_address = $request->resident_address ;
-        $patient->passport = str_replace('patients/','',$path) ;
+        $patient->passport = str_replace('public/patients/','',$path) ;
         $patient->gender = $request->gender ;
+        $patient->hospital_id = auth()->user()->id ;
         $patient->phone_number = $request->phone_number ;
         $patient->next_of_kin = $request->next_of_kin;
         $patient->next_of_kin_number1 = $request->next_of_kin_number1;
@@ -52,11 +57,13 @@ class HospitalController extends Controller
         $beds = BedSpace::latest()
         ->where('status','!=','Released')
         ->where('status', '!=', 'Deceased')
+        ->where('hospital_id','=', auth()->user()->id)
         ->get();
 $active_bed_numbers = BedSpace::latest()
         ->select('bed_number')
         ->where('status','!=','Released')
         ->where('status', '!=', 'Deceased')
+        ->where('hospital_id','=', auth()->user()->id)
         ->orderBy('id', 'ASC')
         ->get()
         ->toArray();
@@ -84,6 +91,7 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
                 ->select('bed_number')
                 ->where('status','!=','Released')
                 ->where('status', '!=', 'Deceased')
+                ->where('hospital_id','=', auth()->user()->id)
                 ->orderBy('id', 'ASC')
                 ->get()
                 ->toArray();
@@ -120,6 +128,7 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
         $bed->checked_in_time = $request->checked_in_time;
         $bed->bed_number = $request->bed_number;
         $bed->ward = $request->ward;
+        $bed->hospital_id = auth()->user()->id;
         $bed->next_of_kin = $request->next_of_kin;
         $bed->next_of_kin_number = $request->next_of_kin_number;
         $bed->doctor_name = $request->doctor_name;
@@ -146,28 +155,42 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
                                   ->orWhere('ward','=',$request->search)
                                   ->orWhere('doctor_name','=',$request->search)
                                   ->orWhere('bed_number','=',$request->search)
-                                  ->orWhere('checked_in_date','=',$request->search)->get();
+                                  ->orWhere('checked_in_date','=',$request->search)
+                                  ->where('hospital_id','=', auth()->user()->id)
+                                  ->get();
 
         // dd($beds);
         $status = array("Undetermined","Good","Fair","Serious","Critical","Released","Deceased");
         return view('hospital.search-bed',['beds'=> $beds, 'status'=> $status,'search'=> $search]);
     }
     public function all_history(){
-        $beds = BedSpace::latest()->paginate(25);
+        $beds = BedSpace::latest()
+                    ->where('hospital_id','=', auth()->user()->id)
+                    ->paginate(25);
         return view('hospital.all-history',['beds'=>$beds]);
     }
     public function patient_details($id){
         $patient = Patient::find($id);
+        if($patient->hospital_id == auth()->user()->id){
+            return view('hospital.patient-details',['patient'=> $patient]);
+        }else{
+            return redirect()->back();
+        }
         // dd($patient);
-        return view('hospital.patient-details',['patient'=> $patient]);
     }
     public function all_patient_search(Request $request){
         $patient = Patient::find($request->id);
+        if($patient->hospital_id == auth()->user()->id){
         return view('hospital.patient-details', ['patient'=>$patient]);
+        }else{
+            return redirect()->back();
         }
+    }
 
     public function all_patient(){
-        $patients = Patient::latest()->get();
+        $patients = Patient::latest()
+        ->where('hospital_id','=', auth()->user()->id)
+        ->get();
         return view('hospital.all-patient', ['patients'=> $patients]);
     }
     public function existing_patient(){
@@ -176,6 +199,7 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
     public function confirm_identity(Request $request){
         $patients = Patient::where('surname','=',$request->search)
                     ->orWhere('PID','=',$request->search)
+                    ->where('hospital_id','=', auth()->user()->id)
                     ->get();
         // dd($patients);
         $patient_count = $patients->count();
@@ -186,6 +210,7 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
         ->select('bed_number')
         ->where('status','!=','Released')
         ->where('status', '!=', 'Deceased')
+        ->where('hospital_id','=', auth()->user()->id)
         ->orderBy('id', 'ASC')
         ->get()
         ->toArray();
@@ -220,6 +245,7 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
         $bed->checked_in_time = $request->checked_in_time;
         $bed->bed_number = $request->bed_number;
         $bed->ward = $request->ward;
+        $bed->hospital_id = auth()->user()->id;
         $bed->next_of_kin = $request->next_of_kin;
         $bed->next_of_kin_number = $request->next_of_kin_number;
         $bed->doctor_name = $request->doctor_name;
@@ -230,6 +256,10 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
     }
     public function bed_detail($id){
         $patient = BedSpace::find($id);
+        if($patient->hospital_id == auth()->user()->id){
         return view('hospital.in-bed-details',['patient'=> $patient]);
+        }else{
+            return redirect()->back();
+        }
     }
 }

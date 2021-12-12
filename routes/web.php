@@ -4,6 +4,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UserControler;
 use Illuminate\Support\Facades\Route;
 
@@ -17,10 +18,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('hospital.dashboard');
-});
+Route::get('/login',[SuperAdminController::class, 'show_login']);
+Route::get('/loging',[SuperAdminController::class, 'process_login']);
+Route::get('/super/admin/new/',[SuperAdminController::class, 'register']);
+Route::post('/super/admin/store/new',[SuperAdminController::class, 'store_reg']);
 Route::get('/hospital/dashboard', [ClinicController::class, 'clinic_dashboard'])->name('clinic_dashboard');
 Route::get('/hospital/new/patient', [HospitalController::class, 'new_patient']);
 Route::post('/save/patient', [HospitalController::class, 'store_patient'])->name('store_patient');
@@ -39,6 +40,7 @@ Route::get('/confirm/patient',[HospitalController::class, 'confirm_identity']);
 Route::get('/use/existing/{id}', [HospitalController::class, 'use_existing']);
 Route::post('/existing/store/{id}', [HospitalController::class,'store_using_existing']);
 Route::get('/book/appointment', [AppointmentController::class, 'book']);
+Route::get('/prebooked/appointment', [AppointmentController::class, 'routine']);
 Route::get('/telephone/appointments',[AppointmentController::class, 'telephone']);
 Route::post('/store/appointment', [AppointmentController::class, 'store_bookings'])->name('store_bookings');
 Route::get('/inventory/dashboard', [InventoryController::class, 'dashboard']);

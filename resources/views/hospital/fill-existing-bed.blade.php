@@ -1,12 +1,7 @@
 @extends('layouts.hospital.app')
 @section('content')
     <main class="w-full">
-        <div>
-            <div class="w-full bg-green-600 flex gap-x-3 py-4 px-6 items-center justify-center">
-                <img src="" class="w-12 h-12" alt="">
-                <h1 class="font-bold text-white text-2xl">Hospital name</h1>
-            </div>
-        </div>
+            @include('layouts.hospital.nav')
         <div>
             <h1 class="text-xl text-green-500 text-center font-bold mt-4">Confirm Patient Identity</h1>
             <form action="/confirm/patient" method="get" class="w-8/12 mx-auto mt-2 flex gap-x-3">

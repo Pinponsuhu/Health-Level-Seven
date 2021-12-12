@@ -13,6 +13,6 @@ class Patient extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['passport','surname','othernames','date_of_birth','gender','phone_number','email_address','state_of_origin','occupation','resident_address','PID','next_of_kin','next_of_kin_number1','next_of_kin_number2'];
+    protected $fillable = ['hospital_id','passport','surname','othernames','date_of_birth','gender','phone_number','email_address','state_of_origin','occupation','resident_address','PID','next_of_kin','next_of_kin_number1','next_of_kin_number2'];
 }
 

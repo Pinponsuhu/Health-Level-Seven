@@ -25,7 +25,7 @@
         </style>
     </head>
     <body class="antialiased bg-gray-100">
-        <form action="" class="w-4/12 mx-auto bg-white shadow-md rounded-md pb-6 mt-14">
+        <form action="/loging" class="w-4/12 mx-auto bg-white shadow-md rounded-md pb-6 mt-14">
             <h1 class="w-full bg-green-600 text-white py-3 text-center rounded-tr-md rounded-tl-md text-xl mb-4 font-semibold">Login</h1>
             <div class="px-7">
                 <label for="" class="mt-2 block font-medium">Hospital ID</label>

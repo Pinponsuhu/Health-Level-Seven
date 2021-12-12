@@ -1,12 +1,7 @@
 @extends('layouts.hospital.app')
 @section('content')
     <main class="w-full h-screen overflow-y-scroll">
-        <div>
-            <div class="w-full bg-green-600 flex gap-x-3 py-4 px-6 items-center justify-center">
-                <img src="" class="w-12 h-12" alt="">
-                <h1 class="font-extrabold text-white text-2xl">Hospital name</h1>
-            </div>
-        </div>
+            @include('layouts.hospital.nav')
         <form action="/store/edit/item/{{ $item->id }}" class=" w-8/12 mb-6 grid grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md shadow-md mt-8 bg-white" method="post" enctype="multipart/form-data">
             @csrf
             <h1 class="col-span-2 text-2xl font-semibold text-green-600 mb-3">Add Item to Inventory</h1>
