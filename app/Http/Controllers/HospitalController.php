@@ -35,6 +35,7 @@ class HospitalController extends Controller
         $path = $request->file('passport')->store($dest);
         $patient->surname = $request->surname ;
         $patient->othernames = $request->othernames ;
+        $patient->reason = $request->reason ;
         $patient->date_of_birth = $request->date_of_birth ;
         $patient->email_address = $request->email_address ;
         $patient->state_of_origin = $request->state_of_origin ;
@@ -51,6 +52,66 @@ class HospitalController extends Controller
         $patient->save();
 
         return redirect()->route('clinic_dashboard');
+    }
+    public function change_passport(Request $request){
+        $patient = Patient::find($request->id);
+        if($patient->hospital_id == auth()->user()->id){
+            // dd($patient);
+            return view('hospital.change-passport',['patient'=>$patient]);
+        }else{
+            return redirect()->back();
+        }
+            }
+    public function update_passport(Request $request){
+        $patient = Patient::find($request->id);
+        $path = 'storage/patients';
+        unlink($path.'/' .$patient->passport);
+        $dest = '/public/patients';
+        $path = $request->file('passport')->store($dest);
+        $patient->passport = str_replace('public/patients/','',$path);
+        $patient->save();
+
+        return redirect('/hospital/dashboard');
+    }
+    public function update_patient($id){
+        $patient = Patient::find($id);
+        if(auth()->user()->id == $patient->hospital_id){
+            $gender = array("Male","Female");
+            $states = array("Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa","Benue","Borno","Cross River","Delta","Ebonyi","Edo","Ekiti","Enugu","FCT - Abuja","Gombe","Imo","Jigawa","Kaduna","Kano","Katsina","Kebbi","Kogi","Kwara","Lagos","Nasarawa","Niger","Ogun","Ondo","Osun","Oyo","Plateau","Rivers","Sokoto","Taraba","Yobe","Zamfara");
+            return view('hospital.update-patient',['patient'=>$patient,'states'=>$states,'gender'=>$gender]);
+        }
+    }
+
+    public function store_patient_update(Request $request){
+        $request->validate([
+            'surname' => 'required|min:2|alpha',
+            'othernames' => 'required|min:2',
+            'date_of_birth' => 'required|date',
+            'gender' => 'required',
+            'state_of_origin' => 'required',
+            'email_address' => 'required|email',
+            'occupation' => 'required',
+            'resident_address' => 'required',
+            'phone_number' => 'required|numeric'
+        ]);
+        $patient = Patient::find($request->id);
+        $patient->surname = $request->surname ;
+        $patient->othernames = $request->othernames ;
+        $patient->date_of_birth = $request->date_of_birth ;
+        $patient->email_address = $request->email_address ;
+        $patient->state_of_origin = $request->state_of_origin ;
+        $patient->occupation = $request->occupation ;
+        $patient->resident_address = $request->resident_address ;
+        $patient->gender = $request->gender ;
+        $patient->phone_number = $request->phone_number ;
+        $patient->next_of_kin = $request->next_of_kin;
+        $patient->next_of_kin_number1 = $request->next_of_kin_number1;
+        $patient->next_of_kin_number2 = $request->next_of_kin_number2;
+        $patient->save();
+
+        return redirect()->route('clinic_dashboard');
+
+
     }
 
     public function bed_management(BedspaceChart $chart, Request $request){
@@ -107,6 +168,7 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
             'surname' => 'required|min:2|alpha',
             'othernames' => 'required|min:2',
             'status' => 'required',
+            'reason' => 'required',
             'gender' => 'required',
             'phone_number' => 'required',
             'checked_in_date' => 'required|date',
@@ -122,6 +184,7 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
         $bed->surname = $request->surname;
         $bed->othernames = $request->othernames;
         $bed->gender = $request->gender;
+        $bed->reason = $request->reason;
         $bed->status = $request->status;
         $bed->phone_number = $request->phone_number;
         $bed->checked_in_date = $request->checked_in_date;
@@ -171,8 +234,9 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
     }
     public function patient_details($id){
         $patient = Patient::find($id);
+        $bed_histories = BedSpace::where('PID','=',$patient->PID)->where('hospital_id','=',auth()->user()->id)->get();
         if($patient->hospital_id == auth()->user()->id){
-            return view('hospital.patient-details',['patient'=> $patient]);
+            return view('hospital.patient-details',['patient'=> $patient,'bed_histories'=> $bed_histories]);
         }else{
             return redirect()->back();
         }
@@ -230,6 +294,7 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
             'status' => 'required',
             'checked_in_date' => 'required|date',
             'checked_in_time' => 'required',
+            'reason' => 'required',
             'bed_number' => 'required',
             'ward' => 'required',
             'doctor_name' => 'required',
@@ -239,6 +304,7 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
         $bed->surname = $request->surname;
         $bed->othernames = $request->othernames;
         $bed->gender = $request->gender;
+        $bed->reason = $request->reason;
         $bed->status = $request->status;
         $bed->phone_number = $request->phone_number;
         $bed->checked_in_date = $request->checked_in_date;
@@ -263,3 +329,4 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
         }
     }
 }
+

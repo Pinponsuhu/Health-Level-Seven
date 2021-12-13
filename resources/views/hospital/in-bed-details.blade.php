@@ -25,8 +25,16 @@
                         <p class="text-md font-medium">{{ $patient->status }}</p>
                     </div>
                     <div class="flex gap-x-2 mt-2">
+                        <label class="text-green-500 text-md font-semibold">Reason For Admission: </label>
+                        <p class="text-md font-medium">{{ $patient->reason }}</p>
+                    </div>
+                    <div class="flex gap-x-2 mt-2">
                         <label class="text-green-500 text-md font-semibold">Check In Date: </label>
                         <p class="text-md font-medium">{{ $patient->checked_in_date }}</p>
+                    </div>
+                    <div class="flex gap-x-2 mt-2">
+                        <label class="text-green-500 text-md font-semibold">Check In Time: </label>
+                        <p class="text-md font-medium">{{ $patient->checked_in_time }}</p>
                     </div>
                     <div class="flex gap-x-2 mt-2">
                         <label class="text-green-500 text-md font-semibold">Check In Time: </label>

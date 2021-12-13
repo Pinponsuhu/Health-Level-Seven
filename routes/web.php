@@ -25,6 +25,10 @@ Route::post('/super/admin/store/new',[SuperAdminController::class, 'store_reg'])
 Route::get('/hospital/dashboard', [ClinicController::class, 'clinic_dashboard'])->name('clinic_dashboard');
 Route::get('/hospital/new/patient', [HospitalController::class, 'new_patient']);
 Route::post('/save/patient', [HospitalController::class, 'store_patient'])->name('store_patient');
+Route::get('/change-passport/{id}', [HospitalController::class, 'change_passport']);
+Route::post('/store/update/{id}', [HospitalController::class, 'update_passport']);
+Route::get('/update/patient/{id}',[HospitalController::class, 'update_patient']);
+Route::post('/save/patient/update/{id}',[HospitalController::class, 'store_patient_update']);
 Route::get('/bed/management', [HospitalController::class, 'bed_management']);
 Route::get('/fill/bed', [HospitalController::class, 'fill_bed']);
 Route::post('/update/bed/{id}',[HospitalController::class, 'update_bed_space']);

@@ -21,6 +21,14 @@
                     @enderror
                 </div>
                 <div class="my-2">
+                    <label class="font-semibold text-md block mb-1">Reason</label>
+                    <input type="text" value="{{ $patient->reason }}" name="reason" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block"  placeholder="Reason for patient admission">
+
+                    @error('reason')
+                        <p class="text-sm text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="my-2">
                     <label class="font-semibold text-md block mb-1">Phone Number</label>
                     <input type="text" readonly value="{{ $patient->phone_number }}" name="phone_number" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block"  placeholder="Enter Patient's Phone Number">
                     @error('phone_mumber')
