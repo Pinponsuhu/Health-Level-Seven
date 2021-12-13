@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Charts\BedspaceChart;
 use App\Models\BedSpace;
 use App\Models\Patient;
+use Carbon\Carbon;
 use DataTables;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,6 @@ class HospitalController extends Controller
         $path = $request->file('passport')->store($dest);
         $patient->surname = $request->surname ;
         $patient->othernames = $request->othernames ;
-        $patient->reason = $request->reason ;
         $patient->date_of_birth = $request->date_of_birth ;
         $patient->email_address = $request->email_address ;
         $patient->state_of_origin = $request->state_of_origin ;
@@ -45,6 +45,7 @@ class HospitalController extends Controller
         $patient->gender = $request->gender ;
         $patient->hospital_id = auth()->user()->id ;
         $patient->phone_number = $request->phone_number ;
+        $patient->date_registered = Carbon::now()->format('j-F-Y');
         $patient->next_of_kin = $request->next_of_kin;
         $patient->next_of_kin_number1 = $request->next_of_kin_number1;
         $patient->next_of_kin_number2 = $request->next_of_kin_number2;
@@ -105,6 +106,7 @@ class HospitalController extends Controller
         $patient->gender = $request->gender ;
         $patient->phone_number = $request->phone_number ;
         $patient->next_of_kin = $request->next_of_kin;
+        $patient->created_at = $request->next_of_kin;
         $patient->next_of_kin_number1 = $request->next_of_kin_number1;
         $patient->next_of_kin_number2 = $request->next_of_kin_number2;
         $patient->save();

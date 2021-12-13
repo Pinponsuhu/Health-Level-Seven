@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Hash;
 
 class SuperAdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('superadmin');
+    }
     public function index(){
         return view('super-admin.index');
     }

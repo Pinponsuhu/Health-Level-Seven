@@ -20,8 +20,8 @@ class CreatePatientsTable extends Migration
             $table->string('othernames');
             $table->date('date_of_birth');
             $table->string('gender');
-            $table->string('phone_number')->unique();
-            $table->string('email_address')->unique()->nullable();
+            $table->string('phone_number');
+            $table->string('email_address')->nullable();
             $table->string('state_of_origin');
             $table->string('occupation');
             $table->string('resident_address');
