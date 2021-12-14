@@ -16,7 +16,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('scheduler:routine')->weeklyOn(3,'11:00');
+        // $schedule->command('scheduler:routine')->call(function (){
+        //     $controller = new \App\Http\Controllers\routineController();
+        //     $controller->reminder();
+        // })->WeeklyOn(1,'16:10');
+        // return redirect('/send/reminder');
+        $schedule->command('scheduler:routine')->everyMinute();
     }
 
     /**
