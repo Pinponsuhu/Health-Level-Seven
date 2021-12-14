@@ -25,6 +25,7 @@
             <label class="font-semibold text-md block mb-1">Appointment type</label>
             <select name="appointment_type" id="" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block">
                 <option disabled selected>--Select appointment type--</option>
+                <option value="Routine">Routine</option>
                 <option value="Pre-booked">Pre-booked</option>
                 <option value="Telephone Consultancy">Telephone Consultancy</option>
             </select>

@@ -330,5 +330,6 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
             return redirect()->back();
         }
     }
+
 }
 

@@ -20,8 +20,13 @@ class AppointmentController extends Controller
 
         return view('hospital.telephone-appointment',['appointments'=>$appointments]);
     }
-    public function routine(){
+    public function prebooked(){
         $appointments = Appointment::where('appointment_type','=','Pre-booked')
+        ->where('hospital_id','=', auth()->user()->id)->paginate(20);
+        return view('hospital.routine',['appointments'=>$appointments]);
+    }
+    public function routine(){
+        $appointments = Appointment::where('appointment_type','=','Routine')
         ->where('hospital_id','=', auth()->user()->id)->paginate(20);
         return view('hospital.routine',['appointments'=>$appointments]);
     }
