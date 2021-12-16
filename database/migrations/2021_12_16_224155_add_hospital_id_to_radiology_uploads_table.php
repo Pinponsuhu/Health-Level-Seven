@@ -26,7 +26,7 @@ class AddHospitalIdToRadiologyUploadsTable extends Migration
     public function down()
     {
         Schema::table('radiology_uploads', function (Blueprint $table) {
-            //
+            $table->dropColumn('hospital_id');
         });
     }
 }
