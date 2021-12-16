@@ -13,6 +13,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "nesbot/carbon": "^2.55",
+        "pusher/pusher-php-server": "^7.0",
         "snowfire/beautymail": "dev-master",
         "yajra/laravel-datatables-oracle": "^9.18"
     },

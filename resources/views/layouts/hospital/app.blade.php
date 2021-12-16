@@ -48,19 +48,18 @@
         <nav class="w-80 bg-green-600 h-screen hidden md:block overflow-y-scroll py-3">
             <h1 class="uppercase text-3xl font-bold text-white text-center pb-4">Menu</h1>
             <a href="/hospital/dashboard"><li class="flex text-gray-50 items-center pl-7 mt-3"><i class="fa fa-chart-pie mr-6 text-2xl"></i> <p class="text-lg">Dashboard</p></li></a>
-            <ul class="pl-4 mt-3 pt-3">
-                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user-plus mr-5 text-2xl"></i> <p class="text-lg">Registration</p></li>
-                <a href="/hospital/new/patient"><li class="text-md py-2 ml-16 text-white">Patient</li></a>
-            </ul>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user-md mr-7 text-2xl"></i> <p class="text-md">Clinical</p></li>
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-x-ray mr-5 text-2xl"></i> <p class="text-md">Radiology Upload</p></li>
+                <a href="/hospital/new/patient"><li class="text-md py-2 ml-16 text-white">All Uploads</li></a>
+                <a href="/hospital/new/radiology/upload"><li class="text-md py-2 ml-16 text-white">Add New</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user-injured mr-8 text-2xl"></i> <p class="text-md">Patient management</p></li>
                 <a href="/view/all/patient"><li  class="text-md py-2 ml-16 text-white">All Patient</li></a>
+                <a href="/hospital/new/patient"><li class="text-md py-2 ml-16 text-white">New Patient</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-procedures mr-5 text-2xl"></i> <p class="text-md">Bed Management</p></li>
@@ -76,10 +75,6 @@
                 <li class="text-md py-2 ml-16 text-white"><a href="/prebooked/appointment">Pre-Booked</a></li>
                 <a href="/telephone/appointments"><li class="text-md py-2 ml-16 text-white">Telephone consultation</li></a>
                 <a href="/book/appointment"><li class="text-md py-2 ml-16 text-white">Add new</li></a>
-            </ul>
-            <ul class="pl-4 mt-3 py-3">
-                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-flask mr-7 text-2xl"></i> <p class="text-md">Laboratory</p></li>
-                <li class="text-md py-2 ml-16 text-white">Request</li>
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-clipboard-list mr-7 text-2xl"></i> <p class="text-md">Inventory</p></li>
