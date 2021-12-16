@@ -4,7 +4,7 @@
         @include('layouts.hospital.nav')
         <form action="/bed/space" class=" w-8/12 mb-6 grid grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md shadow-md mt-8 bg-white" method="post" enctype="multipart/form-data">
             @csrf
-            <h1 class="col-span-2 text-2xl font-semibold text-green-600 mb-3">Patient in bed</h1>
+            <h1 class="col-span-2 text-2xl font-semibold text-green-600 mb-3">Result Tracker</h1>
             <div class="my-2">
                 <label class="font-semibold text-md block mb-1">Full name</label>
                 <input type="text" value="{{ old('fullname') }}" name="fullname" placeholder="Enter Patient's Surname" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block">
