@@ -61,5 +61,7 @@ Route::post('/store/assign', [InventoryController::class, 'store_assign']);
 Route::get('/edit/item/{id}', [InventoryController::class, 'edit_item']);
 Route::post('/store/edit/item/{id}', [InventoryController::class, 'store_edit']);
 Route::get('/send/reminder', [routineController::class, 'reminder']);
-Route::get('/upload/radiology',[RadiologyController::class, 'show']);
+Route::get('/upload/radiology',[RadiologyController::class, 'show_form']);
 Route::post('/upload/radiology',[RadiologyController::class, 'store_credentials']);
+Route::get('/track/uploads',[RadiologyController::class, 'track_uploads']);
+Route::get('/upload/details/{id}',[RadiologyController::class, 'upload_details']);

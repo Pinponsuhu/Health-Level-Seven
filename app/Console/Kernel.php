@@ -21,7 +21,7 @@ class Kernel extends ConsoleKernel
         //     $controller->reminder();
         // })->WeeklyOn(1,'16:10');
         // return redirect('/send/reminder');
-        $schedule->command('scheduler:routine')->everyMinute();
+        $schedule->command('scheduler:routine')->weeklyOn(5,'13:49');
     }
 
     /**

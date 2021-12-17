@@ -53,7 +53,7 @@
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-x-ray mr-5 text-2xl"></i> <p class="text-md">Radiology Upload</p></li>
-                <a href="/hospital/new/patient"><li class="text-md py-2 ml-16 text-white">All Uploads</li></a>
+                <a href="/track/uploads"><li class="text-md py-2 ml-16 text-white">Track Uploads</li></a>
                 <a href="/upload/radiology"><li class="text-md py-2 ml-16 text-white">Add New</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
@@ -71,7 +71,7 @@
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-calendar-check mr-7 text-2xl"></i> <p class="text-md">Appointment</p></li>
-                <li class="text-md py-2 ml-16 text-white">Routine</li>
+                <li class="text-md py-2 ml-16 text-white"><a href="/routine/appointment">Routine</a></li>
                 <li class="text-md py-2 ml-16 text-white"><a href="/prebooked/appointment">Pre-Booked</a></li>
                 <a href="/telephone/appointments"><li class="text-md py-2 ml-16 text-white">Telephone consultation</li></a>
                 <a href="/book/appointment"><li class="text-md py-2 ml-16 text-white">Add new</li></a>
