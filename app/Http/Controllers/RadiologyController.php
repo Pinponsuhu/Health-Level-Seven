@@ -36,7 +36,24 @@ class RadiologyController extends Controller
     }
     public function upload_details($id){
         $upload = RadiologyUpload::find($id)->first();
-        $files = RadiologyFiles::where('upload_id','=',$upload)
-        return view('hospital.upload-details',['upload'=>$upload]);
+        $files = RadiologyFiles::where('upload_id','=',$upload->id)->get();
+        return view('hospital.upload-details',['upload'=>$upload, 'files'=>$files]);
+    }
+    public function add_result(Request $request, $id){
+        $request->validate([
+            'result' => 'required',
+            'result.*' => 'mimes:png,jpg,jpeg,pdf,docx,doc'
+        ]);
+        $fileModel = new RadiologyFiles;
+        $dest = '/public/results';
+        $files = $request->file('result');
+        foreach($files as $file){
+        $path = $file->store($dest);
+        $fileModel->file_path = str_replace('public/results/','',$path);
+        $fileModel->upload_id = $id;
+        $fileModel->save();
+
+        return redirect('/hospital/dashboard');
+        }
     }
 }

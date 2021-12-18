@@ -65,3 +65,4 @@ Route::get('/upload/radiology',[RadiologyController::class, 'show_form']);
 Route::post('/upload/radiology',[RadiologyController::class, 'store_credentials']);
 Route::get('/track/uploads',[RadiologyController::class, 'track_uploads']);
 Route::get('/upload/details/{id}',[RadiologyController::class, 'upload_details']);
+Route::post('/add/result/{id}',[RadiologyController::class, 'add_result']);
