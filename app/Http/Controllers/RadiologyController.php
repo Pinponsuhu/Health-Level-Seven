@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class RadiologyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    //methid to show forms
     public function show_form(){
         return view('hospital.add-upload');
     }

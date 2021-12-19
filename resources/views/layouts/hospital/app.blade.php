@@ -42,6 +42,7 @@
 *::-webkit-scrollbar-thumb:hover {
     background: #095134;
 }
+
         </style>
     </head>
     <body class="antialiased bg-gray-200 flex">
@@ -85,10 +86,9 @@
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-building mr-7 text-2xl"></i> <p class="text-md">Department</p></li>
             </ul>
+            <ul class="pl-4 mt-3 py-3">
+                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-md">Chatbox</p></li>
+            </ul>
         </nav>
         @yield('content')
-
-        <div class="p-4 rounded-full bg-green-600 text-white fixed bottom-5 right-7">
-            <i class="fa fa-envelope text-2xl"></i>
-        </div>
     </body>
