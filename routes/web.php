@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\InventoryController;
@@ -66,3 +67,4 @@ Route::post('/upload/radiology',[RadiologyController::class, 'store_credentials'
 Route::get('/track/uploads',[RadiologyController::class, 'track_uploads']);
 Route::get('/upload/details/{id}',[RadiologyController::class, 'upload_details']);
 Route::post('/add/result/{id}',[RadiologyController::class, 'add_result']);
+Route::get('/chat/overview',[ChatController::class, 'overview']);
