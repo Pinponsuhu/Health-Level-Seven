@@ -5,7 +5,7 @@
         <div class="px-6 mt-4">
             <div class="px-4 py-6 bg-white rounded-md shadow-md">
                 <div class="flex justify-between items-center mb-4">
-                    <h1 class="text-3xl font-extrabold text-green-500">Inventory Overview</h1>
+                    <h1 class="text-3xl font-bold text-green-500">Inventory Overview</h1>
                     <a href="/add/item" class="text-white bg-green-500 py-2 px-5 rounded-md shadow-md">Add new</a>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-y-6 lg:grid-cols-4 gap-x-8">
