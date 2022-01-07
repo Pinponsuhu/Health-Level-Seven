@@ -21,13 +21,14 @@ class CreateBedSpacesTable extends Migration
             $table->string('gender');
             $table->string('phone_number')->nullable();
             $table->string('checked_in_date');
-            $table->string('hospital_id');
+            $table->unsignedInteger('hospital_id');
             $table->string('checked_in_time');
             $table->string('bed_number');
             $table->string('ward');
             $table->string('next_of_kin');
             $table->string('next_of_kin_number')->nullable();
             $table->string('doctor_name');
+            $table->foreign('hospital_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

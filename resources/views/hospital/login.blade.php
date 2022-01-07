@@ -29,7 +29,7 @@
             <h1 class="w-full bg-green-600 text-white py-3 text-center rounded-tr-md rounded-tl-md text-xl mb-4 font-semibold">Login</h1>
             <div class="px-7">
                 <label for="" class="mt-2 block font-medium">Department</label>
-                <input type="text" autocomplete="off" name="department" placeholder="Hospital ID" class="border-4 border-green-600 px-3 py-3 text-md rounded-md shadow-md bg-white block mt-2 w-full" id="">
+                <input type="text" autocomplete="off" name="department" placeholder="Hospital ID/Department Name" class="border-4 border-green-600 px-3 py-3 text-md rounded-md shadow-md bg-white block mt-2 w-full" id="">
                 <label for="" class="mt-2 block font-medium">Password</label>
                 <input type="text" autocomplete="off" name="password" placeholder="Department password" class="border-4 border-green-600 px-3 py-3 text-md rounded-md shadow-md bg-white block mt-2 w-full" id="">
                 <button class="w-28 py-3 mx-auto text-center bg-green-600 text-white rounded-md flex items-center justify-center my-3 hover:bg-green-500">Sign In</button>

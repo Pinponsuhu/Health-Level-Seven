@@ -18,4 +18,7 @@ class RadiologyUpload extends Model
     public function Files(){
         return $this->hasMany(RadiologyFiles::class);
     }
+    public function User(){
+        return $this->belongsTo(User::class);
+    }
 }

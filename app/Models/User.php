@@ -40,4 +40,19 @@ class User extends Authenticatable
     public function Staff(){
         return $this->hasMany(Staff::class);
     }
+    public function Patient(){
+        return $this->hasMany(Patient::class);
+    }
+    public function Appointment(){
+        return $this->hasMany(Appointment::class);
+    }
+    public function InventoryItem(){
+        return $this->hasMany(InventoryItem::class);
+    }
+    public function BedSpace(){
+        return $this->hasMany(BedSpace::class);
+    }
+    public function RadiologyUpload(){
+        return $this->hasMany(RadiologyUpload::class);
+    }
 }

@@ -52,27 +52,35 @@
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user mr-7 text-2xl"></i> <p class="text-md">Profile</p></li>
             </ul>
+            @if (Auth::guard('department')->user()->radiology_permission == 'on')
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-x-ray mr-5 text-2xl"></i> <p class="text-md">Radiology Upload</p></li>
                 <a href="/track/uploads"><li class="text-md py-2 ml-16 text-white">Track Uploads</li></a>
                 <a href="/upload/radiology"><li class="text-md py-2 ml-16 text-white">Add New</li></a>
             </ul>
+
+            @endif
+            @if (Auth::guard('department')->user()->patient_permission == 'on')
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user-injured mr-8 text-2xl"></i> <p class="text-md">Patient management</p></li>
                 <a href="/view/all/patient"><li  class="text-md py-2 ml-16 text-white">All Patient</li></a>
                 <a href="/hospital/new/patient"><li class="text-md py-2 ml-16 text-white">New Patient</li></a>
             </ul>
+            @endif
+            @if (Auth::guard('department')->user()->bed_permission == 'on')
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-procedures mr-5 text-2xl"></i> <p class="text-md">Bed Management</p></li>
                 <a href="/bed/management"><li class="text-md py-2 ml-16 text-white">Overview</li></a>
                     <a href="/bed/history"><li class="text-md py-2 ml-16 text-white">View All</li></a>
             </ul>
-            <ul class="pl-4 mt-3 py-3">
+            @endif
+            {{-- <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user-cog mr-5 text-2xl"></i> <p class="text-md">Admin</p></li>
                 <li class="text-md py-2 ml-16 text-white"><a href="/admin/overview">Overview</a></li>
                 <li class="text-md py-2 ml-16 text-white"><a href="/add/department">Departments</a></li>
                 <li class="text-md py-2 ml-16 text-white"><a href="/staff/registration">Staff Registration</a></li>
-            </ul>
+            </ul> --}}
+            @if (Auth::guard('department')->user()->appointment_permission == 'on')
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-calendar-check mr-7 text-2xl"></i> <p class="text-md">Appointment</p></li>
                 <li class="text-md py-2 ml-16 text-white"><a href="/routine/appointment">Routine</a></li>
@@ -80,12 +88,15 @@
                 <a href="/telephone/appointments"><li class="text-md py-2 ml-16 text-white">Telephone consultation</li></a>
                 <a href="/book/appointment"><li class="text-md py-2 ml-16 text-white">Add new</li></a>
             </ul>
+            @endif
+            @if (Auth::guard('department')->user()->inventory_permission == 'on')
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-clipboard-list mr-7 text-2xl"></i> <p class="text-md">Inventory</p></li>
                 <a href="/inventory/dashboard"><li class="text-md py-2 ml-16 text-white">Overview</li></a>
                 <a href="#"><li class="text-md py-2 ml-16 text-white">In Stock</li></a>
                 <a href="/all/items"><li class="text-md py-2 ml-16 text-white">All Items</li></a>
             </ul>
+            @endif
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-md">Chatbox</p></li>
             </ul>

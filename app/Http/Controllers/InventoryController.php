@@ -6,6 +6,7 @@ use App\Models\Assign;
 use App\Models\InventoryItem;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InventoryController extends Controller
 {
@@ -13,7 +14,7 @@ class InventoryController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function dashboard(){
         $meds = InventoryItem::where('hospital_id','=',auth()->user()->id)
         ->where('item_category','=','Medicinal')
@@ -70,6 +71,7 @@ class InventoryController extends Controller
             $item->deliverer_number = $request->deliverer_number;
             $item->item_condition = $request->item_condition;
             $item->expiry_date = $request->expiry_date;
+            $item->last_edited_by = Auth::guard('department')->user()->name;
             $item->item_id = random_int(000000,999999);
             $item->save();
 

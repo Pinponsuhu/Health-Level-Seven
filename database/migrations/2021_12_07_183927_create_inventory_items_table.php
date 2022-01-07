@@ -21,10 +21,11 @@ class CreateInventoryItemsTable extends Migration
             $table->string('item_id')->unique();
             $table->string('item_category');
             $table->string('date_brought_in');
-            $table->string('hospital_id');
+            $table->unsignedInteger('hospital_id');
             $table->string('delivered_by');
             $table->string('deliverer_number');
             $table->string('serial_number');
+            $table->foreign('hospital_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
 

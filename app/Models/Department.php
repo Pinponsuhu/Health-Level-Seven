@@ -17,7 +17,7 @@ class Department extends Authenticatable
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['name', 'password','hospital_id','radiology_permission','bed_permission','patient_permission','appointment_permission','inventory_permission'];
+    protected $fillable = ['hospital_name','HID','hospital_logo','name', 'password','hospital_id','radiology_permission','bed_permission','patient_permission','appointment_permission','inventory_permission'];
 
     public function User(){
         return $this->belongsTo(User::class);

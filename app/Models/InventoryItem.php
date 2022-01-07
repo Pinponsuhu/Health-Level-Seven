@@ -18,4 +18,7 @@ class InventoryItem extends Model
     public function assign(){
         return $this->hasMany(Assign::class);
     }
+    public function User(){
+        return $this->belongsTo(User::class);
+    }
 }

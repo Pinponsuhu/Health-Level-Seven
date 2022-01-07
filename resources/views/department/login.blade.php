@@ -25,16 +25,17 @@
         </style>
     </head>
     <body class="antialiased bg-gray-100">
-        <form action="/loging" class="w-4/12 mx-auto bg-white shadow-md rounded-md pb-6 mt-14">
+        <form action="/department/login" class="w-4/12 mx-auto bg-white shadow-md rounded-md pb-6 mt-14" method="POST">
+            @csrf
             <h1 class="w-full bg-green-600 text-white py-3 text-center rounded-tr-md rounded-tl-md text-xl mb-4 font-semibold">Login</h1>
             <div class="px-7">
                 @if (session('status'))
                     {{ session('status') }}
                 @endif
-                <label for="" class="mt-2 block font-medium">Hospital ID</label>
-                <input type="text" autocomplete="off" name="HID" placeholder="Hospital ID/Department Name" class="border-4 border-green-600 px-3 py-3 text-md rounded-md shadow-md bg-white block mt-2 w-full" id="">
+                <label for="" class="mt-2 block font-medium">Department Name</label>
+                <input type="text" autocomplete="off" name="name" placeholder="Department Name" class="border-4 border-green-600 px-3 py-3 text-md rounded-md shadow-md bg-white block mt-2 w-full" id="">
                 <label for="" class="mt-2 block font-medium">Password</label>
-                <input type="text" autocomplete="off" name="password" placeholder="Hospital password" class="border-4 border-green-600 px-3 py-3 text-md rounded-md shadow-md bg-white block mt-2 w-full" id="">
+                <input type="text" autocomplete="off" name="password" placeholder="Department password" class="border-4 border-green-600 px-3 py-3 text-md rounded-md shadow-md bg-white block mt-2 w-full" id="">
                 <button class="w-28 py-3 mx-auto text-center bg-green-600 text-white rounded-md flex items-center justify-center my-3 hover:bg-green-500">Sign In</button>
             </div>
         </form>

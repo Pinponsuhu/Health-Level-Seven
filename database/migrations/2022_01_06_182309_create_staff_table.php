@@ -23,13 +23,13 @@ class CreateStaffTable extends Migration
             $table->string('passport');
             $table->string('phone_number');
             $table->string('email_address');
-            $table->string('hospital_id');
+            $table->unsignedInteger('hospital_id');
             $table->string('house_address');
             $table->string('next_of_kin');
             $table->string('next_of_kin_number');
             $table->date('date_of_birth');
             $table->timestamps();
-            $table->foreign('hospital_id')->references('HID')->on('users')->onDelete('cascade');
+            $table->foreign('hospital_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

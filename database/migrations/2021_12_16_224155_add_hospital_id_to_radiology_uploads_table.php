@@ -15,6 +15,7 @@ class AddHospitalIdToRadiologyUploadsTable extends Migration
     {
         Schema::table('radiology_uploads', function (Blueprint $table) {
             $table->unsignedInteger('hospital_id');
+            $table->foreign('hospital_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

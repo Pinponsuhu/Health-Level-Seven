@@ -15,8 +15,8 @@ class HospitalAdminController extends Controller
         $this->middleware('auth');
     }
     public function overview(){
-        $department = Department::where('hospital_id','=',auth()->user()->HID)->count();
-        $staff = Staff::where('hospital_id','=',auth()->user()->HID)->count();
+        $department = Department::where('hospital_id','=',auth()->user()->id)->count();
+        $staff = Staff::where('hospital_id','=',auth()->user()->id)->count();
         return view('hospital.admin',['department'=>$department,'staff'=>$staff]);
     }
     public function add_department(){
@@ -33,8 +33,10 @@ class HospitalAdminController extends Controller
         $department->password = Hash::make($request->password);
         $department->radiology_permission = $request->radiology;
         $department->bed_permission = $request->bed;
-        $department->hospital_id = auth()->user()->HID;
-        $department->staff_permission = $request->staff;
+        $department->hospital_id = auth()->user()->id;
+        $department->hospital_name = auth()->user()->hospital_name;
+        $department->hospital_logo = auth()->user()->hospital_logo;
+        $department->HID = auth()->user()->HID;
         $department->appointment_permission = $request->appointment;
         $department->inventory_permission = $request->inventory;
         $department->save();
@@ -85,7 +87,7 @@ class HospitalAdminController extends Controller
         $staff->house_address = $request->resident_address ;
         $staff->passport = str_replace('public/staffs/','',$path) ;
         $staff->gender = $request->gender ;
-        $staff->hospital_id = auth()->user()->HID ;
+        $staff->hospital_id = auth()->user()->id ;
         $staff->phone_number = $request->phone_number ;
         $staff->next_of_kin = $request->next_of_kin;
         $staff->next_of_kin_number = $request->next_of_kin_number;
@@ -97,14 +99,14 @@ class HospitalAdminController extends Controller
 
     public function all_staff(){
         $staffs = Staff::latest()
-        ->where('hospital_id','=', auth()->user()->HID)
+        ->where('hospital_id','=', auth()->user()->id)
         ->paginate(25);
 
         return view('hospital.all-staffs',['staffs'=>$staffs]);
     }
     public function all_department(){
         $departments = Department::latest()
-        ->where('hospital_id','=', auth()->user()->HID)
+        ->where('hospital_id','=', auth()->user()->id)
         ->paginate(25);
 
         return view('hospital.all-departments',['departments'=>$departments]);

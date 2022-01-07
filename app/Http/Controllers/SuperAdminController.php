@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Hospital;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class SuperAdminController extends Controller
@@ -52,10 +53,10 @@ class SuperAdminController extends Controller
             'password'=> 'required'
         ]);
         if(!auth()->attempt($request->only('HID','password'))){
-            return back()->with('status','Invalid login credentials');
+                return back()->with('status','Invalid login credentials');
         }
-        if(auth()->user()->hospital_admin == 1){
+        // if(auth()->user()->hospital_admin == 1){
             return redirect('/hospital/dashboard');
-        }
+        // }
     }
 }

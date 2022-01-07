@@ -20,11 +20,12 @@ class CreateAppointmentsTable extends Migration
             $table->date('preferred_date');
             $table->string('gender');
             $table->string('appointment_type');
-            $table->string('hospital_id');
+            $table->unsignedInteger('hospital_id');
             $table->string('doctor_type');
             $table->string('status');
             $table->string('phone_number');
             $table->string('email_address')->nullable();
+            $table->foreign('hospital_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

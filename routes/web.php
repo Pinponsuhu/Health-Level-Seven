@@ -3,6 +3,7 @@
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ClinicController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HospitalAdminController;
 use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\InventoryController;
@@ -78,3 +79,8 @@ Route::get('/all/staffs',[HospitalAdminController::class, 'all_staff']);
 Route::get('/all/departments',[HospitalAdminController::class, 'all_department']);
 Route::get('/department/login',[HospitalAdminController::class, 'login']);
 Route::post('/department/login',[HospitalAdminController::class, 'sign_in']);
+
+//Department logics
+Route::get('/department/login',[DepartmentController::class,'show_login']);
+Route::post('/department/login',[DepartmentController::class, 'login']);
+Route::get('/department/dashboard',[DepartmentController::class, 'department_dashboard']);
