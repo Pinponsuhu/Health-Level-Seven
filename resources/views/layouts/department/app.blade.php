@@ -70,8 +70,8 @@
             @if (Auth::guard('department')->user()->bed_permission == 'on')
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-procedures mr-5 text-2xl"></i> <p class="text-md">Bed Management</p></li>
-                <a href="/bed/management"><li class="text-md py-2 ml-16 text-white">Overview</li></a>
-                    <a href="/bed/history"><li class="text-md py-2 ml-16 text-white">View All</li></a>
+                <a href="/department/bed/management"><li class="text-md py-2 ml-16 text-white">Overview</li></a>
+                    <a href="/department/bed/history"><li class="text-md py-2 ml-16 text-white">View All</li></a>
             </ul>
             @endif
             {{-- <ul class="pl-4 mt-3 py-3">

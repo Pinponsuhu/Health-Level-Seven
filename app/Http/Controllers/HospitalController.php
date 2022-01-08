@@ -194,6 +194,7 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
         $bed->bed_number = $request->bed_number;
         $bed->ward = $request->ward;
         $bed->hospital_id = auth()->user()->id;
+        $bed->last_edited_by = 'Admin';
         $bed->next_of_kin = $request->next_of_kin;
         $bed->next_of_kin_number = $request->next_of_kin_number;
         $bed->doctor_name = $request->doctor_name;
@@ -205,6 +206,7 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
     public function update_bed_space(Request $request){
         if(isset($request->bed_status)){
             $bed = BedSpace::find($request->id);
+            $bed->last_edited_by = 'Admin';
             $bed->status = $request->bed_status;
             $bed->save();
 
@@ -314,6 +316,7 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
         $bed->bed_number = $request->bed_number;
         $bed->ward = $request->ward;
         $bed->hospital_id = auth()->user()->id;
+        $bed->last_edited_by = 'Admin';
         $bed->next_of_kin = $request->next_of_kin;
         $bed->next_of_kin_number = $request->next_of_kin_number;
         $bed->doctor_name = $request->doctor_name;

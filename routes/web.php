@@ -3,6 +3,7 @@
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ClinicController;
+use App\Http\Controllers\DepartmentBed;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DepartmentPatient;
 use App\Http\Controllers\DepartmentRadiology;
@@ -99,4 +100,15 @@ Route::get('/department/change-passport/{id}',[DepartmentPatient::class, 'change
 Route::post('/department/store/update/{id}',[DepartmentPatient::class, 'update_passport']);
 Route::get('/department/update/patient/{id}',[DepartmentPatient::class, 'update_patient']);
 Route::post('/department/patient/update/{id}',[DepartmentPatient::class, 'store_patient_update']);
+Route::get('/department/bed/management',[DepartmentBed::class, 'bed_management']);
+Route::get('/department/existing/patient',[DepartmentBed::class, 'existing_patient']);
+Route::get('/department/confirm/patient',[DepartmentBed::class, 'confirm_identity']);
+Route::get('/department/use/existing/{id}',[DepartmentBed::class, 'use_existing']);
+Route::get('/department/fill/bed',[DepartmentBed::class, 'fill_bed']);
+Route::post('/department/bed/space',[DepartmentBed::class, 'store_bed']);
+Route::get('/department/bed/search',[DepartmentBed::class, 'search']);
+Route::get('/department/bed/detail/{id}',[DepartmentBed::class, 'bed_detail']);
+Route::get('/department/bed/history',[DepartmentBed::class, 'all_history']);
+
+Route::post('/department/update/bed/{id}', [DepartmentBed::class, 'update_bed_space']);
 
