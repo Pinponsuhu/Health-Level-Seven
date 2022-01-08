@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Auth;
 
 class DepartmentController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('department');
+    // }
     public function show_login(){
         return view('department.login');
     }
@@ -25,11 +29,11 @@ class DepartmentController extends Controller
         return redirect('department/dashboard');
     }
 
-    public function department_dashboard(RegPatient $chart, AppointmentChart $chart2)
+    public function department_dashboard()
     {
         $appointments = Appointment::latest()->where('hospital_id','=',Auth()->guard('department')->user()->hospital_id)->where('preferred_date','=', Carbon::now()->format('Y-m-d'))->get();
         // dd($appointments);
-        return view('department.dashboard', ['appointments' => $appointments, 'chart' => $chart->build(), 'chart2' => $chart2->build()]);
+        return view('department.dashboard', ['appointments' => $appointments]);
     }
 }
 

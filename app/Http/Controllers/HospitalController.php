@@ -47,6 +47,7 @@ class HospitalController extends Controller
         $patient->phone_number = $request->phone_number ;
         $patient->date_registered = Carbon::now()->format('j-F-Y');
         $patient->next_of_kin = $request->next_of_kin;
+        $patient->last_edited_by = 'Admin';
         $patient->next_of_kin_number1 = $request->next_of_kin_number1;
         $patient->next_of_kin_number2 = $request->next_of_kin_number2;
         $patient->PID = random_int(1000000000,9999999999);
@@ -70,6 +71,7 @@ class HospitalController extends Controller
         $dest = '/public/patients';
         $path = $request->file('passport')->store($dest);
         $patient->passport = str_replace('public/patients/','',$path);
+        $patient->last_edited_by = 'Admin';
         $patient->save();
 
         return redirect('/hospital/dashboard');
@@ -106,14 +108,12 @@ class HospitalController extends Controller
         $patient->gender = $request->gender ;
         $patient->phone_number = $request->phone_number ;
         $patient->next_of_kin = $request->next_of_kin;
+        $patient->last_edited_by = 'Admin';
         $patient->created_at = $request->next_of_kin;
         $patient->next_of_kin_number1 = $request->next_of_kin_number1;
         $patient->next_of_kin_number2 = $request->next_of_kin_number2;
         $patient->save();
-
         return redirect()->route('clinic_dashboard');
-
-
     }
 
     public function bed_management(BedspaceChart $chart, Request $request){

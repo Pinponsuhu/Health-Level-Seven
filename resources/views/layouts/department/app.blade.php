@@ -48,23 +48,23 @@
     <body class="antialiased bg-gray-200 flex">
         <nav class="w-80 bg-green-600 h-screen hidden md:block overflow-y-scroll py-3">
             <h1 class="uppercase text-3xl font-bold text-white text-center pb-4">Menu</h1>
-            <a href="/hospital/dashboard"><li class="flex text-gray-50 items-center pl-7 mt-3"><i class="fa fa-chart-pie mr-6 text-2xl"></i> <p class="text-lg">Dashboard</p></li></a>
+            <a href="/department/dashboard"><li class="flex text-gray-50 items-center pl-7 mt-3"><i class="fa fa-chart-pie mr-6 text-2xl"></i> <p class="text-lg">Dashboard</p></li></a>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user mr-7 text-2xl"></i> <p class="text-md">Profile</p></li>
             </ul>
             @if (Auth::guard('department')->user()->radiology_permission == 'on')
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-x-ray mr-5 text-2xl"></i> <p class="text-md">Radiology Upload</p></li>
-                <a href="/track/uploads"><li class="text-md py-2 ml-16 text-white">Track Uploads</li></a>
-                <a href="/upload/radiology"><li class="text-md py-2 ml-16 text-white">Add New</li></a>
+                <a href="/department/track/uploads"><li class="text-md py-2 ml-16 text-white">Track Uploads</li></a>
+                <a href="/department/add/radiology"><li class="text-md py-2 ml-16 text-white">Add New</li></a>
             </ul>
 
             @endif
             @if (Auth::guard('department')->user()->patient_permission == 'on')
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user-injured mr-8 text-2xl"></i> <p class="text-md">Patient management</p></li>
-                <a href="/view/all/patient"><li  class="text-md py-2 ml-16 text-white">All Patient</li></a>
-                <a href="/hospital/new/patient"><li class="text-md py-2 ml-16 text-white">New Patient</li></a>
+                <a href="/department/all/patient"><li  class="text-md py-2 ml-16 text-white">All Patient</li></a>
+                <a href="/department/new/patient"><li class="text-md py-2 ml-16 text-white">New Patient</li></a>
             </ul>
             @endif
             @if (Auth::guard('department')->user()->bed_permission == 'on')

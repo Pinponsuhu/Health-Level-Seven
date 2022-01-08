@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ClinicController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth','');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function clinic_dashboard(RegPatient $chart, AppointmentChart $chart2)
     {
         // dd();

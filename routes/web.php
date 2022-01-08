@@ -4,6 +4,8 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DepartmentPatient;
+use App\Http\Controllers\DepartmentRadiology;
 use App\Http\Controllers\HospitalAdminController;
 use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\InventoryController;
@@ -83,4 +85,18 @@ Route::post('/department/login',[HospitalAdminController::class, 'sign_in']);
 //Department logics
 Route::get('/department/login',[DepartmentController::class,'show_login']);
 Route::post('/department/login',[DepartmentController::class, 'login']);
-Route::get('/department/dashboard',[DepartmentController::class, 'department_dashboard']);
+Route::get('/department/dashboard',[DepartmentController::class, 'department_dashboard'])->middleware('department');
+Route::get('/department/add/radiology',[DepartmentRadiology::class, 'show_form'])->middleware('department');
+Route::post('/department/upload/radiology',[DepartmentRadiology::class, 'store_credentials']);
+Route::get('/department/track/uploads',[DepartmentRadiology::class,'track_uploads'])->middleware('department');
+Route::get('/upload/details/{id}',[DepartmentRadiology::class, 'upload_details']);
+Route::post('/add/result/{id}',[DepartmentRadiology::class, 'add_result']);
+Route::get('/department/new/patient',[DepartmentPatient::class,'new_patient'])->middleware('department');
+Route::post('/department/new/patient',[DepartmentPatient::class,'store_patient']);
+Route::get('/department/all/patient',[DepartmentPatient::class, 'all_patient']);
+Route::get('/department/patient/details/{id}',[DepartmentPatient::class, 'patient_details']);
+Route::get('/department/change-passport/{id}',[DepartmentPatient::class, 'change_passport']);
+Route::post('/department/store/update/{id}',[DepartmentPatient::class, 'update_passport']);
+Route::get('/department/update/patient/{id}',[DepartmentPatient::class, 'update_patient']);
+Route::post('/department/patient/update/{id}',[DepartmentPatient::class, 'store_patient_update']);
+
