@@ -86,7 +86,7 @@ Route::get('/department/login',[HospitalAdminController::class, 'login']);
 Route::post('/department/login',[HospitalAdminController::class, 'sign_in']);
 
 //Department logics
-Route::get('/department/login',[DepartmentController::class,'show_login']);
+Route::get('/department/login',[DepartmentController::class,'show_login'])->middleware('guest');
 Route::post('/department/login',[DepartmentController::class, 'login']);
 Route::get('/department/dashboard',[DepartmentController::class, 'department_dashboard'])->middleware('department');
 Route::get('/department/add/radiology',[DepartmentRadiology::class, 'show_form'])->middleware('department');
@@ -126,3 +126,8 @@ Route::post('/department/store/edit/item/{id}', [DepartmentInventory::class, 'st
 Route::get('/department/search/items', [DepartmentInventory::class, 'search_items']);
 Route::get('/department/assign/item/{id}', [DepartmentInventory::class, 'assign']);
 Route::post('/department/store/assign',[DepartmentInventory::class, 'store_assign']);
+Route::get('/department/change/password',[DepartmentController::class, 'change_password']);
+Route::post('/department/changing/password/{id}', [DepartmentController::class, 'changing_password']);
+
+//superadmin logics
+Route::get('/super/admin/index',[SuperAdminController::class, 'index']);

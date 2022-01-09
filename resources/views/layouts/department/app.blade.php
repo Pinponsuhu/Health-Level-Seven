@@ -50,7 +50,7 @@
             <h1 class="uppercase text-3xl font-bold text-white text-center pb-4">Menu</h1>
             <a href="/department/dashboard"><li class="flex text-gray-50 items-center pl-7 mt-3"><i class="fa fa-chart-pie mr-6 text-2xl"></i> <p class="text-lg">Dashboard</p></li></a>
             <ul class="pl-4 mt-3 py-3">
-                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user mr-7 text-2xl"></i> <p class="text-md">Profile</p></li>
+                <a href="/department/change/password"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-lock mr-7 text-2xl"></i> <p class="text-md">Change password</p></li></a>
             </ul>
             @if (Auth::guard('department')->user()->radiology_permission == 'on')
             <ul class="pl-4 mt-3 py-3">
