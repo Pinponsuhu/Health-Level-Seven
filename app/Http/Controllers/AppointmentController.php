@@ -50,6 +50,7 @@ class AppointmentController extends Controller
         $appointments->appointment_type = $request->appointment_type ;
         $appointments->doctor_type = $request->doctor_type ;
         $appointments->hospital_id = auth()->user()->id;
+        $appointments->last_edited_by = 'Admin';
         $appointments->phone_number = $request->phone_number ;
         $appointments->status = 'Active' ;
         $appointments->save();

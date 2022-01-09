@@ -1,11 +1,11 @@
-@extends('layouts.hospital.app')
+@extends('layouts.department.app')
 @section('content')
     <main class="w-full h-screen overflow-y-scroll">
-            @include('layouts.hospital.nav')
+            @include('layouts.department.nav')
         <div class="mt-4 px-8">
             <div class="bg-white rounded-md  p-6  shadow-md">
                 <h1 class="font-bold text-2xl text-green-500  mb-4 col-span-2">Assignment Form</h1>
-                <form action="/department/store/assign" class="gap-x-5 gap-y-2 grid grid-cols-2" method="POST">
+                <form action="/store/assign" class="gap-x-5 gap-y-2 grid grid-cols-2" method="POST">
                     @csrf
                     <div class="my-2">
                         <label class="font-semibold text-md block mb-1">Item ID:</label>

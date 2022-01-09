@@ -68,5 +68,7 @@ class Kernel extends HttpKernel
         'rad' => \App\Http\Middleware\RadMiddleware::class,
         'pat' => \App\Http\Middleware\PatientMiddleware::class,
         'bed' => \App\Http\Middleware\BedMiddleware::class,
+        'appt' => \App\Http\Middleware\AppointmentMiddleware::class,
+        'invt' => \App\Http\Middleware\InventoryMiddleware::class,
     ];
 }

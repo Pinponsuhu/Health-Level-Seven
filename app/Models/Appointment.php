@@ -13,7 +13,7 @@ class Appointment extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['hospital_id','surname','othernames','preferred_date','gender','appointment_type','doctor_type','phone_number','email_address'];
+    protected $fillable = ['last_edited_by','hospital_id','surname','othernames','preferred_date','gender','appointment_type','doctor_type','phone_number','email_address'];
 
     public function User(){
         return $this->belongsTo(User::class);
