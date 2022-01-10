@@ -26,12 +26,12 @@
     </head>
     <body class="antialiased bg-gray-100">
         <div class="w-7/12 mx-auto grid grid-cols-3 gap-y-6 mt-5">
-            <h1 class="col-span-3 text-center mb-1 text-2xl font-medium text-green-600">Welcome, <u>Hospital name</u></h1>
-            <a href="#" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
+            <h1 class="col-span-3 text-center mb-1 text-2xl font-medium text-green-600">Welcome, <u>{{ auth()->guard('superadmin')->user()->fullname }}</u></h1>
+            <a href="/super/admin/hospital/list" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
                 <div class="mt-5">
                     <i class="fa fa-building text-4xl block text-center mx-auto"></i>
                     <div>
-                        <h2 class="text-xl mt-3 font-medium text-center ">Hospitals</h2>
+                        <h2 class="text-xl mt-3 font-medium text-center ">All <br> Hospitals</h2>
                     </div>
                 </div>
             </a>
@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </a>
-            <a href="#" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
+            <a href="/super/admin/new/hospital" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
                 <div class="mt-5">
                     <i class="fa fa-user-injured text-4xl block text-center mx-auto"></i>
                     <div>
@@ -53,12 +53,30 @@
             </a>
             <a href="#" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
                 <div class="mt-5">
-                    <i class="fa fa-user-cog text-4xl block text-center mx-auto"></i>
+                    <i class="fa fa-cog text-4xl block text-center mx-auto"></i>
                     <div>
-                        <h2 class="text-xl mt-3 font-medium text-center ">Admin <br> Settings</h2>
+                        <h2 class="text-xl mt-3 font-medium text-center ">Settings</h2>
                     </div>
                 </div>
             </a>
+            <a href="" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
+                <div class="mt-5">
+                    <i class="fa fa-user-cog text-4xl block text-center mx-auto"></i>
+                    <div>
+                        <h2 class="text-xl mt-3 font-medium text-center ">All <br> Admins</h2>
+                    </div>
+                </div>
+            </a>
+            <a href="/super/add/admin" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
+                <div class="mt-5">
+                    <i class="fa fa-plus text-4xl block text-center mx-auto"></i>
+                    <div>
+                        <h2 class="text-xl mt-3 font-medium text-center ">Add <br> Admin</h2>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="col-span-3 block w-36 text-center py-3 bg-green-500 text-white rounded-md shadow-md mx-auto">Logout</a>
         </div>
     </body>
 </html>

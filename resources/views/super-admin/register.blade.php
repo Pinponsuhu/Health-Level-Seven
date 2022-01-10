@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-100">
     <main class="w-11/12 mx-auto mt-4">
-        <form action="/super/admin/store/new" class="w-8/12 mb-6 grid grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md shadow-md mt-8 bg-white" method="post" enctype="multipart/form-data">
+        <form action="/super/admin/new/hospital" class="w-8/12 mb-6 grid grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md shadow-md mt-8 bg-white" method="post" enctype="multipart/form-data">
             @csrf
             <h1 class="col-span-2 text-2xl font-semibold text-green-600 mb-3">Register new Hospital</h1>
             <div class="my-2">

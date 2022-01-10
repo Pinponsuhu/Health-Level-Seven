@@ -98,7 +98,10 @@
             </ul>
             @endif
             <ul class="pl-4 mt-3 py-3">
-                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-md">Chatbox</p></li>
+                <a href="/department/chat"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-md">Chatbox</p></li></a>
+            </ul>
+            <ul class="pl-4 mt-3 py-3">
+                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-power mr-7 text-2xl"></i> <p class="text-md">logout</p></li>
             </ul>
         </nav>
         @yield('content')

@@ -15,9 +15,11 @@ class HospitalController extends Controller
     {
         $this->middleware('auth');
     }
+    
     public function new_patient(){
         return view('hospital.new-patient');
     }
+
     public function store_patient(Request $request){
         $request->validate([
             'passport' => 'mimes:png,jpg,jpeg|required',
@@ -52,18 +54,18 @@ class HospitalController extends Controller
         $patient->next_of_kin_number2 = $request->next_of_kin_number2;
         $patient->PID = random_int(1000000000,9999999999);
         $patient->save();
-
         return redirect()->route('clinic_dashboard');
     }
+
     public function change_passport(Request $request){
         $patient = Patient::find($request->id);
         if($patient->hospital_id == auth()->user()->id){
-            // dd($patient);
             return view('hospital.change-passport',['patient'=>$patient]);
         }else{
             return redirect()->back();
         }
-            }
+    }
+
     public function update_passport(Request $request){
         $patient = Patient::find($request->id);
         $path = 'storage/patients';
@@ -73,7 +75,6 @@ class HospitalController extends Controller
         $patient->passport = str_replace('public/patients/','',$path);
         $patient->last_edited_by = 'Admin';
         $patient->save();
-
         return redirect('/hospital/dashboard');
     }
     public function update_patient($id){
@@ -131,24 +132,16 @@ $active_bed_numbers = BedSpace::latest()
         ->get()
         ->toArray();
         $actives = array();
-        // dd(count($active_bed_numbers));
         $count = count($active_bed_numbers)-1;
        for($i = 0 ; $i <= $count; $i++){
-        array_push($actives,$active_bed_numbers[$i]['bed_number']);
+            array_push($actives,$active_bed_numbers[$i]['bed_number']);
        }
-    //    $status = BedSpace::latest()->select('status')->where('status','!=','Released')
-    //    ->where('status', '!=', 'Deceased')
-    //    ->orderBy('id', 'ASC')
-    //    ->get()
-    //    ->toArray();
-       $status = array("Undetermined","Good","Fair","Serious","Critical","Released","Deceased");
-    //    dd($status);
-      $free_bed = 50 - $beds->count();
-    //    dd($actives);
-    // dd($active_bed_numbers[1]);
+        $status = array("Undetermined","Good","Fair","Serious","Critical","Released","Deceased");
+        $free_bed = 50 - $beds->count();
 
-return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $beds, 'actives'=> $actives,'status'=> $status,'free_bed'=> $free_bed]);
+        return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $beds, 'actives'=> $actives,'status'=> $status,'free_bed'=> $free_bed]);
     }
+
     public function fill_bed(){
         $active_bed_numbers = BedSpace::latest()
                 ->select('bed_number')
@@ -165,6 +158,7 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
                }
         return view('hospital.fill-bed',['actives'=> $actives]);
     }
+
     public function store_bed(Request $request){
         $request->validate([
             'surname' => 'required|min:2|alpha',
@@ -200,16 +194,15 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
         $bed->doctor_name = $request->doctor_name;
         $bed->PID = null;
         $bed->save();
-
         return redirect()->route('clinic_dashboard');
     }
+
     public function update_bed_space(Request $request){
         if(isset($request->bed_status)){
             $bed = BedSpace::find($request->id);
             $bed->last_edited_by = 'Admin';
             $bed->status = $request->bed_status;
             $bed->save();
-
             return redirect('/bed/management');
         }
     }
@@ -225,17 +218,17 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
                                   ->orWhere('checked_in_date','=',$request->search)
                                   ->where('hospital_id','=', auth()->user()->id)
                                   ->get();
-
-        // dd($beds);
         $status = array("Undetermined","Good","Fair","Serious","Critical","Released","Deceased");
         return view('hospital.search-bed',['beds'=> $beds, 'status'=> $status,'search'=> $search]);
     }
+
     public function all_history(){
         $beds = BedSpace::latest()
                     ->where('hospital_id','=', auth()->user()->id)
                     ->paginate(25);
         return view('hospital.all-history',['beds'=>$beds]);
     }
+
     public function patient_details($id){
         $patient = Patient::find($id);
         $bed_histories = BedSpace::where('PID','=',$patient->PID)->where('hospital_id','=',auth()->user()->id)->get();
@@ -244,8 +237,8 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
         }else{
             return redirect()->back();
         }
-        // dd($patient);
     }
+
     public function all_patient_search(Request $request){
         $patient = Patient::find($request->id);
         if($patient->hospital_id == auth()->user()->id){
@@ -261,9 +254,11 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
         ->get();
         return view('hospital.all-patient', ['patients'=> $patients]);
     }
+
     public function existing_patient(){
         return view('hospital.fill-existing-bed');
     }
+
     public function confirm_identity(Request $request){
         $patients = Patient::where('surname','=',$request->search)
                     ->orWhere('PID','=',$request->search)
@@ -273,6 +268,7 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
         $patient_count = $patients->count();
         return view('hospital.fill-existing-bed',['patients'=> $patients,'patient_count'=> $patient_count]);
     }
+
     public function use_existing($id){
         $active_bed_numbers = BedSpace::latest()
         ->select('bed_number')
@@ -292,6 +288,7 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
        }
         return view('hospital.existing-form',['patient'=>$patient, 'actives'=> $actives]);
     }
+
     public function store_using_existing(Request $request){
         $patient = Patient::find($request->id)->first();
         $request->validate([
@@ -325,6 +322,7 @@ return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $bed
 
         return redirect()->route('clinic_dashboard');
     }
+
     public function bed_detail($id){
         $patient = BedSpace::find($id);
         if($patient->hospital_id == auth()->user()->id){

@@ -5,16 +5,21 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\DepartmentAppointment;
 use App\Http\Controllers\DepartmentBed;
+use App\Http\Controllers\DepartmentChat;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DepartmentInventory;
 use App\Http\Controllers\DepartmentPatient;
 use App\Http\Controllers\DepartmentRadiology;
 use App\Http\Controllers\HospitalAdminController;
 use App\Http\Controllers\HospitalController;
+use App\Http\Controllers\HospitalLoginController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\NewHospitalController;
 use App\Http\Controllers\RadiologyController;
 use App\Http\Controllers\routineController;
 use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\SuperAdminLogin;
+use App\Http\Controllers\SuperAdminRegistration;
 use App\Http\Controllers\UserControler;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +33,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/login',[SuperAdminController::class, 'show_login'])->name('login');
-Route::get('/loging',[SuperAdminController::class, 'process_login']);
-Route::get('/super/admin/new/',[SuperAdminController::class, 'register']);
+Route::get('/login',[HospitalLoginController::class, 'show_login'])->name('login');
+Route::get('/loging',[HospitalLoginController::class, 'process_login']);
 Route::post('/super/admin/store/new',[SuperAdminController::class, 'store_reg']);
 Route::get('/hospital/dashboard', [ClinicController::class, 'clinic_dashboard'])->name('clinic_dashboard');
 Route::get('/hospital/new/patient', [HospitalController::class, 'new_patient']);
@@ -128,6 +132,17 @@ Route::get('/department/assign/item/{id}', [DepartmentInventory::class, 'assign'
 Route::post('/department/store/assign',[DepartmentInventory::class, 'store_assign']);
 Route::get('/department/change/password',[DepartmentController::class, 'change_password']);
 Route::post('/department/changing/password/{id}', [DepartmentController::class, 'changing_password']);
+Route::get('/department/chat',[DepartmentChat::class, 'index']);
+Route::get('/department/chat/box/{id}',[DepartmentChat::class, 'chat_box']);
 
 //superadmin logics
 Route::get('/super/admin/index',[SuperAdminController::class, 'index']);
+Route::get('/super/add/admin',[SuperAdminRegistration::class, 'index']);
+Route::post('/super/add/admin',[SuperAdminRegistration::class, 'store']);
+Route::get('/super/admin/login',[SuperAdminLogin::class, 'show']);
+Route::post('/super/admin/login',[SuperAdminLogin::class, 'login']);
+Route::get('/super/admin/new/hospital',[NewHospitalController::class, 'register']);
+Route::post('/super/admin/new/hospital',[NewHospitalController::class, 'store_reg']);
+Route::get('/super/admin/hospital/list',[NewHospitalController::class, 'all_hospital']);
+Route::get('/super/admin/hospital/details/{id}',[NewHospitalController::class, 'hospital_details']);
+

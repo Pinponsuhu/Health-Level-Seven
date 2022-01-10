@@ -13,9 +13,11 @@ class DepartmentPatient extends Controller
     {
         $this->middleware(['pat']);
     }
+
     public function new_patient(){
         return view('department.new-patient');
     }
+
     public function store_patient(Request $request){
         $request->validate([
             'passport' => 'mimes:png,jpg,jpeg|required',
@@ -50,18 +52,18 @@ class DepartmentPatient extends Controller
         $patient->next_of_kin_number2 = $request->next_of_kin_number2;
         $patient->PID = random_int(1000000000,9999999999);
         $patient->save();
-
         return redirect('/department/dashboard');
     }
+
     public function change_passport(Request $request){
         $patient = Patient::find($request->id);
         if($patient->hospital_id == auth()->guard('department')->user()->hospital_id){
-            // dd($patient);
             return view('department.change-passport',['patient'=>$patient]);
         }else{
             return redirect()->back();
         }
-            }
+    }
+
     public function update_passport(Request $request){
         $patient = Patient::find($request->id);
         $path = 'storage/patients';
@@ -71,9 +73,9 @@ class DepartmentPatient extends Controller
         $patient->passport = str_replace('public/patients/','',$path);
         $patient->last_edited_by = auth()->guard('department')->user()->name;
         $patient->save();
-
         return redirect('/department/dashboard');
     }
+
     public function update_patient($id){
         $patient = Patient::find($id);
         if(auth()->guard('department')->user()->hospital_id == $patient->hospital_id){
@@ -114,6 +116,7 @@ class DepartmentPatient extends Controller
         $patient->save();
         return redirect('/department/dashboard');
     }
+
     public function patient_details($id){
         $patient = Patient::find($id);
         $bed_histories = BedSpace::where('PID','=',$patient->PID)->where('hospital_id','=',auth()->user()->id)->get();
@@ -122,8 +125,8 @@ class DepartmentPatient extends Controller
         }else{
             return redirect()->back();
         }
-        // dd($patient);
     }
+    
     public function all_patient_search(Request $request){
         $patient = Patient::find($request->id);
         if($patient->hospital_id == auth()->guard('department')->user()->hospital_id){

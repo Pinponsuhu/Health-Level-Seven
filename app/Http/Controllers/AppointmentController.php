@@ -11,25 +11,30 @@ class AppointmentController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function book(){
         return view('hospital.book-appointment');
     }
+
     public function telephone(){
         $appointments = Appointment::latest()->where('appointment_type','=','Telephone Consultancy')
         ->where('hospital_id','=', auth()->user()->id)->paginate(16);
 
         return view('hospital.telephone-appointment',['appointments'=>$appointments]);
     }
+
     public function prebooked(){
         $appointments = Appointment::where('appointment_type','=','Pre-booked')
         ->where('hospital_id','=', auth()->user()->id)->paginate(20);
         return view('hospital.routine',['appointments'=>$appointments]);
     }
+
     public function routine(){
         $appointments = Appointment::where('appointment_type','=','Routine')
         ->where('hospital_id','=', auth()->user()->id)->paginate(20);
         return view('hospital.routine',['appointments'=>$appointments]);
     }
+
     public function store_bookings(Request $request){
         $request->validate([
             'surname' => 'required|min:2|alpha',
@@ -54,7 +59,6 @@ class AppointmentController extends Controller
         $appointments->phone_number = $request->phone_number ;
         $appointments->status = 'Active' ;
         $appointments->save();
-
         return redirect()->route('clinic_dashboard');
     }
 }

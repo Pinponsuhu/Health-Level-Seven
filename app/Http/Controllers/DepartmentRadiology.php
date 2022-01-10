@@ -12,10 +12,11 @@ class DepartmentRadiology extends Controller
     {
         $this->middleware(['department','rad']);
     }
-    //methid to show forms
+
     public function show_form(){
         return view('department.add-upload');
     }
+
     public function store_credentials(Request $request){
         $request->validate([
             'full_name' => 'required|min:2',
@@ -36,15 +37,18 @@ class DepartmentRadiology extends Controller
 
         return redirect('/department/dashboard');
     }
+
     public function track_uploads(){
         $uploads = RadiologyUpload::latest()->paginate(20);
         return view('department.all-uploads',['uploads'=>$uploads]);
     }
+
     public function upload_details($id){
         $upload = RadiologyUpload::find($id)->first();
         $files = RadiologyFiles::where('upload_id','=',$upload->id)->get();
         return view('department.upload-details',['upload'=>$upload, 'files'=>$files]);
     }
+    
     public function add_result(Request $request, $id){
         $request->validate([
             'result' => 'required',

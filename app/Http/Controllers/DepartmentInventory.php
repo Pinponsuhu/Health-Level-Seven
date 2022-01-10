@@ -14,6 +14,7 @@ class DepartmentInventory extends Controller
     {
         $this->middleware(['department','invt']);
     }
+    
     public function dashboard(){
         $meds = InventoryItem::where('hospital_id','=',auth()->guard('department')->user()->hospital_id)
         ->where('item_category','=','Medicinal')
@@ -32,18 +33,18 @@ class DepartmentInventory extends Controller
         ->get();
         return view('department.inventory.dashboard',['items'=> $items,'stock_count'=>$stock_count,'assign_count'=>$assign_count,'meds'=>$meds,'stationery'=>$stationery]);
     }
+
     public function view_all(){
         $items = InventoryItem::orderBy('name')
                 ->where('hospital_id','=',auth()->guard('department')->user()->hospital_id)
                 ->paginate(20);
         return view('department.inventory.view-all',['items'=> $items]);
     }
-    public function filter(Request $request){
 
-    }
     public function show_add(){
         return view('department.inventory.add-new-item');
     }
+
     public function store_add(Request $request){
         try {
             $request->validate([
@@ -79,17 +80,16 @@ class DepartmentInventory extends Controller
             dd($e);
         }
 }
-public function search_items(Request $request){
-    $items = InventoryItem::orderBy('name')->where('name', '=', $request->search)
-    ->where('hospital_id','=',auth()->guard('department')->user()->hospital_id)
-    ->orWhere('shelf_no','=',$request->search)
-    ->orWhere('item_category','=',$request->search)
-    ->orWhere('date_brought_in','=',$request->search)->get();
-
-    $search = $request->search;
-
-    return view('department.inventory.search-items', ['items'=>$items,'search'=>$search]);
+    public function search_items(Request $request){
+        $items = InventoryItem::orderBy('name')->where('name', '=', $request->search)
+        ->where('hospital_id','=',auth()->guard('department')->user()->hospital_id)
+        ->orWhere('shelf_no','=',$request->search)
+        ->orWhere('item_category','=',$request->search)
+        ->orWhere('date_brought_in','=',$request->search)->get();
+        $search = $request->search;
+        return view('department.inventory.search-items', ['items'=>$items,'search'=>$search]);
     }
+
     public function item_details($id){
         $item = InventoryItem::find($id);
         if($item->hospital_id == auth()->guard('department')->user()->hospital_id){
@@ -106,6 +106,7 @@ public function search_items(Request $request){
             return redirect()->back();
         }
     }
+
     public function assign($id){
         $item = InventoryItem::find($id);
         if($item->hospital_id == auth()->guard('department')->user()->hospital_id){
@@ -114,6 +115,7 @@ public function search_items(Request $request){
             return redirect()->back();
         }
     }
+
     public function store_assign(Request $request){
         $request->validate([
             'assigned_to' => 'required',
@@ -136,6 +138,7 @@ public function search_items(Request $request){
 
         return redirect('/department/all/items');
     }
+
     public function delete_item($id){
         $item = InventoryItem::find($id);
         if($item->hospital_id == auth()->guard('department')->user()->hospital_id){
@@ -145,6 +148,7 @@ public function search_items(Request $request){
         }
         return redirect('/department/inventory/dashboard');
     }
+
     public function edit_item($id){
         $condition = array('Good','Bad','Broken Seal','Returned');
         $category = array('Medicinal','Stationery','Hardware','Others');
@@ -155,8 +159,8 @@ public function search_items(Request $request){
         }else{
             return redirect()->back();
         }
-
     }
+
     public function store_edit(Request $request){
         $request->validate([
             'name' => 'required',

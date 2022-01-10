@@ -2,21 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Hospital;
+use App\Models\Department;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class SuperAdminController extends Controller
+class NewHospitalController extends Controller
 {
     public function __construct()
     {
         $this->middleware('superadmin');
-    }
-    
-    public function index(){
-        return view('super-admin.index');
     }
 
     public function register(){
@@ -33,7 +28,7 @@ class SuperAdminController extends Controller
             'hospital_address' => 'required',
             'password' => 'required|confirmed'
         ]);
-        $user = new User;
+        $user = new User();
         $dest = '/public/users';
         $path = $request->file('hospital_logo')->store($dest);
         $user->hospital_name = $request->hospital_name;
@@ -48,4 +43,14 @@ class SuperAdminController extends Controller
         $user->save();
     }
 
+    public function all_hospital(){
+        $hospitals = User::latest()->paginate();
+        return view('super-admin.hospital-list',['hospitals'=>$hospitals]);
+    }
+
+    public function hospital_details($id){
+        $hospital = User::find($id);
+        $departments = Department::where('hospital_id', '=', $id)->get();
+        return view('super-admin.hospital-details',['hospital' => $hospital,'departments'=> $departments]);
+    }
 }

@@ -22,10 +22,6 @@
                         <p class="text-md font-medium">{{ $item->item_category }}</p>
                     </div>
                     <div class="flex gap-x-2 mt-2">
-                        <label class="text-green-500 text-md font-semibold">Item Category: </label>
-                        <p class="text-md font-medium">{{ $item->item_category }}</p>
-                    </div>
-                    <div class="flex gap-x-2 mt-2">
                         <label class="text-green-500 text-md font-semibold">Item Quantity: </label>
                         <p class="text-md font-medium">{{ $item->quantity }}</p>
                     </div>

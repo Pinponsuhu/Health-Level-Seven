@@ -14,17 +14,20 @@ class HospitalAdminController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function overview(){
         $department = Department::where('hospital_id','=',auth()->user()->id)->count();
         $staff = Staff::where('hospital_id','=',auth()->user()->id)->count();
         return view('hospital.admin',['department'=>$department,'staff'=>$staff]);
     }
+
     public function add_department(){
         return view('hospital.add-department');
     }
+
     public function store_department(Request $request){
         $request->validate([
-            'name' => 'required|alpha',
+            'name' => 'required',
             'password' => 'required|confirmed'
         ]);
         $department = new Department;
@@ -40,29 +43,25 @@ class HospitalAdminController extends Controller
         $department->appointment_permission = $request->appointment;
         $department->inventory_permission = $request->inventory;
         $department->save();
-
         return redirect('/hospital/dashboard');
     }
+
     public function login(){
         return view('hospital.department-login');
     }
+
     public function sign_in(Request $request){
-        // dd(Auth::guard('department'));
-        // $request->validate([
-        //     'name'=> 'required',
-        //     'password'=> 'required'
-        // ]);
         if(Auth::guard('department')->attempt($request->only('name','password'))){
             dd('dady');
         }
         dd('shaba');
     }
+
     public function staff_form(){
         return view('hospital.staff-registration');
     }
-    public function store_staff(Request $request){
 
-        // dd($request->all());
+    public function store_staff(Request $request){
         $request->validate([
             'passport' => 'mimes:png,jpg,jpeg|required',
             'fullname' => 'required|min:2',
@@ -93,7 +92,6 @@ class HospitalAdminController extends Controller
         $staff->next_of_kin_number = $request->next_of_kin_number;
         $staff->staff_id = random_int(00000000,99999999);
         $staff->save();
-
         return redirect('/hospital/dashboard');
     }
 
@@ -101,14 +99,13 @@ class HospitalAdminController extends Controller
         $staffs = Staff::latest()
         ->where('hospital_id','=', auth()->user()->id)
         ->paginate(25);
-
         return view('hospital.all-staffs',['staffs'=>$staffs]);
     }
+    
     public function all_department(){
         $departments = Department::latest()
         ->where('hospital_id','=', auth()->user()->id)
         ->paginate(25);
-
         return view('hospital.all-departments',['departments'=>$departments]);
     }
 }

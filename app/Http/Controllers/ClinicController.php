@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Charts\AppointmentChart;
+use App\Charts\BedspaceChart;
 use App\Models\Appointment;
 use App\Charts\RegisteredPatient;
 use App\Charts\RegPatient;
@@ -17,15 +18,10 @@ class ClinicController extends Controller
     {
         $this->middleware('auth');
     }
-    public function clinic_dashboard(RegPatient $chart, AppointmentChart $chart2)
-    {
-        // dd();
-        // dd(auth()->guard('department')->user()->hospital_id);
-        //
-           $appointments = Appointment::latest()->where('hospital_id','=',auth()->user()->id)->where('preferred_date','=', Carbon::now()->format('Y-m-d'))->get();
 
-        // dd($appointments);
-        // dd($usermcount);
+    public function clinic_dashboard(BedspaceChart $chart, AppointmentChart $chart2)
+    {
+        $appointments = Appointment::latest()->where('hospital_id','=',auth()->user()->id)->where('preferred_date','=', Carbon::now()->format('Y-m-d'))->get();
         return view('hospital.dashboard', ['appointments' => $appointments, 'chart' => $chart->build(), 'chart2' => $chart2->build()]);
     }
 }

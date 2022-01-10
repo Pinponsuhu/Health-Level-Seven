@@ -43,6 +43,10 @@ return [
         'department' => [
             'driver' => 'session',
             'provider' => 'departments',
+        ],
+        'superadmin' => [
+            'driver' => 'session',
+            'provider' => 'superadmins',
         ]
     ],
 
@@ -71,6 +75,10 @@ return [
         'departments' => [
             'driver' => 'eloquent',
             'model' => App\Models\Department::class,
+        ],
+        'superadmins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\SuperAdmin::class,
         ],
 
         // 'users' => [

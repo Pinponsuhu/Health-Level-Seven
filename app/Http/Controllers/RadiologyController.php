@@ -16,6 +16,7 @@ class RadiologyController extends Controller
     public function show_form(){
         return view('hospital.add-upload');
     }
+
     public function store_credentials(Request $request){
         $request->validate([
             'full_name' => 'required|min:2',
@@ -36,15 +37,18 @@ class RadiologyController extends Controller
 
         return redirect('/hospital/dashboard');
     }
+
     public function track_uploads(){
         $uploads = RadiologyUpload::latest()->paginate(20);
         return view('hospital.all-uploads',['uploads'=>$uploads]);
     }
+    
     public function upload_details($id){
         $upload = RadiologyUpload::find($id)->first();
         $files = RadiologyFiles::where('upload_id','=',$upload->id)->get();
         return view('hospital.upload-details',['upload'=>$upload, 'files'=>$files]);
     }
+
     public function add_result(Request $request, $id){
         $request->validate([
             'result' => 'required',

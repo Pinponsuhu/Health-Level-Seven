@@ -10,7 +10,7 @@
                     </div>
                 </section>
                 <section class="md:col-span-2 lg:col-span-1 mt-4 py-8 px-4 md:mt-0  md:h-full bg-white w-full rounded-md shadow-md">
-                    {!! $chart2->container() !!}
+                    {{-- {!! $chart2->container() !!} --}}
                 </section>
             </div>
             <div class="md:grid md:grid-cols-4 h-56 mt-12 px-4 gap-x-4">
@@ -50,8 +50,8 @@
             </div>
         </div>
         </main>
-        {{-- <script src="{{ $chart->cdn() }}"></script>
-        <script src="{{ $chart2->cdn() }}"></script> --}}
+        <script src="{{ $chart->cdn() }}"></script>
+        {{-- <script src="{{ $chart2->cdn() }}"></script> --}}
         <script src="{{ asset('js/apexcharts.js') }}"></script>
 
     {{ $chart->script() }}

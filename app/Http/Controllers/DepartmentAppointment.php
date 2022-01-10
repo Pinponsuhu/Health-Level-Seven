@@ -11,25 +11,30 @@ class DepartmentAppointment extends Controller
     {
         $this->middleware(['appt','department']);
     }
+    
     public function book(){
         return view('department.book-appointment');
     }
+
     public function telephone(){
         $appointments = Appointment::latest()->where('appointment_type','=','Telephone Consultancy')
         ->where('hospital_id','=', auth()->guard('department')->user()->hospital_id)->paginate(16);
 
         return view('department.telephone-appointment',['appointments'=>$appointments]);
     }
+
     public function prebooked(){
         $appointments = Appointment::where('appointment_type','=','Pre-booked')
         ->where('hospital_id','=',auth()->guard('department')->user()->hospital_id)->paginate(20);
         return view('department.routine',['appointments'=>$appointments]);
     }
+
     public function routine(){
         $appointments = Appointment::where('appointment_type','=','Routine')
         ->where('hospital_id','=', auth()->guard('department')->user()->hospital_id)->paginate(20);
         return view('department.routine',['appointments'=>$appointments]);
     }
+
     public function store_bookings(Request $request){
         $request->validate([
             'surname' => 'required|min:2|alpha',

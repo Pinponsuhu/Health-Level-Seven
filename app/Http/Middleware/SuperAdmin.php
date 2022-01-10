@@ -16,8 +16,8 @@ class SuperAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->hospital_admin == 1){
-            return redirect('/hospital/dashboard');
+        if(auth()->guard('superadmin')->check() == false){
+            return redirect('/super/admin/login');
         }
         return $next($request);
     }
