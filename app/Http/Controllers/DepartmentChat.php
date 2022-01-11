@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class DepartmentChat extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('department');
+    }
     public function index(){
         $departments = Department::where('hospital_id','=',auth()->guard('department')->user()->hospital_id)->get();
         return view('department.chatbox',['departments'=>$departments]);
@@ -14,6 +18,6 @@ class DepartmentChat extends Controller
 
     public function chat_box($id){
         $profile = Department::find($id);
-        return view('department.message-box');
+        return view('department.message-box',['profile' => $profile]);
     }
 }

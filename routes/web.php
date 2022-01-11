@@ -133,7 +133,7 @@ Route::post('/department/store/assign',[DepartmentInventory::class, 'store_assig
 Route::get('/department/change/password',[DepartmentController::class, 'change_password']);
 Route::post('/department/changing/password/{id}', [DepartmentController::class, 'changing_password']);
 Route::get('/department/chat',[DepartmentChat::class, 'index']);
-Route::get('/department/chat/box/{id}',[DepartmentChat::class, 'chat_box']);
+Route::get('/department/chat/message/box/{id}', [DepartmentChat::class, 'chat_box']);
 
 //superadmin logics
 Route::get('/super/admin/index',[SuperAdminController::class, 'index']);

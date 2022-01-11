@@ -24,6 +24,11 @@
             body {
                 font-family: 'Cabin', sans-serif;
             }
+            <style>
+            text{
+               position: 
+            }
+        </style>
             *::-webkit-scrollbar {
     width: 7px;
 }
