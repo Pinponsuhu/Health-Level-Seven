@@ -12,30 +12,30 @@
                             <p class="text-gray-500 text-sm">Last seen: 19:23pm</p>
                         </div>
                     </div>
-                    <div class="w-full h-64 mt-6 px-4 flex flex-col  overflow-y-scroll gap-y-4">
+                    <div class="w-full h-64 mt-6 px-4 flex flex-col  overflow-y-scroll gap-y-1">
 
                         <div class="flex">
-                            <div class="bg-green-500 w-56 rounded-lg text-white p-4">
-                                <p>Message from Test</p>
-                                <span>11:20pm</span>
+                            <div class="bg-green-500 w-56 rounded-lg text-white p-3">
+                                <p class="text-md">Message from Test</p>
+                                <span class="text-sm">11:20pm</span>
                             </div>
                         </div>
                         <div class="flex justify-end">
-                            <div class="bg-gray-300 w-56 rounded-lg text-white p-4">
-                                <p>Message from Test</p>
-                                <span>11:20pm</span>
+                            <div class="bg-gray-300 w-56 rounded-lg text-white p-3">
+                                <p class="text-md">Message from Test</p>
+                                <span class="text-sm">11:20pm</span>
                             </div>
                         </div>
                         <div class="flex">
-                            <div class="bg-green-500 w-56 rounded-lg text-white p-4">
-                                <p>Message from Test</p>
-                                <span>11:20pm</span>
+                            <div class="bg-green-500 w-56 rounded-lg text-white p-3">
+                                <p class="text-md">Message from Test</p>
+                                <span class="text-sm">11:20pm</span>
                             </div>
                         </div>
                         <div class="flex justify-end">
-                            <div class="bg-gray-300 w-56 rounded-lg text-white p-4">
-                                <p>Message from Test</p>
-                                <span>11:20pm</span>
+                            <div class="bg-gray-300 w-56 rounded-lg text-white p-3">
+                                <p class="text-md">Message from Test</p>
+                                <span class="text-sm">11:20pm</span>
                             </div>
                         </div>
                         {{-- <h1 class="text-2xl italic text-green-500 text-center">No Conversation yet</h1> --}}

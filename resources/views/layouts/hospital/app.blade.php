@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Health Level Seven</title>
+        <title>{{ auth()->user()->hospital_name }}</title>
 
         <!-- Fonts -->
 
@@ -24,11 +24,6 @@
             body {
                 font-family: 'Cabin', sans-serif;
             }
-            <style>
-            text{
-               position: 
-            }
-        </style>
             *::-webkit-scrollbar {
     width: 7px;
 }
