@@ -6,10 +6,14 @@ use Illuminate\Http\Request;
 
 class HospitalLoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
     public function show_login(){
         return view('super-admin.hospital-login');
     }
-    
+
     public function process_login(Request $request){
         $this->validate($request,[
             'HID'=> 'required',

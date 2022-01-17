@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Charts\AppointmentChart;
 use App\Charts\BedspaceChart;
-use App\Charts\RegPatient;
 use App\Models\Appointment;
 use App\Models\Department;
 use Carbon\Carbon;

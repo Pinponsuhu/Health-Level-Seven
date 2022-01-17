@@ -15,7 +15,7 @@ class HospitalController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function new_patient(){
         return view('hospital.new-patient');
     }
@@ -117,16 +117,28 @@ class HospitalController extends Controller
         return redirect()->route('clinic_dashboard');
     }
 
+    public function delete_patient($id){
+        $patient = Patient::find($id);
+        $path = 'storage/patients';
+        unlink($path.'/' .$patient->passport);
+
+        $patient->delete();
+
+        return redirect('/view/all/patient');
+    }
+
     public function bed_management(BedspaceChart $chart, Request $request){
         $beds = BedSpace::latest()
         ->where('status','!=','Released')
         ->where('status', '!=', 'Deceased')
+        ->where('check_out_time', '=', null)
         ->where('hospital_id','=', auth()->user()->id)
         ->get();
 $active_bed_numbers = BedSpace::latest()
         ->select('bed_number')
         ->where('status','!=','Released')
         ->where('status', '!=', 'Deceased')
+        ->where('check_out_time', '=', null)
         ->where('hospital_id','=', auth()->user()->id)
         ->orderBy('id', 'ASC')
         ->get()
@@ -137,7 +149,7 @@ $active_bed_numbers = BedSpace::latest()
             array_push($actives,$active_bed_numbers[$i]['bed_number']);
        }
         $status = array("Undetermined","Good","Fair","Serious","Critical","Released","Deceased");
-        $free_bed = 50 - $beds->count();
+        $free_bed = auth()->user()->bed_number - $beds->count();
 
         return view('hospital.bed-management', ['chart' => $chart->build(),'beds'=> $beds, 'actives'=> $actives,'status'=> $status,'free_bed'=> $free_bed]);
     }
@@ -198,12 +210,24 @@ $active_bed_numbers = BedSpace::latest()
     }
 
     public function update_bed_space(Request $request){
-        if(isset($request->bed_status)){
-            $bed = BedSpace::find($request->id);
-            $bed->last_edited_by = 'Admin';
-            $bed->status = $request->bed_status;
-            $bed->save();
-            return redirect('/bed/management');
+        $bed = BedSpace::find($request->id);
+        if($bed->hospital_id != auth()->user()->id){
+            if(isset($request->bed_status)){
+                if($request->bed_status == "Released"){
+                $bed->last_edited_by = 'Admin';
+                $bed->status = $request->bed_status;
+                $bed->check_out_time = Carbon::today()->toDateString();
+                $bed->save();
+                }else{
+                    $bed = BedSpace::find($request->id);
+                    $bed->last_edited_by = 'Admin';
+                    $bed->status = $request->bed_status;
+                    $bed->save();
+                }
+                return back();
+            }
+        }else{
+            return back();
         }
     }
 
@@ -223,10 +247,11 @@ $active_bed_numbers = BedSpace::latest()
     }
 
     public function all_history(){
+        $status = array("Undetermined","Good","Fair","Serious","Critical","Released","Deceased");
         $beds = BedSpace::latest()
                     ->where('hospital_id','=', auth()->user()->id)
                     ->paginate(25);
-        return view('hospital.all-history',['beds'=>$beds]);
+        return view('hospital.all-history',['beds'=>$beds,'status'=>$status]);
     }
 
     public function patient_details($id){
@@ -327,6 +352,15 @@ $active_bed_numbers = BedSpace::latest()
         $patient = BedSpace::find($id);
         if($patient->hospital_id == auth()->user()->id){
         return view('hospital.in-bed-details',['patient'=> $patient]);
+        }else{
+            return redirect()->back();
+        }
+    }
+    public function delete_bed($id){
+        $patient = BedSpace::find($id);
+        if($patient->hospital_id == auth()->user()->id){
+            $patient->delete();
+            return redirect('/bed/management');
         }else{
             return redirect()->back();
         }

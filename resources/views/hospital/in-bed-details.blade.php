@@ -4,6 +4,9 @@
             @include('layouts.hospital.nav')
         <div class="px-8 mt-3">
             <div class="p-8 bg-white rounded-md shadow-md">
+                <div class="flex justify-end">
+                    <a href="/delete/bed/details/{{ $patient->id }}" class="py-3 px-7 rounded-full bg-red-400 text-white">Delete</a>
+                </div>
                 <h1 class="text-2xl font-bold text-green-500 text-center">Patient in bed</h1>
                 <div class="w-full h-full grid col-span-2 items-center gap-x-4">
                     <h1 class="text-3xl font-bold col-span-2 text-gray-900">{{ $patient->surname . ' ' . $patient->othernames }}</h1>

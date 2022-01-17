@@ -3,14 +3,11 @@
         <main class="w-full h-screen overflow-y-scroll">
             @include('layouts.department.nav')
             <div class="mb-5 overflow-y-scroll">
-            <div class="md:h-80 md:grid gap-x-5 md:grid-cols-4 lg:grid-cols-3 mt-3 px-4">
+            <div class="h-96 md:grid  mt-3 px-4">
                 <section class="col-span-2 h-80 md:h-full p-3 box-border bg-white w-full rounded-md shadow-md">
                     <div class="h-12 w-full">
                         {!! $chart->container() !!}
                     </div>
-                </section>
-                <section class="md:col-span-2 lg:col-span-1 mt-4 py-8 px-4 md:mt-0  md:h-full bg-white w-full rounded-md shadow-md">
-                    {{-- {!! $chart2->container() !!} --}}
                 </section>
             </div>
             <div class="md:grid md:grid-cols-4 h-56 mt-12 px-4 gap-x-4">

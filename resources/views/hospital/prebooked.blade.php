@@ -4,7 +4,7 @@
         @include('layouts.hospital.nav')
         <div class="px-8 mt-4">
             <div class="p-6 rounded-md shadow-md bg-white">
-                <h1 class="font-bold text-2xl text-green-600 my-5">Telephone Consultancy Appointments</h1>
+                <h1 class="font-bold text-2xl text-green-600 my-5">Prebooked Appointments</h1>
         <table class="w-full shadow-md display" id="basic-1">
             <thead>
                 <tr class="text-green-50 border-b-2 border-gray-300 font-medium text-md">
@@ -32,7 +32,7 @@
                         @endforeach
                         </select>
                             </form>
-                    </td>
+                        </td>
                     <td class="w-1/5 py-3 bg-gray-100 px-3 text-center">{{ $appointment->appointment_type }}</td>
                     <td class="w-1/5 py-3 bg-green-100 px-3 text-center">{{ $appointment->phone_number }}</td>
                 </tr>

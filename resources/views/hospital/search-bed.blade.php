@@ -7,7 +7,7 @@
             <h1 class="mt-4 mb-2 text-center text-xl font-semibold text-green-500">Search Result for: {{ $search }}</h1>
             <form action="/bed/search" class="w-8/12 mx-auto grid capitalize grid-cols-4 gap-x-3 items-center my-3" method="post">
                 @csrf
-                <input type="search" id="search" value="{{ $search }}" name="search" placeholder="Search Here" class="bg-green-500 col-span-3 outline-none rounded-md shadow-md px-3 h-12 py-3 text-white placeholder-green-50 block">
+                <input type="search" id="search" value="{{ $search }}" name="search" placeholder="Search By Surname, Ward, Status or Bed Number" class="bg-green-500 col-span-3 outline-none rounded-md shadow-md px-3 h-12 py-3 text-white placeholder-green-50 block">
                 <button type="submit" class="w-full rounded-md shadow-md bg-green-500 block h-12 text-white">Search</button>
             </form>
             <table class="w-full shadow-md">

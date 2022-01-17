@@ -17,6 +17,9 @@
     @endforeach
 </div>
 <div class="flex bg-white rounded-md px-3 mt-5 py-3 items-center send-msg">
-    <input type="file" name="" id="">
+    <form action="" method="get" enctype="multipart/form-data" id="send-files">
+        @csrf
+        <input type="file" name="files" id="send-file">
+    </form>
     <input type="text" id="send-msg" placeholder="Type message here" class="bg-white block w-full outline-none py-3 px-3">
 </div>

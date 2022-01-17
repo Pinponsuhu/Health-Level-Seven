@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class RadiologyController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     //methid to show forms
     public function show_form(){
         return view('hospital.add-upload');
@@ -42,7 +42,7 @@ class RadiologyController extends Controller
         $uploads = RadiologyUpload::latest()->paginate(20);
         return view('hospital.all-uploads',['uploads'=>$uploads]);
     }
-    
+
     public function upload_details($id){
         $upload = RadiologyUpload::find($id)->first();
         $files = RadiologyFiles::where('upload_id','=',$upload->id)->get();

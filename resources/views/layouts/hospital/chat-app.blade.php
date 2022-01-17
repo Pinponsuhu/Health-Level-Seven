@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Data exchange</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
      <!-- Fonts -->
 
      <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -118,6 +119,46 @@ channel.bind('my-event', function(data) {
                     }
                 });
             }
+        });
+        $(document).on('change', '.send-msg #send-file', function(e){
+            $(this).closest('form').submit();
+            e.preventDefault();
+            });
+        $(document).on('submit', '#send-files', function(e){
+                e.preventDefault();
+                // filesssss = $('#send-file').val()
+                // alert(filesssss);
+                // var form = $('#send-files')[0];
+                // console.log(form.val());
+            var formdata = new FormData();
+            var file_data = $('.send-msg #send-file')[0].files[0];
+            // console.log(file_data);
+            formdata.append('file', file_data);
+            formdata.append('text', 'file_data');
+            for (let [key, value] of formdata) {
+            console.log(`${key}: ${value}`);
+            }
+            // console.log(formdata);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+});
+            $.ajax({
+                url: "/hospital/datex/send",
+                method: "get",
+                data: formdata,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data){
+
+                },
+                error: function(error){
+                    console.log(error);
+                }
+            });
+
         });
         // $(document).on('change', '.send-msg #send-file',function (e){
         //     // var file_data = $('.send-msg #send-file').prop('file');

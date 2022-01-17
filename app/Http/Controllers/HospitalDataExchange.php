@@ -29,6 +29,7 @@ class HospitalDataExchange extends Controller
         return view('hospital.messages.index',['messages'=> $messages,'username'=>$username]);
     }
     public function send_msg(Request $request){
+        dd($_FILES["files"]["name"]);
         $from = auth()->user()->id;
         $to = $request->receiver_id;
         $content = $request->message;
@@ -56,5 +57,9 @@ class HospitalDataExchange extends Controller
 
         $data = ['from' => $from, 'to'=>$to];
         $pusher->trigger('my-channel','my-event', $data);
+    }
+
+    public function send_file(Request $request){
+        echo($request->text);
     }
 }

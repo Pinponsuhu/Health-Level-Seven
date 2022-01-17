@@ -22,7 +22,12 @@
                 </div>
                 <div class="my-2">
                     <label class="font-semibold text-md block mb-1">Shelf Number</label>
-                    <input type="text" value="{{ old('shelf_number') }}" name="shelf_number" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block"  placeholder="Enter Shelf Number">
+                    <select name="shelf_number" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block" id="">
+                        <option disabled selected>--Select Shelf Number--</option>
+                        @for ($i = 1; $i <= auth()->user()->shelf_number; $i++)
+                       <option value="{{ $i }}">{{ $i }}</option>
+                @endfor
+                    </select>
                     @error('shelf_number')
                         <p class="text-sm text-red-500">{{ $message }}</p>
                     @enderror
@@ -49,7 +54,7 @@
                 <div class="my-2">
                     <label class="font-semibold text-md block mb-1">Item Category</label>
                     <select name="item_category" id="" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block">
-                        <option disabled selected>--Select Gender--</option>
+                        <option disabled selected>--Select Item Category--</option>
                         <option value="Medicinal">Medicinal</option>
                         <option value="Stationery">Stationery</option>
                         <option value="Hardware">Hardware</option>
@@ -61,7 +66,7 @@
                 </div>
                 <div class="my-2">
                     <label class="font-semibold text-md block mb-1">Date Brought in</label>
-                    <input type="date" value="{{ old('date_brought_in') }}" name="date_brought_in" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block"  placeholder="Enter Patient's Phone Number">
+                    <input type="date" value="{{ old('date_brought_in') }}" name="date_brought_in" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block"  placeholder="Enter Date of Item Delivered">
                     @error('date_brought_in')
                         <p class="text-sm text-red-500">{{ $message }}</p>
                     @enderror

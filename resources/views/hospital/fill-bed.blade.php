@@ -80,7 +80,7 @@
                     <label class="font-semibold text-md block mb-1">Bed Number</label>
                     <select name="bed_number" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block" id="">
                         <option disabled selected>--Select Bed Number--</option>
-                        @for ($i = 1; $i <= 50; $i++)
+                        @for ($i = 1; $i <= auth()->user()->bed_number; $i++)
                     @if (!in_array($i, $actives))
                        <option value="{{ $i }}">{{ $i }}</option>
                     @endif

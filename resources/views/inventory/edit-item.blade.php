@@ -37,19 +37,34 @@
             <div class="my-2">
                 <label class="font-semibold text-md block mb-1">Item Category</label>
                 <select name="item_category" id="" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block">
-                    <option disabled selected>--Select Gender--</option>
-                    <option value="Medicinal">Medicinal</option>
-                    <option value="Stationery">Stationery</option>
-                    <option value="Hardware">Hardware</option>
-                    <option value="Others">Others</option>
+                    <option value="{{ $item->item_category }}">{{ $item->item_category }}</option>
+                    @foreach ($categories as $category)
+                        @if ($item->item_category != $category)
+                        <option value="{{ $category }}">{{ $category }}</option>
+                        @endif
+                    @endforeach
                 </select>
                 @error('item_category')
                     <p class="text-sm text-red-500">{{ $message }}</p>
                 @enderror
             </div>
             <div class="my-2">
+                <label class="font-semibold text-md block mb-1">Item Condition</label>
+                <select name="item_condition" id="" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block">
+                    <option value="{{ $item->item_condition }}">{{ $item->item_condition }}</option>
+                    @foreach ($conditions as $condition)
+                        @if ($item->item_condition != $condition)
+                        <option value="{{ $condition }}">{{ $condition }}</option>
+                        @endif
+                    @endforeach
+                </select>
+                @error('item_condition')
+                    <p class="text-sm text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="my-2">
                 <label class="font-semibold text-md block mb-1">Date Brought in</label>
-                <input type="date" value="{{ $item->date_brought_in }}" name="date_brought_in" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block"  placeholder="Enter Patient's Phone Number">
+                <input type="date" value="{{ $item->date_brought_in }}" name="date_brought_in" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block" >
                 @error('date_brought_in')
                     <p class="text-sm text-red-500">{{ $message }}</p>
                 @enderror
@@ -63,7 +78,7 @@
             </div>
             <div class="my-2">
                 <label class="font-semibold text-md block mb-1">Deliverer Number</label>
-                <input type="text" value="{{ $item->deliverer_number }}" name="deliverer_number" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block"  placeholder="Enter Deliverer Name">
+                <input type="text" value="{{ $item->deliverer_number }}" name="deliverer_number" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block"  placeholder="Enter Deliverer Number">
                 @error('deliverer_number')
                     <p class="text-sm text-red-500">{{ $message }}</p>
                 @enderror

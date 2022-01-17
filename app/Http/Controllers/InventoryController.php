@@ -46,7 +46,6 @@ class InventoryController extends Controller
     }
 
     public function store_add(Request $request){
-        try {
             $request->validate([
                 'name' => 'required',
                 'quantity' => 'required|numeric',
@@ -71,14 +70,11 @@ class InventoryController extends Controller
             $item->deliverer_number = $request->deliverer_number;
             $item->item_condition = $request->item_condition;
             $item->expiry_date = $request->expiry_date;
-            $item->last_edited_by = Auth::guard('department')->user()->name;
+            $item->last_edited_by = 'Admin';
             $item->item_id = random_int(000000,999999);
             $item->save();
 
             return redirect('/inventory/dashboard');
-        } catch (Exception $e) {
-            dd($e);
-        }
 }
 
 public function search_items(Request $request){
@@ -114,7 +110,7 @@ public function search_items(Request $request){
         if($item->hospital_id == auth()->user()->id){
             return view('inventory.assign-item',['item'=>$item]);
         }else{
-            return redirect()->back();
+            return back();
         }
     }
 
@@ -137,6 +133,7 @@ public function search_items(Request $request){
         $number = $item->quantity - $request->number_of_item;
         $item->quantity = $number;
         $item->save();
+        
         return redirect('/all/items');
     }
 
@@ -151,43 +148,45 @@ public function search_items(Request $request){
     }
 
     public function edit_item($id){
-        $condition = array('Good','Bad','Broken Seal','Returned');
-        $category = array('Medicinal','Stationery','Hardware','Others');
+        $conditions = array('Good','Bad','Broken Seal');
+        $categories = array('Medicinal','Stationery','Hardware','Others');
         $status = array('In stock','Assigned');
         $item = InventoryItem::find($id);
         if($item->hospital_id == auth()->user()->id){
-            return view('inventory.edit-item',['item'=>$item]);
+            return view('inventory.edit-item',['item'=>$item,'categories'=> $categories,'conditions' => $conditions]);
         }else{
             return redirect()->back();
         }
     }
-    
+
     public function store_edit(Request $request){
+        // dd($request->all());
         $request->validate([
             'name' => 'required',
             'quantity' => 'required|numeric',
             'shelf_number' => 'required|numeric',
-            'item_status' => 'required',
             'item_category' => 'required',
+            'item_condition' => 'required',
             'date_brought_in' => 'required|date',
             'delivered_by' => 'required',
             'serial_number' => 'required',
             'deliverer_number' => 'required',
-            'expiry_date' => 'required|nullable',
         ]);
         $item = InventoryItem::find($request->id);
             $item->name = $request->name;
             $item->quantity = $request->quantity;
             $item->shelf_no = $request->shelf_number;
-            $item->item_status = $request->item_status;
             $item->item_category = $request->item_category;
+            $item->item_condition = $request->item_condition;
             $item->date_brought_in = $request->date_brought_in;
             $item->delivered_by = $request->delivered_by;
-            $item->hospital_id = auth()->user()->id;
             $item->serial_number = $request->serial_number;
             $item->deliverer_number = $request->deliverer_number;
             $item->item_condition = $request->item_condition;
+            $item->last_edited_by = 'Admin';
             $item->save();
+
+            return redirect('/inventory/dashboard');
     }
 
 }

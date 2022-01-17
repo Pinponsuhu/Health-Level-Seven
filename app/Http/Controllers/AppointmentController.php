@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -17,22 +18,31 @@ class AppointmentController extends Controller
     }
 
     public function telephone(){
-        $appointments = Appointment::latest()->where('appointment_type','=','Telephone Consultancy')
-        ->where('hospital_id','=', auth()->user()->id)->paginate(16);
+        $status = array('Active','Cancelled','Missed','Postpone');
+        $appointments = Appointment::where('appointment_type','=','Telephone Consultancy')
+        ->where('hospital_id','=', auth()->user()->id)
+        ->where('status','Active')
+        ->paginate(16);
 
-        return view('hospital.telephone-appointment',['appointments'=>$appointments]);
+        return view('hospital.telephone-appointment',['appointments'=>$appointments,'status'=>$status]);
     }
 
     public function prebooked(){
+        $status = array('Active','Cancelled','Missed','Postpone');
         $appointments = Appointment::where('appointment_type','=','Pre-booked')
-        ->where('hospital_id','=', auth()->user()->id)->paginate(20);
-        return view('hospital.routine',['appointments'=>$appointments]);
+        ->where('hospital_id','=', auth()->user()->id)
+        ->where('status','Active')
+        ->paginate(20);
+        return view('hospital.prebooked',['appointments'=>$appointments,'status'=>$status]);
     }
 
     public function routine(){
+        $status = array('Active','Cancelled','Missed','Postpone');
         $appointments = Appointment::where('appointment_type','=','Routine')
-        ->where('hospital_id','=', auth()->user()->id)->paginate(20);
-        return view('hospital.routine',['appointments'=>$appointments]);
+        ->where('hospital_id','=', auth()->user()->id)
+        ->where('status','Active')
+        ->paginate(20);
+        return view('hospital.routine',['appointments'=>$appointments,'status'=>$status]);
     }
 
     public function store_bookings(Request $request){
@@ -60,5 +70,17 @@ class AppointmentController extends Controller
         $appointments->status = 'Active' ;
         $appointments->save();
         return redirect()->route('clinic_dashboard');
+    }
+
+    public function update_status(Request $request){
+        $appointment = Appointment::find($request->id);
+        if($appointment->hospital_id == auth()->user()->id){
+                $appointment->last_edited_by = 'Admin';
+                $appointment->status = $request->status;
+                $appointment->save();
+                return back();
+        }else{
+            return back();
+        }
     }
 }

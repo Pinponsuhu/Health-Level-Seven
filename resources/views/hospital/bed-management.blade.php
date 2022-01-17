@@ -2,7 +2,7 @@
 @section('content')
 <main class="w-full h-screen overflow-y-scroll">
     @include('layouts.hospital.nav')
-    <div class="h-80 grid grid-cols-3 gap-x-3 mt-3 px-6">
+    <div class="h-96 mb-4 grid grid-cols-3 gap-x-3 mt-3 px-6">
         <section class="col-span-2 bg-white py-4 px-6 rounded-md h-full shadow-md">
             {!! $chart->container() !!}
         </section>
@@ -16,7 +16,7 @@
                     <h1 class="text-md font-semibold">Available Beds: {{ $free_bed }}</h1>
                 </div>
             <div class="grid grid-cols-6 justify-center gap-x-3 py-4 w-full flex-wrap gap-y-3">
-                @for ($i = 1; $i <= 50; $i++)
+                @for ($i = 1; $i <= auth()->user()->bed_number; $i++)
                     @if (!in_array($i, $actives))
                         <h1 class="py-2 w-9 h-10 px-2 rounded-md text-center shadow bg-green-500 text-white font-medium">{{ $i }}</h1>
                     @endif
@@ -28,7 +28,7 @@
        <div  class="w-full bg-white px-4 py-3 rounded-md shadow-md mb-5">
         <form action="/bed/search" class="w-8/12 mx-auto grid capitalize grid-cols-4 gap-x-3 items-center my-3" method="get">
             @csrf
-            <input type="search" id="search" name="search" placeholder="Search Here" class="bg-green-500 col-span-3 outline-none rounded-md shadow-md px-3 h-12 py-3 text-white placeholder-green-50 block">
+            <input type="search" id="search" name="search" placeholder="Search By Surname, Ward, Status or Bed Number" class="bg-green-500 col-span-3 outline-none rounded-md shadow-md px-3 h-12 py-3 text-white placeholder-green-50 block">
             <button type="submit" class="w-full rounded-md shadow-md bg-green-500 block h-12 text-white">Search</button>
         </form>
         {{-- <h1 class="text-xl font-semibold text-green-500 text-center">Patients In Bed</h1> --}}

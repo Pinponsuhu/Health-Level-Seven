@@ -26,7 +26,7 @@
     </head>
     <body class="antialiased bg-gray-100">
         <div class="w-7/12 mx-auto grid grid-cols-3 gap-y-6 mt-5">
-            <h1 class="col-span-3 text-center mb-1 text-2xl font-medium text-green-600">Welcome, <u>{{ auth()->guard('superadmin')->user()->fullname }}</u></h1>
+            <h1 class="col-span-3 flex justify-center gap-x-3 items-center text-center mb-1 text-2xl font-medium text-green-600">Welcome,  <img class="w-12 h-12 rounded-full shadow-lg" src="{{ '/storage/super_admins/' . auth()->guard('superadmin')->user()->passport }}" alt=""> <u>{{ auth()->guard('superadmin')->user()->fullname }}</u></h1>
             <a href="/super/admin/hospital/list" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
                 <div class="mt-5">
                     <i class="fa fa-building text-4xl block text-center mx-auto"></i>
@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </a>
-            <a href="#" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
+            <a href="#" class="w-56 mt-5 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
                 <div class="mt-5">
                     <i class="fa fa-cog text-4xl block text-center mx-auto"></i>
                     <div>
@@ -76,7 +76,7 @@
                 </div>
             </a>
 
-            <a href="#" class="col-span-3 block w-36 text-center py-3 bg-green-500 text-white rounded-md shadow-md mx-auto">Logout</a>
+            <a href="/super/admin/logout" class="col-span-3 block w-36 text-center py-3 bg-green-500 text-white rounded-md shadow-md mx-auto">Logout</a>
         </div>
     </body>
 </html>

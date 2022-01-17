@@ -3,8 +3,9 @@
 <main class="w-full h-screen overflow-y-scroll">
 
             @include('layouts.hospital.nav')
-    <div class="px-8 mt-6 flex justify-end">
+    <div class="px-8 mt-6 flex gap-x-2 justify-end">
         <a href="/update/patient/{{ $patient->id }}" class="py-3 px-8 bg-green-500 w-36 text-white rounded-full shadow-md text-center">Update</a>
+        <a href="/delete/patient/{{ $patient->id }}" class="py-3 px-6 bg-red-500 w-36 text-white rounded-full shadow-md text-center">Delete</a>
     </div>
    <div class="px-8 mt-2">
     <div class="flex gap-x-4 bg-white shadow-md rounded-md px-6 py-4 mt-4">

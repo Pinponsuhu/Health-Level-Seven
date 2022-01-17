@@ -22,6 +22,7 @@ use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\SuperAdminLogin;
 use App\Http\Controllers\SuperAdminRegistration;
 use App\Http\Controllers\UserControler;
+use App\Models\Appointment;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,20 +37,25 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/login',[HospitalLoginController::class, 'show_login'])->name('login');
 Route::get('/loging',[HospitalLoginController::class, 'process_login']);
+Route::get('/logout', [HospitalAdminController::class, 'logout']);
 Route::post('/super/admin/store/new',[SuperAdminController::class, 'store_reg']);
 Route::get('/hospital/dashboard', [ClinicController::class, 'clinic_dashboard'])->name('clinic_dashboard');
 Route::get('/hospital/new/patient', [HospitalController::class, 'new_patient']);
 Route::post('/save/patient', [HospitalController::class, 'store_patient'])->name('store_patient');
 Route::get('/change-passport/{id}', [HospitalController::class, 'change_passport']);
 Route::post('/store/update/{id}', [HospitalController::class, 'update_passport']);
+Route::get('/staff/change/passport/{id}',[HospitalAdminController::class, 'change_passport']);
+Route::post('/staff/store/update/{id}',[HospitalAdminController::class, 'update_passport']);
 Route::get('/update/patient/{id}',[HospitalController::class, 'update_patient']);
 Route::post('/save/patient/update/{id}',[HospitalController::class, 'store_patient_update']);
 Route::get('/bed/management', [HospitalController::class, 'bed_management']);
 Route::get('/fill/bed', [HospitalController::class, 'fill_bed']);
 Route::post('/update/bed/{id}',[HospitalController::class, 'update_bed_space']);
 Route::get('/bed/history',[HospitalController::class, 'all_history']);
+Route::get('/delete/bed/details/{id}', [HospitalController::class, 'delete_bed']);
 Route::get('/view/all/patient/action',[HospitalController::class, 'all_patient_search']);
 Route::get('/view/all/patient',[HospitalController::class, 'all_patient']);
+Route::get('/delete/patient/{id}',[HospitalController::class, 'delete_patient']);
 Route::get('/patient/details/{id}',[HospitalController::class, 'patient_details']);
 Route::post('/bed/space', [HospitalController::class, 'store_bed']);
 Route::get('/bed/search', [HospitalController::class, 'search']);
@@ -60,6 +66,7 @@ Route::get('/use/existing/{id}', [HospitalController::class, 'use_existing']);
 Route::post('/existing/store/{id}', [HospitalController::class,'store_using_existing']);
 Route::get('/book/appointment', [AppointmentController::class, 'book']);
 Route::get('/prebooked/appointment', [AppointmentController::class, 'prebooked']);
+Route::post('/update/appointment/{id}', [AppointmentController::class, 'update_status']);
 Route::get('/routine/appointment', [AppointmentController::class, 'routine']);
 Route::get('/telephone/appointments',[AppointmentController::class, 'telephone']);
 Route::post('/store/appointment', [AppointmentController::class, 'store_bookings'])->name('store_bookings');
@@ -74,6 +81,8 @@ Route::post('/store/assign', [InventoryController::class, 'store_assign']);
 Route::get('/edit/item/{id}', [InventoryController::class, 'edit_item']);
 Route::post('/store/edit/item/{id}', [InventoryController::class, 'store_edit']);
 Route::get('/send/reminder', [routineController::class, 'reminder']);
+Route::get('/hospital/changing/password',[HospitalAdminController::class, 'change_password']);
+Route::post('/hospital/changing/password/{id}',[HospitalAdminController::class, 'changing_password']);
 Route::get('/upload/radiology',[RadiologyController::class, 'show_form']);
 Route::post('/upload/radiology',[RadiologyController::class, 'store_credentials']);
 Route::get('/track/uploads',[RadiologyController::class, 'track_uploads']);
@@ -85,16 +94,22 @@ Route::get('/add/department',[HospitalAdminController::class, 'add_department'])
 Route::post('/store/deparment',[HospitalAdminController::class, 'store_department']);
 Route::get('/staff/registration',[HospitalAdminController::class, 'staff_form']);
 Route::post('/staff/registration',[HospitalAdminController::class, 'store_staff'])->name('staff_reg');
+Route::get('/edit/staff/{id}', [HospitalAdminController::class, 'show_edit']);
+Route::post('/edit/staff/{id}', [HospitalAdminController::class, 'update_staff']);
+Route::get('/delete/staff/{id}', [HospitalAdminController::class, 'delete_staff']);
 Route::get('/all/staffs',[HospitalAdminController::class, 'all_staff']);
+Route::get('/staff/details/{id}',[HospitalAdminController::class, 'staff_details']);
 Route::get('/all/departments',[HospitalAdminController::class, 'all_department']);
 Route::get('/department/login',[HospitalAdminController::class, 'login']);
 Route::post('/department/login',[HospitalAdminController::class, 'sign_in']);
 Route::get('/hospital/data/exchange',[HospitalDataExchange::class , 'show']);
 Route::get('/dataex/send/message/{id}',[HospitalDataExchange::class, 'get_msg']);
 Route::get('/hospital/dataex/send',[HospitalDataExchange::class, 'send_msg']);
+//testing file
+Route::get('/hospital/datex/send', [HospitalDataExchange::class, 'send_file']);
 
 //Department logics
-Route::get('/department/login',[DepartmentController::class,'show_login'])->middleware('guest');
+Route::get('/department/login',[DepartmentController::class,'show_login']);
 Route::post('/department/login',[DepartmentController::class, 'login']);
 Route::get('/department/dashboard',[DepartmentController::class, 'department_dashboard'])->middleware('department');
 Route::get('/department/add/radiology',[DepartmentRadiology::class, 'show_form'])->middleware('department');
@@ -149,4 +164,5 @@ Route::get('/super/admin/new/hospital',[NewHospitalController::class, 'register'
 Route::post('/super/admin/new/hospital',[NewHospitalController::class, 'store_reg']);
 Route::get('/super/admin/hospital/list',[NewHospitalController::class, 'all_hospital']);
 Route::get('/super/admin/hospital/details/{id}',[NewHospitalController::class, 'hospital_details']);
+Route::get('/super/admin/logout', [SuperAdminController::class, 'logout']);
 

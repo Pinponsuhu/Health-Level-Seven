@@ -14,7 +14,7 @@ class SuperAdminController extends Controller
     {
         $this->middleware('superadmin');
     }
-    
+
     public function index(){
         return view('super-admin.index');
     }
@@ -46,6 +46,11 @@ class SuperAdminController extends Controller
         $user->hospital_admin = 1;
         $user->hospital_logo = str_replace('public/users/','',$path);
         $user->save();
+    }
+
+    public function logout(){
+        auth()->guard('superadmin')->logout();
+        return redirect('/super/admin/login');
     }
 
 }

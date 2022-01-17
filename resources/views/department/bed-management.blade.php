@@ -2,7 +2,7 @@
 @section('content')
 <main class="w-full h-screen overflow-y-scroll">
     @include('layouts.department.nav')
-    <div class="h-80 grid grid-cols-3 gap-x-3 mt-3 px-6">
+    <div class="h-96 grid grid-cols-3 gap-x-3 mt-3 px-6">
         <section class="col-span-2 bg-white py-4 px-6 rounded-md h-full shadow-md">
             {!! $chart->container() !!}
         </section>
@@ -24,11 +24,11 @@
             </div>
         </section>
     </div>
-    <div class="px-6 mt-3 ">
+    <div class="px-6 mt-6">
        <div  class="w-full bg-white px-4 py-3 rounded-md shadow-md mb-5">
         <form action="/department/bed/search" class="w-8/12 mx-auto grid capitalize grid-cols-4 gap-x-3 items-center my-3" method="get">
             @csrf
-            <input type="search" id="search" name="search" placeholder="Search Here" class="bg-green-500 col-span-3 outline-none rounded-md shadow-md px-3 h-12 py-3 text-white placeholder-green-50 block">
+            <input type="search" id="search" name="search" placeholder="Search By Surname, Ward, Status or Bed Number" class="bg-green-500 col-span-3 outline-none rounded-md shadow-md px-3 h-12 py-3 text-white placeholder-green-50 block">
             <button type="submit" class="w-full rounded-md shadow-md bg-green-500 block h-12 text-white">Search</button>
         </form>
         {{-- <h1 class="text-xl font-semibold text-green-500 text-center">Patients In Bed</h1> --}}

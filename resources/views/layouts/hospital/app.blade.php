@@ -50,7 +50,7 @@
             <h1 class="uppercase text-3xl font-bold text-white text-center pb-4">Menu</h1>
             <a href="/hospital/dashboard"><li class="flex text-gray-50 items-center pl-7 mt-3"><i class="fa fa-chart-pie mr-6 text-2xl"></i> <p class="text-lg">Dashboard</p></li></a>
             <ul class="pl-4 mt-3 py-3">
-                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user mr-7 text-2xl"></i> <p class="text-md">Profile</p></li>
+                <a href="/hospital/changing/password"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-lock mr-7 text-2xl"></i> <p class="text-md">Change Password</p></li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-x-ray mr-5 text-2xl"></i> <p class="text-md">Radiology Upload</p></li>
@@ -87,11 +87,18 @@
                 <a href="/all/items"><li class="text-md py-2 ml-16 text-white">All Items</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
-                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-md">Chatbox</p></li>
+                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-md">Request</p></li>
             </ul>
             <ul class="pl-4 mt-3 py-3">
-                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-power-off mr-7 text-2xl"></i> <p class="text-md">Logout</p></li>
+                <a href="/hospital/data/exchange"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-md">Chatbox</p></li></a>
+            </ul>
+            <ul class="pl-4 mt-3 py-3">
+                <a href="/logout"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-power-off mr-7 text-2xl"></i> <p class="text-md">Logout</p></li></a>
             </ul>
         </nav>
         @yield('content')
+
+        <div class="w-16 flex justify-center items-center fixed bottom-4 right-5 shadow-md h-16 rounded-full bg-green-600  text-white">
+            <i class="fa fa-envelope text-2xl"></i>
+        </div>
     </body>

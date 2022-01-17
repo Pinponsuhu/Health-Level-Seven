@@ -16,10 +16,10 @@ class BedspaceChart
     public function build(): \ArielMejiaDev\LarapexCharts\PieChart
     {
         return $this->chart->pieChart()
-            ->setTitle('Beds Data')
+            ->setTitle('Hospital Bed Data')
             ->addData([ \App\Models\BedSpace::latest()->where('status','!=','Released')->where('status', '!=', 'Deceased')->count(),
-            50-\App\Models\BedSpace::latest()->where('status','!=','Released')->where('status', '!=', 'Deceased')->count() ])
-            ->setHeight(280)
+            auth()->user()->bed_number - \App\Models\BedSpace::latest()->where('status','!=','Released')->where('status', '!=', 'Deceased')->count() ])
+            ->setHeight(360)
             ->setLabels(['Active Beds', 'Available Beds', ]);
     }
 }

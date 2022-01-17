@@ -47,7 +47,7 @@
                     </div>
                     <div class="bg-yellow-200 h-32 flex justify-between shadow-md gap-x-2 rounded-md py-4 px-5">
                         <div>
-                            <h1 class="text-3xl font-extrabold mb-3 text-yellow-500">10</h1>
+                            <h1 class="text-3xl font-extrabold mb-3 text-yellow-500">{{ auth()->user()->shelf_number }}</h1>
                             <p class="text-lg font-medium leading-5 text-gray-500">Number of Shelves</p>
                         </div>
                         <div class="w-12 flex justify-center items-center h-12 rounded-full bg-yellow-600 ">
