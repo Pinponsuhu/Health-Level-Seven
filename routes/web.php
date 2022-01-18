@@ -14,6 +14,7 @@ use App\Http\Controllers\HospitalAdminController;
 use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\HospitalDataExchange;
 use App\Http\Controllers\HospitalLoginController;
+use App\Http\Controllers\HospitalRequestController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\NewHospitalController;
 use App\Http\Controllers\RadiologyController;
@@ -109,6 +110,7 @@ Route::get('/hospital/dataex/send',[HospitalDataExchange::class, 'send_msg']);
 //testing file
 Route::get('/hospital/datex/send', [HospitalDataExchange::class, 'send_file']);
 //request controller
+Route::get('/request/all',[HospitalRequestController::class, 'show']);
 
 //Department logics
 Route::get('/department/login',[DepartmentController::class,'show_login']);
