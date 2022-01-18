@@ -8,6 +8,7 @@ use App\Models\Patient;
 use Carbon\Carbon;
 use DataTables;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class HospitalController extends Controller
 {
@@ -58,7 +59,7 @@ class HospitalController extends Controller
     }
 
     public function change_passport(Request $request){
-        $patient = Patient::find($request->id);
+        $patient = Patient::find(Crypt::decrypt($request->id));
         if($patient->hospital_id == auth()->user()->id){
             return view('hospital.change-passport',['patient'=>$patient]);
         }else{
@@ -67,7 +68,7 @@ class HospitalController extends Controller
     }
 
     public function update_passport(Request $request){
-        $patient = Patient::find($request->id);
+        $patient = Patient::find(Crypt::decrypt($request->id));
         $path = 'storage/patients';
         unlink($path.'/' .$patient->passport);
         $dest = '/public/patients';
@@ -78,7 +79,7 @@ class HospitalController extends Controller
         return redirect('/hospital/dashboard');
     }
     public function update_patient($id){
-        $patient = Patient::find($id);
+        $patient = Patient::find(Crypt::decrypt($id));
         if(auth()->user()->id == $patient->hospital_id){
             $gender = array("Male","Female");
             $states = array("Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa","Benue","Borno","Cross River","Delta","Ebonyi","Edo","Ekiti","Enugu","FCT - Abuja","Gombe","Imo","Jigawa","Kaduna","Kano","Katsina","Kebbi","Kogi","Kwara","Lagos","Nasarawa","Niger","Ogun","Ondo","Osun","Oyo","Plateau","Rivers","Sokoto","Taraba","Yobe","Zamfara");
@@ -96,9 +97,10 @@ class HospitalController extends Controller
             'email_address' => 'required|email',
             'occupation' => 'required',
             'resident_address' => 'required',
+            'next_of_kin' => 'required',
             'phone_number' => 'required|numeric'
         ]);
-        $patient = Patient::find($request->id);
+        $patient = Patient::find(Crypt::decrypt($request->id));
         $patient->surname = $request->surname ;
         $patient->othernames = $request->othernames ;
         $patient->date_of_birth = $request->date_of_birth ;
@@ -110,7 +112,6 @@ class HospitalController extends Controller
         $patient->phone_number = $request->phone_number ;
         $patient->next_of_kin = $request->next_of_kin;
         $patient->last_edited_by = 'Admin';
-        $patient->created_at = $request->next_of_kin;
         $patient->next_of_kin_number1 = $request->next_of_kin_number1;
         $patient->next_of_kin_number2 = $request->next_of_kin_number2;
         $patient->save();
@@ -118,7 +119,7 @@ class HospitalController extends Controller
     }
 
     public function delete_patient($id){
-        $patient = Patient::find($id);
+        $patient = Patient::find(Crypt::decrypt($id));
         $path = 'storage/patients';
         unlink($path.'/' .$patient->passport);
 
@@ -210,8 +211,8 @@ $active_bed_numbers = BedSpace::latest()
     }
 
     public function update_bed_space(Request $request){
-        $bed = BedSpace::find($request->id);
-        if($bed->hospital_id != auth()->user()->id){
+        $bed = BedSpace::find(Crypt::decrypt($request->id));
+        if($bed->hospital_id == auth()->user()->id){
             if(isset($request->bed_status)){
                 if($request->bed_status == "Released"){
                 $bed->last_edited_by = 'Admin';
@@ -219,7 +220,6 @@ $active_bed_numbers = BedSpace::latest()
                 $bed->check_out_time = Carbon::today()->toDateString();
                 $bed->save();
                 }else{
-                    $bed = BedSpace::find($request->id);
                     $bed->last_edited_by = 'Admin';
                     $bed->status = $request->bed_status;
                     $bed->save();
@@ -255,7 +255,7 @@ $active_bed_numbers = BedSpace::latest()
     }
 
     public function patient_details($id){
-        $patient = Patient::find($id);
+        $patient = Patient::find(Crypt::decrypt($id));
         $bed_histories = BedSpace::where('PID','=',$patient->PID)->where('hospital_id','=',auth()->user()->id)->get();
         if($patient->hospital_id == auth()->user()->id){
             return view('hospital.patient-details',['patient'=> $patient,'bed_histories'=> $bed_histories]);
@@ -265,7 +265,7 @@ $active_bed_numbers = BedSpace::latest()
     }
 
     public function all_patient_search(Request $request){
-        $patient = Patient::find($request->id);
+        $patient = Patient::find(Crypt::decrypt($request->id));
         if($patient->hospital_id == auth()->user()->id){
         return view('hospital.patient-details', ['patient'=>$patient]);
         }else{
@@ -303,7 +303,7 @@ $active_bed_numbers = BedSpace::latest()
         ->orderBy('id', 'ASC')
         ->get()
         ->toArray();
-        $patient = Patient::find($id);
+        $patient = Patient::find(Crypt::decrypt($id));
         $status = array("Undetermined","Good","Fair","Serious","Critical","Released","Deceased");
         $actives = array();
         // dd(count($active_bed_numbers));
@@ -315,7 +315,7 @@ $active_bed_numbers = BedSpace::latest()
     }
 
     public function store_using_existing(Request $request){
-        $patient = Patient::find($request->id)->first();
+        $patient = Patient::find(Crypt::decrypt($request->id))->first();
         $request->validate([
             'status' => 'required',
             'checked_in_date' => 'required|date',
@@ -349,7 +349,7 @@ $active_bed_numbers = BedSpace::latest()
     }
 
     public function bed_detail($id){
-        $patient = BedSpace::find($id);
+        $patient = BedSpace::find(Crypt::decrypt($id));
         if($patient->hospital_id == auth()->user()->id){
         return view('hospital.in-bed-details',['patient'=> $patient]);
         }else{
@@ -357,7 +357,7 @@ $active_bed_numbers = BedSpace::latest()
         }
     }
     public function delete_bed($id){
-        $patient = BedSpace::find($id);
+        $patient = BedSpace::find(Crypt::decrypt($id));
         if($patient->hospital_id == auth()->user()->id){
             $patient->delete();
             return redirect('/bed/management');

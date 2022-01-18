@@ -5,15 +5,8 @@
         <div class="mt-4 px-8">
             <div class="bg-white rounded-md  p-6  shadow-md">
                 <h1 class="font-bold text-2xl text-green-500  mb-4 col-span-2">Assignment Form</h1>
-                <form action="/department/store/assign" class="gap-x-5 gap-y-2 grid grid-cols-2" method="POST">
+                <form action="/store/assign/{{ Crypt::encrypt($item->id) }}" class="gap-x-5 gap-y-2 grid grid-cols-2" method="POST">
                     @csrf
-                    <div class="my-2">
-                        <label class="font-semibold text-md block mb-1">Item ID:</label>
-                        <input type="text" readonly value="{{ $item->id }}" name="item_id_no" placeholder="Enter Item Name" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block">
-                        @error('item_id_no')
-                            <p class="text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-                    </div>
                     <div class="my-2">
                         <label class="font-semibold text-md block mb-1">Department/Personnel</label>
                         <input type="text" value="{{ old('assigned_to') }}" name="assigned_to" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block"  placeholder="Patient/Personnel Name">

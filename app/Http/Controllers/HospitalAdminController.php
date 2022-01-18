@@ -7,6 +7,7 @@ use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 
 class HospitalAdminController extends Controller
@@ -110,7 +111,7 @@ class HospitalAdminController extends Controller
         return view('hospital.all-departments',['departments'=>$departments]);
     }
     public function staff_details($id){
-        $staff = Staff::find($id);
+        $staff = Staff::find(Crypt::decrypt($id));
         if($staff->hospital_id == auth()->user()->id){
             return view('hospital.staff-details',['staff'=> $staff]);
         }else{
@@ -119,7 +120,7 @@ class HospitalAdminController extends Controller
     }
 
     public function change_passport($id){
-        $staff = Staff::find($id);
+        $staff = Staff::find(Crypt::decrypt($id));
         if($staff->hospital_id == auth()->user()->id){
             return view('hospital.staff-passport',['staff'=>$staff]);
         }else{
@@ -127,7 +128,7 @@ class HospitalAdminController extends Controller
         }
     }
     public function update_passport(Request $request){
-        $staff = Staff::find($request->id);
+        $staff = Staff::find(Crypt::decrypt($request->id));
         $path = 'storage/staffs';
         unlink($path.'/' .$staff->passport);
         $dest = '/public/staffs';
@@ -137,14 +138,14 @@ class HospitalAdminController extends Controller
         return redirect('/hospital/dashboard');
     }
     public function delete_staff($id){
-        $staff = Staff::find($id);
+        $staff = Staff::find(Crypt::decrypt($id));
         $path = 'storage/staffs';
         unlink($path.'/' .$staff->passport);
         $staff->delete();
         return redirect('/all/staffs');
     }
     public function show_edit($id){
-        $staff = Staff::find($id);
+        $staff = Staff::find(Crypt::decrypt($id));
         $gender = array("Male","Female");
         $states = array("Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa","Benue","Borno","Cross River","Delta","Ebonyi","Edo","Ekiti","Enugu","FCT - Abuja","Gombe","Imo","Jigawa","Kaduna","Kano","Katsina","Kebbi","Kogi","Kwara","Lagos","Nasarawa","Niger","Ogun","Ondo","Osun","Oyo","Plateau","Rivers","Sokoto","Taraba","Yobe","Zamfara");
         return view('hospital.edit-staff',['staff'=>$staff, 'states'=> $states,'gender'=>$gender]);
@@ -165,7 +166,7 @@ class HospitalAdminController extends Controller
         ]);
 
 
-        $staff = Staff::find($request->id);
+        $staff = Staff::find(Crypt::decrypt($request->id));
 
         $staff->fullname = $request->fullname ;
         $staff->date_of_birth = $request->date_of_birth ;
@@ -197,7 +198,7 @@ class HospitalAdminController extends Controller
             'old_password' =>'required',
             'password' =>'required|confirmed',
         ]);
-        $hospital = User::find($request->id);
+        $hospital = User::find(Crypt::decrypt($request->id));
         if($request->id == auth()->user()->id){
             if (Hash::check($request->old_password, $hospital->password)) {
                 $hospital->password = Hash::make($request->password);

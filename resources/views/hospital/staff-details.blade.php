@@ -5,9 +5,9 @@
     <div class="px-5">
         <div class="p-6 mt-6 bg-white rounded-md shadow-md">
             <div class="flex gap-x-2 justify-end">
-                <a href="/staff/change/passport/{{ $staff->id }}" class="px-8 py-3 text-white rounded-full bg-blue-400">Change Passport</a>
-                <a href="/edit/staff/{{ $staff->id }}" class="px-8 py-3 text-white rounded-full bg-green-400">Edit</a>
-                <a href="/delete/staff/{{ $staff->id }}" class="px-8 py-3 text-white rounded-full bg-red-400">Delete</a>
+                <a href="/staff/change/passport/{{  Crypt::encrypt($staff->id) }}" class="px-8 py-3 text-white rounded-full bg-blue-400">Change Passport</a>
+                <a href="/edit/staff/{{ Crypt::encrypt($staff->id) }}" class="px-8 py-3 text-white rounded-full bg-green-400">Edit</a>
+                <a href="/delete/staff/{{ Crypt::encrypt($staff->id) }}" class="px-8 py-3 text-white rounded-full bg-red-400">Delete</a>
             </div>
             <div class="flex gap-x-4 bg-white shadow-md rounded-md px-6 py-4 mt-4">
                 <div class="w-72 h-full">

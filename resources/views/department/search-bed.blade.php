@@ -45,7 +45,7 @@
                         <td class=" py-2 bg-green-100 px-3 text-center">{{ $bed->ward }}</td>
                         <td class=" py-2 bg-white px-3 text-center">{{ $bed->next_of_kin }}</td>
                         <td class=" py-2 bg-green-100 px-3 text-center">{{ $bed->next_of_kin_number }}</td>
-                        <td class=" py-2 bg-white px-2"><a class="bg-blue-500 rounded-md text-white py-2 px-4" href="/department/bed/detail/{{ $bed->id }}">More</a></td>
+                        <td class=" py-2 bg-white px-2"><a class="bg-blue-500 rounded-md text-white py-2 px-4" href="/department/bed/detail/{{ Crypt::encrypt($bed->id) }}">More</a></td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\RadiologyFiles;
 use App\Models\RadiologyUpload;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class RadiologyController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //methid to show forms
     public function show_form(){
         return view('hospital.add-upload');
@@ -44,7 +45,7 @@ class RadiologyController extends Controller
     }
 
     public function upload_details($id){
-        $upload = RadiologyUpload::find($id)->first();
+        $upload = RadiologyUpload::find(Crypt::decrypt($id));
         $files = RadiologyFiles::where('upload_id','=',$upload->id)->get();
         return view('hospital.upload-details',['upload'=>$upload, 'files'=>$files]);
     }
@@ -60,7 +61,7 @@ class RadiologyController extends Controller
         foreach($files as $file){
         $path = $file->store($dest);
         $fileModel->file_path = str_replace('public/results/','',$path);
-        $fileModel->upload_id = $id;
+        $fileModel->upload_id = Crypt::decrypt($id);
         $fileModel->save();
 
         return redirect('/hospital/dashboard');

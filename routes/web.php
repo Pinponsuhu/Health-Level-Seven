@@ -65,10 +65,11 @@ Route::get('/confirm/patient',[HospitalController::class, 'confirm_identity']);
 Route::get('/use/existing/{id}', [HospitalController::class, 'use_existing']);
 Route::post('/existing/store/{id}', [HospitalController::class,'store_using_existing']);
 Route::get('/book/appointment', [AppointmentController::class, 'book']);
-Route::get('/prebooked/appointment', [AppointmentController::class, 'prebooked']);
+// Route::get('/prebooked/appointment', [AppointmentController::class, 'prebooked']);
+Route::get('/prebooked/appointment/{stat}', [AppointmentController::class, 'prebooked']);
 Route::post('/update/appointment/{id}', [AppointmentController::class, 'update_status']);
-Route::get('/routine/appointment', [AppointmentController::class, 'routine']);
-Route::get('/telephone/appointments',[AppointmentController::class, 'telephone']);
+Route::get('/routine/appointment/{stat}', [AppointmentController::class, 'routine']);
+Route::get('/telephone/appointments/{stat}',[AppointmentController::class, 'telephone']);
 Route::post('/store/appointment', [AppointmentController::class, 'store_bookings'])->name('store_bookings');
 Route::get('/inventory/dashboard', [InventoryController::class, 'dashboard']);
 Route::get('/add/item', [InventoryController::class, 'show_add']);
@@ -77,7 +78,7 @@ Route::get('/delete/item/{id}', [InventoryController::class, 'delete_item']);
 Route::get('/all/items', [InventoryController::class, 'view_all']);
 Route::get('/item/details/{id}', [InventoryController::class, 'item_details']);
 Route::get('/assign/item/{id}', [InventoryController::class, 'assign']);
-Route::post('/store/assign', [InventoryController::class, 'store_assign']);
+Route::post('/store/assign/{id}', [InventoryController::class, 'store_assign']);
 Route::get('/edit/item/{id}', [InventoryController::class, 'edit_item']);
 Route::post('/store/edit/item/{id}', [InventoryController::class, 'store_edit']);
 Route::get('/send/reminder', [routineController::class, 'reminder']);
@@ -107,6 +108,7 @@ Route::get('/dataex/send/message/{id}',[HospitalDataExchange::class, 'get_msg'])
 Route::get('/hospital/dataex/send',[HospitalDataExchange::class, 'send_msg']);
 //testing file
 Route::get('/hospital/datex/send', [HospitalDataExchange::class, 'send_file']);
+//request controller
 
 //Department logics
 Route::get('/department/login',[DepartmentController::class,'show_login']);
@@ -115,8 +117,8 @@ Route::get('/department/dashboard',[DepartmentController::class, 'department_das
 Route::get('/department/add/radiology',[DepartmentRadiology::class, 'show_form'])->middleware('department');
 Route::post('/department/upload/radiology',[DepartmentRadiology::class, 'store_credentials']);
 Route::get('/department/track/uploads',[DepartmentRadiology::class,'track_uploads'])->middleware('department');
-Route::get('/upload/details/{id}',[DepartmentRadiology::class, 'upload_details']);
-Route::post('/add/result/{id}',[DepartmentRadiology::class, 'add_result']);
+Route::get('/department/upload/details/{id}',[DepartmentRadiology::class, 'upload_details']);
+Route::post('/department/add/result/{id}',[DepartmentRadiology::class, 'add_result']);
 Route::get('/department/new/patient',[DepartmentPatient::class,'new_patient'])->middleware('department');
 Route::post('/department/new/patient',[DepartmentPatient::class,'store_patient']);
 Route::get('/department/all/patient',[DepartmentPatient::class, 'all_patient']);

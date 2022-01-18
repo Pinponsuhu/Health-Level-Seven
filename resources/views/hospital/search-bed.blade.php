@@ -29,7 +29,7 @@
                         <td class=" py-2 bg-green-100 px-3 text-center">{{ $bed->surname . ' ' . $bed->othernames }}</td>
                         <td class=" py-2 bg-white px-3 text-center">{{ $bed->checked_in_date }}</td>
                         <td class="py-2 bg-green-100 px-3 text-center">
-                            <form action="/update/bed/{{ $bed->id }}" method="POST" id="update">
+                            <form action="/update/bed/{{ Crypt::encrypt($bed->id) }}" method="POST" id="update">
                                 @csrf
                                 <select name="bed_status" onchange="this.form.submit()" class="py-2 w-full" id="bed_status">
                                     <option value="{{ $bed->status }}">{{ $bed->status }}</option>

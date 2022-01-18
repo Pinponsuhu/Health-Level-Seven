@@ -6,6 +6,30 @@
 
         <title>{{ auth()->user()->hospital_name }}</title>
 
+        {{-- code to disable inspect element --}}
+        {{-- <script>
+            document.onkeydown = function (e) {
+                if (event.keyCode == 123) {
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'i'.charCodeAt(0))) {
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && (e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'c'.charCodeAt(0))) {
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && (e.keyCode == 'J'.charCodeAt(0) || e.keyCode == 'j'.charCodeAt(0))) {
+                    return false;
+                }
+                if (e.ctrlKey && (e.keyCode == 'U'.charCodeAt(0) || e.keyCode == 'u'.charCodeAt(0))) {
+                    return false;
+                }
+                if (e.ctrlKey && (e.keyCode == 'S'.charCodeAt(0) || e.keyCode == 's'.charCodeAt(0))) {
+                    return false;
+                }
+            }
+        </script> --}}
+
         <!-- Fonts -->
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,7 +69,10 @@
 
         </style>
     </head>
-    <body class="antialiased bg-gray-200 flex">
+
+    {{-- oncontext menu is to disable inspect element --}}
+    {{-- oncontextmenu="return false;" --}}
+    <body  class="antialiased bg-gray-200 flex">
         <nav class="w-80 bg-green-600 h-screen hidden md:block overflow-y-scroll py-3">
             <h1 class="uppercase text-3xl font-bold text-white text-center pb-4">Menu</h1>
             <a href="/hospital/dashboard"><li class="flex text-gray-50 items-center pl-7 mt-3"><i class="fa fa-chart-pie mr-6 text-2xl"></i> <p class="text-lg">Dashboard</p></li></a>
@@ -75,9 +102,9 @@
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-calendar-check mr-7 text-2xl"></i> <p class="text-md">Appointment</p></li>
-                <li class="text-md py-2 ml-16 text-white"><a href="/routine/appointment">Routine</a></li>
-                <li class="text-md py-2 ml-16 text-white"><a href="/prebooked/appointment">Pre-Booked</a></li>
-                <a href="/telephone/appointments"><li class="text-md py-2 ml-16 text-white">Telephone consultation</li></a>
+                <li class="text-md py-2 ml-16 text-white"><a href="/routine/appointment/{{ Crypt::encrypt('Active') }}">Routine</a></li>
+                <li class="text-md py-2 ml-16 text-white"><a href="/prebooked/appointment/{{ Crypt::encrypt('Active') }}">Pre-Booked</a></li>
+                <a href="/telephone/appointments/{{ Crypt::encrypt('Active') }}"><li class="text-md py-2 ml-16 text-white">Telephone consultation</li></a>
                 <a href="/book/appointment"><li class="text-md py-2 ml-16 text-white">Add new</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">

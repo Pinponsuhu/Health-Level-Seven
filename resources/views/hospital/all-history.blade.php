@@ -27,7 +27,7 @@
                 <tr class="text-green-500 font-medium text-md">
                     <td class=" py-3 bg-green-100 px-3 text-center capitalize">{{ $bed->surname . ' ' . $bed->othernames }}</td>
                     <td class=" py-3 bg-white px-3 text-center">{{ $bed->checked_in_date }}</td>
-                    <td class="py-3 bg-green-100 px-3 text-center capitalize"><form action="/update/bed/{{ $bed->id }}" method="POST" id="update">
+                    <td class="py-3 bg-green-100 px-3 text-center capitalize"><form action="/update/bed/{{ Crypt::encrypt($bed->id) }}" method="POST" id="update">
                         @csrf
                         <select name="bed_status" onchange="this.form.submit()" class="py-3 w-full" id="bed_status">
                             <option value="{{ $bed->status }}">{{ $bed->status }}</option>
@@ -42,7 +42,7 @@
                     <td class=" py-3 bg-green-100 px-3 text-center capitalize">{{ $bed->ward }}</td>
                     <td class=" py-3 bg-white px-3 text-center capitalize">{{ $bed->next_of_kin }}</td>
                     <td class=" py-3 bg-green-100 px-3 text-center">{{ $bed->next_of_kin_number }}</td>
-                    <td class="px-2"><a href="/bed/detail/{{ $bed->id }}" class="px-5 rounded-md py-3 bg-blue-500 text-white">More</a></td>
+                    <td class="px-2"><a href="/bed/detail/{{ Crypt::encrypt($bed->id) }}" class="px-5 rounded-md py-3 bg-blue-500 text-white">More</a></td>
                 </tr>
                 @endforeach
             </tbody>

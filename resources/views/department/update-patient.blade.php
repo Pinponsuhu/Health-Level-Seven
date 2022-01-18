@@ -2,7 +2,7 @@
 @section('content')
 <main class="w-full overflow-y-scroll h-screen">
     @include('layouts.department.nav')
-    <form action="/department/patient/update/{{ $patient->id }}" class="w-8/12 mb-6 grid grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md shadow-md mt-8 bg-white" method="post">
+    <form action="/department/patient/update/{{ Crypt::encrypt($patient->id) }}" class="w-8/12 mb-6 grid grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md shadow-md mt-8 bg-white" method="post">
         @csrf
         <h1 class="col-span-2 text-2xl font-semibold text-green-600 mb-3">Update Patient Profile</h1>
 

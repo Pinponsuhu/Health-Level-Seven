@@ -20,7 +20,7 @@
             <tbody>
                 @foreach ($staffs as $staff)
                     <tr>
-                        <td class=" py-3 bg-green-100 px-3 text-center capitalize"><a href="/staff/details/{{ $staff->id }}" class="italic underline">{{ $staff->staff_id }}</a></td>
+                        <td class=" py-3 bg-green-100 px-3 text-center capitalize"><a href="/staff/details/{{  Crypt::encrypt($staff->id) }}" class="italic underline">{{ $staff->staff_id }}</a></td>
                         <td class=" py-3 bg-green-100 px-3 text-center capitalize">{{ $staff->fullname }}</td>
                         <td class=" py-3 bg-white px-3 text-center">{{ $staff->phone_number }}</td>
                         <td class=" py-3 bg-green-100 px-3 text-center">{{ $staff->email_address }}</td>

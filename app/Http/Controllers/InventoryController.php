@@ -7,6 +7,7 @@ use App\Models\InventoryItem;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class InventoryController extends Controller
 {
@@ -89,7 +90,7 @@ public function search_items(Request $request){
     }
 
     public function item_details($id){
-        $item = InventoryItem::find($id);
+        $item = InventoryItem::find(Crypt::decrypt($id));
         if($item->hospital_id == auth()->user()->id){
             $history_count = Assign::where('itemr_id','=',$id)
                         ->where('hospital_id','=',auth()->user()->id)
@@ -106,7 +107,7 @@ public function search_items(Request $request){
     }
 
     public function assign($id){
-        $item = InventoryItem::find($id);
+        $item = InventoryItem::find(Crypt::decrypt($id));
         if($item->hospital_id == auth()->user()->id){
             return view('inventory.assign-item',['item'=>$item]);
         }else{
@@ -122,7 +123,7 @@ public function search_items(Request $request){
             'issued_to' => 'required',
         ]);
         $assign = new Assign;
-        $assign->itemr_id = $request->item_id_no;
+        $assign->itemr_id = Crypt::decrypt($request->id);
         $assign->assigned_to = $request->assigned_to;
         $assign->number_of_item = $request->number_of_item;
         $assign->issued_by = $request->issued_by;
@@ -133,12 +134,12 @@ public function search_items(Request $request){
         $number = $item->quantity - $request->number_of_item;
         $item->quantity = $number;
         $item->save();
-        
+
         return redirect('/all/items');
     }
 
     public function delete_item($id){
-        $item = InventoryItem::find($id);
+        $item = InventoryItem::find(Crypt::decrypt($id));
         if($item->hospital_id == auth()->user()->id){
             $item->delete();
         }else{
@@ -151,7 +152,7 @@ public function search_items(Request $request){
         $conditions = array('Good','Bad','Broken Seal');
         $categories = array('Medicinal','Stationery','Hardware','Others');
         $status = array('In stock','Assigned');
-        $item = InventoryItem::find($id);
+        $item = InventoryItem::find(Crypt::decrypt($id));
         if($item->hospital_id == auth()->user()->id){
             return view('inventory.edit-item',['item'=>$item,'categories'=> $categories,'conditions' => $conditions]);
         }else{
@@ -172,7 +173,7 @@ public function search_items(Request $request){
             'serial_number' => 'required',
             'deliverer_number' => 'required',
         ]);
-        $item = InventoryItem::find($request->id);
+        $item = InventoryItem::find(Crypt::decrypt($request->id));
             $item->name = $request->name;
             $item->quantity = $request->quantity;
             $item->shelf_no = $request->shelf_number;

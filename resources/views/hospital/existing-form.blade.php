@@ -3,7 +3,7 @@
     <main class="w-full overflow-y-scroll h-screen pb-67">
         @include('layouts.hospital.nav')
         <div class="h-screen">
-            <form action="/existing/store/{{ $patient->id }}" class=" w-8/12 mb-6 grid grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md items-center shadow-md mt-8 bg-white" method="post" enctype="multipart/form-data">
+            <form action="/existing/store/{{ Crypt::encrypt($patient->id) }}" class=" w-8/12 mb-6 grid grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md items-center shadow-md mt-8 bg-white" method="post" enctype="multipart/form-data">
                 @csrf
                 <h1 class="col-span-2 text-2xl font-semibold text-green-600 mb-3">Patient in bed</h1>
                 <div class="my-2">

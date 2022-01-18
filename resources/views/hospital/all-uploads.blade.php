@@ -22,7 +22,7 @@
                             <td class=" py-3 bg-green-100 px-3 text-center">{{ $upload->email_address }}</td>
                             <td class=" py-3 bg-white px-3 text-center">{{ $upload->test_type }}</td>
                             <td class=" py-3 bg-green-100 px-3 text-center capitalize">{{ $upload->gender }}</td>
-                            <td class="px-3"><a href="/upload/details/{{ $upload->id }}" class="px-5 py-2 bg-blue-500 text-white rounded-md">More</a></td>
+                            <td class="px-3"><a href="/upload/details/{{ Crypt::encrypt($upload->id) }}" class="px-5 py-2 bg-blue-500 text-white rounded-md">More</a></td>
                         </tr>
                     @endforeach
                 </tbody>
