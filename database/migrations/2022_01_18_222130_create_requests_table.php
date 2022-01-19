@@ -14,7 +14,7 @@ class CreateRequestsTable extends Migration
     public function up()
     {
         Schema::create('requests', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->mediumText('title');
             $table->longText('content');
             $table->string('status');
@@ -23,6 +23,15 @@ class CreateRequestsTable extends Migration
             $table->string('hospital_id');
             $table->string('is_read');
             $table->timestamps();
+        });
+
+        Schema::create('request_files', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('requests_id');
+            $table->mediumText('request_title');
+            $table->string('filename');
+            $table->timestamps();
+            $table->foreign('requests_id')->references('id')->on('requests')->onDelete('cascade');
         });
     }
 

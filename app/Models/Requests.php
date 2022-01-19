@@ -15,5 +15,7 @@ class Requests extends Model
 
     protected $fillable = ['title','content','from','to','status','is_read','hospital_id'];
 
-    
+    public function RequestFiles(){
+        return $this->hasMany(RequestFiles::class);
+    }
 }

@@ -97,7 +97,9 @@
                 <a href="/department/all/items"><li class="text-md py-2 ml-16 text-white">All Items</li></a>
             </ul>
             @endif
-            
+            <ul class="pl-4 mt-3 py-3">
+                <a href="/department/request/all"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-md">Request</p></li></a>
+            </ul>
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-power-off mr-7 text-2xl"></i> <p class="text-md">logout</p></li>
             </ul>

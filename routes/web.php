@@ -10,6 +10,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DepartmentInventory;
 use App\Http\Controllers\DepartmentPatient;
 use App\Http\Controllers\DepartmentRadiology;
+use App\Http\Controllers\DepartmentRequest;
 use App\Http\Controllers\HospitalAdminController;
 use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\HospitalDataExchange;
@@ -156,6 +157,10 @@ Route::post('/department/store/assign',[DepartmentInventory::class, 'store_assig
 Route::get('/department/change/password',[DepartmentController::class, 'change_password']);
 Route::post('/department/changing/password/{id}', [DepartmentController::class, 'changing_password']);
 Route::get('/department/chat',[DepartmentChat::class, 'index']);
+Route::get('/department/request/all',[DepartmentRequest::class, 'show']);
+Route::get('/department/new/request',[DepartmentRequest::class, 'show_add']);
+Route::post('/department/new/request',[DepartmentRequest::class, 'store_new']);
+Route::get('/department/request/track/{id}',[DepartmentRequest::class, 'req_details']);
 Route::get('/department/chat/message/box/{id}', [DepartmentChat::class, 'chat_box']);
 
 //superadmin logics

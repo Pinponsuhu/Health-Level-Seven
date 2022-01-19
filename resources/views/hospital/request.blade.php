@@ -12,20 +12,15 @@
                     </div>
                 </div>
                 <div class="mt-4">
-                    <div class="py-3 cursor-pointer flex justify-between border-b-2 border-gray-400 hover:bg-gray-100 px-4">
+                    @foreach ($reqs as $req)
+                    <div class="py-3 cursor-pointer flex justify-between border-b-2 border-gray-200 hover:bg-gray-100 px-4">
                         <div>
-                            <h1 class="text-green-500 font-medium text-lg">Title of request</h1>
-                            <p class="text-gray-300">Created at</p>
+                            <h1 class="text-green-500 font-medium text-lg">{{ $req->title }}</h1>
+                            <p class="text-gray-300">{{ $req->created_at->diffForHumans() }}</p>
                         </div>
                         <span class="h-2 w-2 bg-red-400 rounded-full"></span>
                     </div>
-                    <div class="py-3 cursor-pointer flex justify-between border-b-2 border-gray-400 hover:bg-gray-100 px-4">
-                        <div>
-                            <h1 class="text-green-500 font-medium text-lg">Title of request</h1>
-                            <p class="text-gray-300">Created at</p>
-                        </div>
-                        <span class="h-2 w-2 bg-red-400 rounded-full"></span>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
