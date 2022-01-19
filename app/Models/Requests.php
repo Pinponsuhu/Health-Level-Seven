@@ -18,4 +18,7 @@ class Requests extends Model
     public function RequestFiles(){
         return $this->hasMany(RequestFiles::class);
     }
+    public function RequestReply(){
+        return $this->hasMany(RequestReply::class);
+    }
 }

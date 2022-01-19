@@ -13,13 +13,15 @@
                 </div>
                 <div class="mt-4">
                     @foreach ($reqs as $req)
-                    <div class="py-3 cursor-pointer flex justify-between border-b-2 border-gray-200 hover:bg-gray-100 px-4">
-                        <div>
-                            <h1 class="text-green-500 font-medium text-lg">{{ $req->title }}</h1>
-                            <p class="text-gray-300">{{ $req->created_at->diffForHumans() }}</p>
+                    <a href="/request/track/{{ Crypt::encrypt($req->id) }}">
+                        <div class="py-3 cursor-pointer flex justify-between border-b-2 border-gray-200 hover:bg-gray-100 px-4">
+                            <div>
+                                <h1 class="text-green-500 font-medium text-lg">{{ $req->title }}</h1>
+                                <p class="text-gray-300">{{ $req->created_at->diffForHumans() }}</p>
+                            </div>
+                            {{-- <span class="h-2 w-2 bg-red-400 rounded-full"></span> --}}
                         </div>
-                        <span class="h-2 w-2 bg-red-400 rounded-full"></span>
-                    </div>
+                    </a>
                     @endforeach
                 </div>
             </div>

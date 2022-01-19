@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRequestRepliesTable extends Migration
+class CreateRequestReplyFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateRequestRepliesTable extends Migration
      */
     public function up()
     {
-        Schema::create('request_replies', function (Blueprint $table) {
+        Schema::create('request_reply_files', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('request_id');
-            $table->longText('message');
-            $table->string('from');
-            $table->string('to');
-            $table->string('status');
-            $table->integer('is_read');
-            $table->integer('hospital_id');
+            $table->unsignedInteger('reply_id');
+            $table->string('filename');
             $table->timestamps();
             $table->foreign('request_id')->references('id')->on('requests')->onDelete('cascade');
+            $table->foreign('reply_id')->references('id')->on('request_replies')->onDelete('cascade');
         });
     }
 
@@ -34,6 +31,6 @@ class CreateRequestRepliesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('request_replies');
+        Schema::dropIfExists('request_reply_files');
     }
 }

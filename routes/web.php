@@ -112,6 +112,9 @@ Route::get('/hospital/dataex/send',[HospitalDataExchange::class, 'send_msg']);
 Route::get('/hospital/datex/send', [HospitalDataExchange::class, 'send_file']);
 //request controller
 Route::get('/request/all',[HospitalRequestController::class, 'show']);
+Route::get('/request/track/{id}',[HospitalRequestController::class, 'track']);
+Route::get('/reply/request/{id}',[HospitalRequestController::class, 'show_reply']);
+Route::post('/reply/request/{id}',[HospitalRequestController::class, 'send_reply']);
 
 //Department logics
 Route::get('/department/login',[DepartmentController::class,'show_login']);
