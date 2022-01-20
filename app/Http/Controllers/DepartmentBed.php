@@ -6,6 +6,7 @@ use App\Charts\BedspaceChart;
 use App\Models\BedSpace;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class DepartmentBed extends Controller
 {
@@ -13,7 +14,7 @@ class DepartmentBed extends Controller
     {
         $this->middleware('bed');
     }
-    
+
     public function bed_management(BedspaceChart $chart, Request $request){
         $beds = BedSpace::latest()
         ->where('status','!=','Released')
@@ -96,7 +97,7 @@ class DepartmentBed extends Controller
 
     public function update_bed_space(Request $request){
         if(isset($request->bed_status)){
-            $bed = BedSpace::find($request->id);
+            $bed = BedSpace::find(Crypt::decrypt($request->id));
             $bed->status = $request->bed_status;
             $bed->last_edited_by = auth()->guard('department')->user()->name;
             $bed->save();
@@ -149,7 +150,7 @@ class DepartmentBed extends Controller
         ->orderBy('id', 'ASC')
         ->get()
         ->toArray();
-        $patient = Patient::find($id);
+        $patient = Patient::find(Crypt::decrypt($id));
         $status = array("Undetermined","Good","Fair","Serious","Critical","Released","Deceased");
         $actives = array();
         $count = count($active_bed_numbers)-1;
@@ -160,7 +161,7 @@ class DepartmentBed extends Controller
     }
 
     public function store_using_existing(Request $request){
-        $patient = Patient::find($request->id)->first();
+        $patient = Patient::find(Crypt::decrypt($request->id))->first();
         $request->validate([
             'status' => 'required',
             'checked_in_date' => 'required|date',
@@ -194,7 +195,7 @@ class DepartmentBed extends Controller
     }
 
     public function bed_detail($id){
-        $patient = BedSpace::find($id);
+        $patient = BedSpace::find(Crypt::decrypt($id));
         if($patient->hospital_id == auth()->guard('department')->user()->hospital_id){
         return view('department.in-bed-details',['patient'=> $patient]);
         }else{

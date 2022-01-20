@@ -21,26 +21,26 @@ class AppointmentController extends Controller
     public function telephone($stat){
         $status = array('Active','Cancelled','Missed','Postpone');
         if(Crypt::decrypt($stat) == 'Active'){
-        $appointments = Appointment::where('appointment_type','=','Pre-booked')
+        $appointments = Appointment::where('appointment_type','=','Telephone Consultancy')
         ->where('hospital_id','=', auth()->user()->id)
         ->where('status','Active')
         ->paginate(20);
         $statuss = 'Active';
-        return view('hospital.prebooked',['appointments'=>$appointments,'status'=>$status, 'statuss' => $statuss]);
+        return view('hospital.telephone-appointment',['appointments'=>$appointments,'status'=>$status, 'statuss' => $statuss]);
         }elseif( Crypt::decrypt($stat) == 'Cancelled'){
-            $appointments = Appointment::where('appointment_type','=','Pre-booked')
+            $appointments = Appointment::where('appointment_type','=','Telephone Consultancy')
             ->where('hospital_id','=', auth()->user()->id)
             ->where('status','Cancelled')
             ->paginate(20);
             $statuss = 'Cancelled';
-            return view('hospital.prebooked',['appointments'=>$appointments,'status'=>$status, 'statuss' => $statuss]);
+            return view('hospital.telephone-appointment',['appointments'=>$appointments,'status'=>$status, 'statuss' => $statuss]);
         }else{
-            $appointments = Appointment::where('appointment_type','=','Pre-booked')
+            $appointments = Appointment::where('appointment_type','=','Telephone Consultancy')
             ->where('hospital_id','=', auth()->user()->id)
             ->where('status','Missed')
             ->paginate(20);
             $statuss = 'Missed';
-            return view('hospital.prebooked',['appointments'=>$appointments,'status'=>$status, 'statuss' => $statuss]);
+            return view('hospital.telephone-appointment',['appointments'=>$appointments,'status'=>$status, 'statuss' => $statuss]);
         }
     }
 

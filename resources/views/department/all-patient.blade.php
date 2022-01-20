@@ -5,8 +5,9 @@
 @section('content')
     <main class="w-full">
         @include('layouts.department.nav')
-        <div class="px-8">
-            <h1 class="text-xl font-bold text-center text-green-500 my-4">All Registered Patient</h1>
+        <div class="px-8 mt-3">
+            <div class="w-full bg-white rounded-md shadow-md p-6">
+                <h1 class="text-xl font-bold text-center text-green-500 my-4">All Registered Patient</h1>
         <table class="w-full mx-auto bg-white shadow-md rounded-md mt-2">
             <thead>
                 <tr class="font-medium text-white text-md border-b-2 border-green-600">
@@ -17,7 +18,7 @@
                     <td class="py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Next of Kin</td>
                     <td class="py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Next of Kin Number</td>
                     <td class="py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Patient ID</td>
-                    <td class="py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Action</td>
+                    <td class="py-3 bg-green-500 px-3 text-center">Action</td>
                 </tr>
             </thead>
             <tbody>
@@ -35,6 +36,10 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="mt-4 px-8">
+            {{ $patients->links() }}
+        </div>
+            </div>
         </div>
     </main>
 @endsection

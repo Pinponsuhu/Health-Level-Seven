@@ -7,6 +7,7 @@ use App\Models\InventoryItem;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class DepartmentInventory extends Controller
 {
@@ -14,7 +15,7 @@ class DepartmentInventory extends Controller
     {
         $this->middleware(['department','invt']);
     }
-    
+
     public function dashboard(){
         $meds = InventoryItem::where('hospital_id','=',auth()->guard('department')->user()->hospital_id)
         ->where('item_category','=','Medicinal')
@@ -91,12 +92,12 @@ class DepartmentInventory extends Controller
     }
 
     public function item_details($id){
-        $item = InventoryItem::find($id);
+        $item = InventoryItem::find(Crypt::decrypt($id));
         if($item->hospital_id == auth()->guard('department')->user()->hospital_id){
-            $history_count = Assign::where('itemr_id','=',$id)
+            $history_count = Assign::where('itemr_id','=',Crypt::decrypt($id))
                         ->where('hospital_id','=',auth()->guard('department')->user()->hospital_id)
                         ->count();
-            $history = Assign::where('itemr_id','=',$id)
+            $history = Assign::where('itemr_id','=',Crypt::decrypt($id))
                         ->where('hospital_id','=',auth()->guard('department')->user()->hospital_id)
                         ->get();
 
@@ -108,7 +109,7 @@ class DepartmentInventory extends Controller
     }
 
     public function assign($id){
-        $item = InventoryItem::find($id);
+        $item = InventoryItem::find(Crypt::decrypt($id));
         if($item->hospital_id == auth()->guard('department')->user()->hospital_id){
             return view('department.inventory.assign-item',['item'=>$item]);
         }else{
@@ -140,7 +141,7 @@ class DepartmentInventory extends Controller
     }
 
     public function delete_item($id){
-        $item = InventoryItem::find($id);
+        $item = InventoryItem::find(Crypt::decrypt($id));
         if($item->hospital_id == auth()->guard('department')->user()->hospital_id){
             $item->delete();
         }else{
@@ -153,7 +154,7 @@ class DepartmentInventory extends Controller
         $condition = array('Good','Bad','Broken Seal','Returned');
         $category = array('Medicinal','Stationery','Hardware','Others');
         $status = array('In stock','Assigned');
-        $item = InventoryItem::find($id);
+        $item = InventoryItem::find(Crypt::decrypt($id));
         if($item->hospital_id == auth()->guard('department')->user()->hospital_id){
             return view('department.inventory.edit-item',['item'=>$item]);
         }else{
@@ -174,7 +175,7 @@ class DepartmentInventory extends Controller
             'deliverer_number' => 'required',
             'expiry_date' => 'required|nullable',
         ]);
-        $item = InventoryItem::find($request->id);
+        $item = InventoryItem::find(Crypt::decrypt($request->id));
             $item->name = $request->name;
             $item->quantity = $request->quantity;
             $item->shelf_no = $request->shelf_number;

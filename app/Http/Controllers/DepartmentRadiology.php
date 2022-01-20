@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\RadiologyFiles;
 use App\Models\RadiologyUpload;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class DepartmentRadiology extends Controller
 {
@@ -44,11 +45,11 @@ class DepartmentRadiology extends Controller
     }
 
     public function upload_details($id){
-        $upload = RadiologyUpload::find($id)->first();
+        $upload = RadiologyUpload::find(Crypt::decrypt($id))->first();
         $files = RadiologyFiles::where('upload_id','=',$upload->id)->get();
         return view('department.upload-details',['upload'=>$upload, 'files'=>$files]);
     }
-    
+
     public function add_result(Request $request, $id){
         $request->validate([
             'result' => 'required',
@@ -60,7 +61,7 @@ class DepartmentRadiology extends Controller
         foreach($files as $file){
         $path = $file->store($dest);
         $fileModel->file_path = str_replace('public/results/','',$path);
-        $fileModel->upload_id = $id;
+        $fileModel->upload_id = Crypt::decrypt($id);
         $fileModel->save();
 
         return redirect('/department/dashboard');

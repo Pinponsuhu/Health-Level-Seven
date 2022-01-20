@@ -6,6 +6,7 @@ use App\Models\BedSpace;
 use App\Models\Patient;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class DepartmentPatient extends Controller
 {
@@ -56,7 +57,7 @@ class DepartmentPatient extends Controller
     }
 
     public function change_passport(Request $request){
-        $patient = Patient::find($request->id);
+        $patient = Patient::find(Crypt::decrypt($request->id));
         if($patient->hospital_id == auth()->guard('department')->user()->hospital_id){
             return view('department.change-passport',['patient'=>$patient]);
         }else{
@@ -65,7 +66,7 @@ class DepartmentPatient extends Controller
     }
 
     public function update_passport(Request $request){
-        $patient = Patient::find($request->id);
+        $patient = Patient::find(Crypt::decrypt($request->id));
         $path = 'storage/patients';
         unlink($path.'/' .$patient->passport);
         $dest = '/public/patients';
@@ -77,7 +78,7 @@ class DepartmentPatient extends Controller
     }
 
     public function update_patient($id){
-        $patient = Patient::find($id);
+        $patient = Patient::find(Crypt::decrypt($id));
         if(auth()->guard('department')->user()->hospital_id == $patient->hospital_id){
             $gender = array("Male","Female");
             $states = array("Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa","Benue","Borno","Cross River","Delta","Ebonyi","Edo","Ekiti","Enugu","FCT - Abuja","Gombe","Imo","Jigawa","Kaduna","Kano","Katsina","Kebbi","Kogi","Kwara","Lagos","Nasarawa","Niger","Ogun","Ondo","Osun","Oyo","Plateau","Rivers","Sokoto","Taraba","Yobe","Zamfara");
@@ -118,7 +119,7 @@ class DepartmentPatient extends Controller
     }
 
     public function patient_details($id){
-        $patient = Patient::find($id);
+        $patient = Patient::find(Crypt::decrypt($id));
         $bed_histories = BedSpace::where('PID','=',$patient->PID)->where('hospital_id','=',auth()->user()->id)->get();
         if($patient->hospital_id == auth()->guard('department')->user()->hospital_id){
             return view('department.patient-details',['patient'=> $patient,'bed_histories'=> $bed_histories]);
@@ -126,9 +127,9 @@ class DepartmentPatient extends Controller
             return redirect()->back();
         }
     }
-    
+
     public function all_patient_search(Request $request){
-        $patient = Patient::find($request->id);
+        $patient = Patient::find(Crypt::decrypt($request->id));
         if($patient->hospital_id == auth()->guard('department')->user()->hospital_id){
         return view('department.patient-details', ['patient'=>$patient]);
         }else{
@@ -139,7 +140,7 @@ class DepartmentPatient extends Controller
     public function all_patient(){
         $patients = Patient::latest()
         ->where('hospital_id','=', auth()->guard('department')->user()->hospital_id)
-        ->get();
+        ->paginate(25);
         return view('department.all-patient', ['patients'=> $patients]);
     }
 }

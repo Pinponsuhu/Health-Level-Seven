@@ -2,7 +2,7 @@
 @section('content')
     <main class="w-full h-screen overflow-y-scroll">
             @include('layouts.department.nav')
-        <form action="/department/store/edit/item/{{ $item->id }}" class=" w-8/12 mb-6 grid grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md shadow-md mt-8 bg-white" method="post" enctype="multipart/form-data">
+        <form action="/department/store/edit/item/{{ Crypt::encrypt($item->id) }}" class=" w-8/12 mb-6 grid grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md shadow-md mt-8 bg-white" method="post" enctype="multipart/form-data">
             @csrf
             <h1 class="col-span-2 text-2xl font-semibold text-green-600 mb-3">Add Item to Inventory</h1>
             <div class="my-2">

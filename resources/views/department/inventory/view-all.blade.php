@@ -27,7 +27,7 @@
                 </thead>
                 @foreach ($items as $item)
                 <tr>
-                    <td class=" py-3 bg-green-100 px-3 text-center capitalize italic underline"><a href="/department/item/details/{{ $item->id }}">{{ $item->item_id}}</a></td>
+                    <td class=" py-3 bg-green-100 px-3 text-center capitalize italic underline"><a href="/department/item/details/{{ Crypt::encrypt($item->id) }}">{{ $item->item_id}}</a></td>
                     <td class=" py-3 bg-white px-3 text-center">{{ $item->name }}</td>
                     <td class=" py-3 bg-green-100 px-3 text-center">{{ $item->item_category }}</td>
                     <td class=" py-3 bg-white px-3 text-center">{{ $item->shelf_no }}</td>

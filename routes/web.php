@@ -5,7 +5,6 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\DepartmentAppointment;
 use App\Http\Controllers\DepartmentBed;
-use App\Http\Controllers\DepartmentChat;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DepartmentInventory;
 use App\Http\Controllers\DepartmentPatient;
@@ -143,8 +142,10 @@ Route::get('/department/bed/search',[DepartmentBed::class, 'search']);
 Route::get('/department/bed/detail/{id}',[DepartmentBed::class, 'bed_detail']);
 Route::get('/department/bed/history',[DepartmentBed::class, 'all_history']);
 Route::post('/department/update/bed/{id}', [DepartmentBed::class, 'update_bed_space']);
-Route::get('/department/routine/appointment', [DepartmentAppointment::class, 'routine']);
-Route::get('/department/telephone/appointments', [DepartmentAppointment::class, 'telephone']);
+Route::get('/department/routine/appointment/{stat}', [DepartmentAppointment::class, 'routine']);
+Route::get('/department/prebooked/appointment/{stat}', [DepartmentAppointment::class, 'prebooked']);
+Route::get('/department/telephone/appointments/{stat}', [DepartmentAppointment::class, 'telephone']);
+Route::post('/department/update/appointment/{id}', [DepartmentAppointment::class, 'update_status']);
 Route::get('/department/book/appointment',[DepartmentAppointment::class, 'book']);
 Route::post('/department/book/appointment', [DepartmentAppointment::class,'store_bookings']);
 route::get('/department/inventory/dashboard',[DepartmentInventory::class, 'dashboard']);
@@ -159,12 +160,13 @@ Route::get('/department/assign/item/{id}', [DepartmentInventory::class, 'assign'
 Route::post('/department/store/assign',[DepartmentInventory::class, 'store_assign']);
 Route::get('/department/change/password',[DepartmentController::class, 'change_password']);
 Route::post('/department/changing/password/{id}', [DepartmentController::class, 'changing_password']);
-Route::get('/department/chat',[DepartmentChat::class, 'index']);
 Route::get('/department/request/all',[DepartmentRequest::class, 'show']);
 Route::get('/department/new/request',[DepartmentRequest::class, 'show_add']);
 Route::post('/department/new/request',[DepartmentRequest::class, 'store_new']);
 Route::get('/department/request/track/{id}',[DepartmentRequest::class, 'req_details']);
-Route::get('/department/chat/message/box/{id}', [DepartmentChat::class, 'chat_box']);
+Route::get('department/reply/request/{id}',[DepartmentRequest::class, 'show_reply']);
+Route::post('department/reply/request/{id}',[DepartmentRequest::class, 'send_reply']);
+Route::get('/department/closed/request',[DepartmentRequest::class, 'closed_request']);
 
 //superadmin logics
 Route::get('/super/admin/index',[SuperAdminController::class, 'index']);

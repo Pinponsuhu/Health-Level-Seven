@@ -8,6 +8,7 @@ use App\Models\Department;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 
 class DepartmentController extends Controller
@@ -46,7 +47,7 @@ class DepartmentController extends Controller
             'old_password' =>'required',
             'password' =>'required|confirmed',
         ]);
-        $department = Department::find($request->id);
+        $department = Department::find(Crypt::decrypt($request->id));
         if (Hash::check($request->old_password, $department->password)) {
             $department->password = Hash::make($request->password);
             $department->save();

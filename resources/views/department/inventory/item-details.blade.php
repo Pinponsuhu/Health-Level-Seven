@@ -6,9 +6,9 @@
         <div class="mt-4 px-8">
             <div class="w-full bg-white shadow-md rounded-md p-6">
                 <div class="flex justify-end gap-x-5">
-                    <a href="/department/edit/item/{{ $item->id }}" class="text-white bg-blue-500 rounded-md px-6 py-3">Edit</a>
-                    <a href="/department/assign/item/{{ $item->id }}" class="text-white bg-green-500 rounded-md px-6 py-3">Assign</a>
-                    <a href="/department/delete/item/{{ $item->id }}" class="text-white bg-red-500 rounded-md px-6 py-3">Delete</a>
+                    <a href="/department/edit/item/{{ Crypt::encrypt($item->id) }}" class="text-white bg-blue-500 rounded-md px-6 py-3">Edit</a>
+                    <a href="/department/assign/item/{{ Crypt::encrypt($item->id) }}" class="text-white bg-green-500 rounded-md px-6 py-3">Assign</a>
+                    <a href="/department/delete/item/{{ Crypt::encrypt($item->id) }}" class="text-white bg-red-500 rounded-md px-6 py-3">Delete</a>
                 </div>
                 <div class="w-full h-full grid col-span-2 items-center gap-x-4">
                     <h1 class="text-3xl font-bold col-span-2 text-gray-900">{{ $item->name }}</h1>

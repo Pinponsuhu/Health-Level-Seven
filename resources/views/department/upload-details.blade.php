@@ -57,7 +57,7 @@
     <div class="fixed w-screen hidden h-screen bg-black bg-opacity-80" id="result">
         <div class="mt-20 w-80 md:w-96 mx-auto p-6 bg-white rounded-md">
             <h1 class="text-xl mb-4 font-bold text-green-500 pb-2 border-b-2 border-green-300">Add Result</h1>
-            <form action="/add/result/{{ $upload->id }}" enctype="multipart/form-data" method="POST">
+            <form action="/department/add/result/{{ Crypt::encrypt($upload->id) }}" enctype="multipart/form-data" method="POST">
             @csrf
             <input type="file" name="result[]" multiple class="px-3 w-full  py-3 rounded-md shadow-md border-l-4 border-green-500">
             <div class="flex justify-center mt-3 gap-x-4">

@@ -29,7 +29,7 @@
                     <td class="w-1/5 py-2 bg-green-100 px-3 text-center">{{ $appointment->surname . ' ' . $appointment->othernames }}</td>
                     <td class="w-1/5 py-2 bg-gray-100 px-3 text-center">{{ $appointment->preferred_date }}</td>
                     <td class="w-1/5 py-2 bg-green-100 px-3 text-center">
-                        <form action="/update/appointment/{{ Crypt::encrypt($appointment->id) }}" method="post">
+                        <form action="/department/update/appointment/{{ Crypt::encrypt($appointment->id) }}" method="post">
                             @csrf
                         <select name="status" onchange="this.form.submit()" class="py-3 w-full" id="status">
                         <option value="{{ $appointment->status }}">{{ $appointment->status }}</option>

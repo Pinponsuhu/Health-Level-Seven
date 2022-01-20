@@ -35,7 +35,7 @@
                 <label for="" class="mt-2 block font-medium">Department Name</label>
                 <input type="text" autocomplete="off" name="name" placeholder="Department Name" class="border-4 border-green-600 px-3 py-3 text-md rounded-md shadow-md bg-white block mt-2 w-full" id="">
                 <label for="" class="mt-2 block font-medium">Password</label>
-                <input type="text" autocomplete="off" name="password" placeholder="Department password" class="border-4 border-green-600 px-3 py-3 text-md rounded-md shadow-md bg-white block mt-2 w-full" id="">
+                <input type="password" autocomplete="off" name="password" placeholder="Department password" class="border-4 border-green-600 px-3 py-3 text-md rounded-md shadow-md bg-white block mt-2 w-full" id="">
                 <button class="w-28 py-3 mx-auto text-center bg-green-600 text-white rounded-md flex items-center justify-center my-3 hover:bg-green-500">Sign In</button>
             </div>
         </form>

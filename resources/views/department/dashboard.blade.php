@@ -18,12 +18,12 @@
                     </div>
                     <table class="w-full shadow-md">
                         <thead>
-                            <tr class="text-green-500 font-medium text-md">
-                                <td class="w-1/5 py-2 bg-green-100 px-3 text-center">Name</td>
-                                <td class="w-1/5 py-2 bg-gray-100 px-3 text-center">Date</td>
-                                <td class="w-1/5 py-2 bg-green-100 px-3 text-center">Status</td>
-                                <td class="w-1/5 py-2 bg-gray-100 px-3 text-center">Type</td>
-                                <td class="w-1/5 py-2 bg-green-100 px-3 text-center">Phone number</td>
+                            <tr class="text-green-50 font-medium text-md">
+                                <td class="w-1/5 py-2 bg-green-500 px-3 text-center border-r-2 border-green-100">Name</td>
+                                <td class="w-1/5 py-2 bg-green-500 px-3 text-center border-r-2 border-green-100">Date</td>
+                                <td class="w-1/5 py-2 bg-green-500 px-3 text-center border-r-2 border-green-100">Status</td>
+                                <td class="w-1/5 py-2 bg-green-500 px-3 text-center border-r-2 border-green-100">Type</td>
+                                <td class="w-1/5 py-2 bg-green-500 px-3 text-center">Phone number</td>
                             </tr>
                         </thead>
                         <tbody>

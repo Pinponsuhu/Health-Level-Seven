@@ -5,7 +5,7 @@
         <div class=" mt-5 px-8">
             <div class="p-6 bg-white rounded-md shadow-md">
                 <h1 class="text-2xl font-bold text-green-500 mb-2">Change Password</h1>
-                <form action="/department/changing/password/{{ auth()->guard('department')->user()->id }}" class="w-5/12 mx-auto" method="POST">
+                <form action="/department/changing/password/{{ Crypt::encrypt(auth()->guard('department')->user()->id) }}" class="w-5/12 mx-auto" method="POST">
                     @csrf
                     <input type="text" autocomplete="off" name="old_password" placeholder="Old password" class="border-4 border-green-600 px-3 py-3 text-md rounded-md shadow-md bg-white block mt-2 w-full" id="">
                     @error('old_password')

@@ -18,7 +18,6 @@ class HospitalRequestController extends Controller
     }
     public function track($id){
         $req_id = Crypt::decrypt($id);
-        // dd($req_id);
         $req = Requests::find($req_id);
         $replies = RequestReply::where('request_id',$req_id)->where('from','Admin')->orWhere('to','Admin')->get();
         $reply_files = RequestReplyFiles::where('request_id',$req_id)->get();
@@ -28,13 +27,10 @@ class HospitalRequestController extends Controller
         return view('hospital.track-request',['req'=>$req, 'files'=> $files,'department'=>$department,'replies'=>$replies,'reply_files'=> $reply_files]);
     }
     public function show_reply($id){
-
         $req = Requests::find(Crypt::decrypt($id));
-        dd($req);
         return view('hospital.request-reply',['req'=>$req]);
     }
     public function send_reply(Request $request){
-        dd(Crypt::decrypt($request->id));
         $request->validate([
             'message'=> 'required',
             'status' => 'required',
@@ -60,9 +56,9 @@ class HospitalRequestController extends Controller
                 $requestsImage->filename = str_replace('public/requests_reply/','',$name);
                 $requestsImage->save();
             }
-        $req->status = $request->status;
-        $req->save();
     }
+    $req->status = $request->status;
+    $req->save();
     return redirect('/request/all');
 }
 }
