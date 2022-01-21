@@ -179,5 +179,13 @@ Route::get('/super/admin/new/hospital',[NewHospitalController::class, 'register'
 Route::post('/super/admin/new/hospital',[NewHospitalController::class, 'store_reg']);
 Route::get('/super/admin/hospital/list',[NewHospitalController::class, 'all_hospital']);
 Route::get('/super/admin/hospital/details/{id}',[NewHospitalController::class, 'hospital_details']);
+Route::get('/super/admin/settings',[SuperAdminController::class, 'setting']);
+Route::get('/super/admin/all/admins',[SuperAdminController::class, 'all_admin']);
+Route::get('/super/all/admin/details/{id}',[SuperAdminController::class, 'admin_details']);
+Route::get('/super/admin/edit/{id}', [SuperAdminController::class, 'edit_admin_details']);
+Route::post('/super/admin/edit/{id}', [SuperAdminController::class, 'store_admin_update']);
+Route::get('//super/admin/delete/{id}',[SuperAdminController::class, 'delete_admin']);
+Route::get('/super/admin/password/{id}', [SuperAdminController::class, 'show_admin_password_change']);
+Route::post('/super/admin/password/{id}', [SuperAdminController::class, 'store_admin_password_change']);
 Route::get('/super/admin/logout', [SuperAdminController::class, 'logout']);
 

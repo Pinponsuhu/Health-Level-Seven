@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </a>
-            <a href="#" class="w-56 mt-5 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
+            <a href="/super/admin/settings" class="w-56 mt-5 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
                 <div class="mt-5">
                     <i class="fa fa-cog text-4xl block text-center mx-auto"></i>
                     <div>
@@ -59,7 +59,8 @@
                     </div>
                 </div>
             </a>
-            <a href="" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
+            @if (auth()->guard('superadmin')->user()->level == 1)
+            <a href="/super/admin/all/admins" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
                 <div class="mt-5">
                     <i class="fa fa-user-cog text-4xl block text-center mx-auto"></i>
                     <div>
@@ -67,6 +68,8 @@
                     </div>
                 </div>
             </a>
+            @endif
+            @if (auth()->guard('superadmin')->user()->level == 1)
             <a href="/super/add/admin" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
                 <div class="mt-5">
                     <i class="fa fa-plus text-4xl block text-center mx-auto"></i>
@@ -75,6 +78,7 @@
                     </div>
                 </div>
             </a>
+            @endif
 
             <a href="/super/admin/logout" class="col-span-3 block w-36 text-center py-3 bg-green-500 text-white rounded-md shadow-md mx-auto">Logout</a>
         </div>

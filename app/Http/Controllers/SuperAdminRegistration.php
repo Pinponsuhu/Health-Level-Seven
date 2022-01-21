@@ -16,7 +16,7 @@ class SuperAdminRegistration extends Controller
     public function index(){
         return view('super-admin.reg-admin');
     }
-    
+
     public function store(Request $request){
         $this->validate($request,[
             'passport' => 'required','mimes:png,jpg,jpeg',
