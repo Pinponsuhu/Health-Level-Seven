@@ -52,6 +52,8 @@ class DepartmentController extends Controller
             $department->password = Hash::make($request->password);
             $department->save();
             Auth::guard('department')->logout();
+        }else{
+            return back();
         }
     }
 }

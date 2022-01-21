@@ -188,5 +188,11 @@ Route::get('//super/admin/delete/{id}',[SuperAdminController::class, 'delete_adm
 Route::get('/super/admin/password/{id}', [SuperAdminController::class, 'show_admin_password_change']);
 Route::post('/super/admin/password/{id}', [SuperAdminController::class, 'store_admin_password_change']);
 Route::get('/super/admin/settings', [SuperAdminController::class, 'show_settings']);
+Route::get('/super/admin/settings/change/passport', [SuperAdminController::class, 'show_passport_change']);
+Route::get('/super/admin/settings/change/password', [SuperAdminController::class, 'show_password_change']);
+Route::get('/super/admin/settings/update/profile', [SuperAdminController::class, 'edit_my_profile']);
+Route::post('/super/admin/settings/update/profile', [SuperAdminController::class, 'update_my_profile']);
+Route::post('/super/admin/settings/change/passport', [SuperAdminController::class, 'store_admin_new_passport']);
+Route::post('/super/admin/settings/change/password', [SuperAdminController::class, 'store_admin_new_password']);
 Route::get('/super/admin/logout', [SuperAdminController::class, 'logout']);
 

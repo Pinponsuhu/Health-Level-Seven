@@ -130,6 +130,67 @@ class SuperAdminController extends Controller
         return view('super-admin.setting');
     }
 
+    public function show_passport_change(){
+        return view('super-admin.change-my-passport');
+    }
+
+    public function store_admin_new_passport(Request $request){
+        $admin = SuperAdmin::find(auth()->guard('superadmin')->user()->id);
+        $path = 'storage/super_admins';
+        unlink($path.'/' . $admin->passport);
+        $dest = '/public/super_admins';
+        $path = $request->file('passport')->store($dest);
+        $admin->passport = str_replace('public/super_admins/','',$path);
+        $admin->save();
+        return redirect('/super/admin/index');
+    }
+
+    public function show_password_change(){
+        return view('super-admin.change-my-password');
+    }
+
+    public function store_admin_new_password(Request $request){
+        $this->validate($request,[
+            'old_password' =>'required',
+            'password' =>'required|confirmed',
+        ]);
+        $admin = SuperAdmin::find(auth()->guard('superadmin')->user()->id);
+        if (Hash::check($request->old_password, $admin->password)) {
+            $admin->password = Hash::make($request->password);
+            $admin->save();
+            Auth::guard('superadmin')->logout();
+        }else{
+            return back();
+        }
+    }
+
+    public function edit_my_profile(){
+        $gender = array('Male','Female');
+        $admin = SuperAdmin::find(auth()->guard('superadmin')->user()->id);
+        return view('super-admin.edit-my-profile',['admin'=>$admin,'gender'=>$gender]);
+    }
+
+    public function update_my_profile(Request $request){
+        $this->validate($request,[
+            'fullname' => 'required',
+            'username' => 'required',
+            'gender' => 'required',
+            'phone_number' => 'required',
+            'email_address' => 'required|email',
+        ]);
+
+        $admin = SuperAdmin::find(auth()->guard('superadmin')->user()->id);
+        $admin->fullname = $request->fullname;
+        $admin->username = $request->username;
+        $admin->gender = $request->gender;
+        $admin->phone_number = $request->phone_number;
+        $admin->email_address = $request->email_address;
+        $admin->save();
+
+        return redirect('/super/admin/index');
+    }
+
+
     public function logout(){
         auth()->guard('superadmin')->logout();
         return redirect('/super/admin/login');

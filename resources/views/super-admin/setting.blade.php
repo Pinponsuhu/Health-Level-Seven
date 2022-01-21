@@ -50,7 +50,7 @@
         <a href="/super/admin/index" class="flex gap-x-2 items-center mb-4"><i class="fa fa-arrow-left"></i> Dashboard</a>
         <h1 class="text-xl font-bold mb-4 text-green-500">Settings</h1>
         <div class="w-9/12 mx-auto grid grid-cols-3 gap-y-6 mt-4">
-            <a href="/super/admin/hospital/list" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
+            <a href="/super/admin/settings/change/passport" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
                 <div>
                     <i class="fa fa-file-image text-4xl block text-center mx-auto"></i>
                     <div>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </a>
-            <a href="/super/admin/hospital/list" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
+            <a href="/super/admin/settings/change/password" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
                 <div>
                     <i class="fa fa-key text-4xl block text-center mx-auto"></i>
                     <div>
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </a>
-            <a href="/super/admin/hospital/list" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
+            <a href="/super/admin/settings/update/profile" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
                 <div>
                     <i class="fa fa-user-alt text-4xl block text-center mx-auto"></i>
                     <div>
