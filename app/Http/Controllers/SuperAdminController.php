@@ -126,6 +126,10 @@ class SuperAdminController extends Controller
             return redirect('/super/all/admin/details/' . $request->id);
     }
 
+    public function show_settings(){
+        return view('super-admin.setting');
+    }
+
     public function logout(){
         auth()->guard('superadmin')->logout();
         return redirect('/super/admin/login');

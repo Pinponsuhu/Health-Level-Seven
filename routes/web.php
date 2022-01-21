@@ -187,5 +187,6 @@ Route::post('/super/admin/edit/{id}', [SuperAdminController::class, 'store_admin
 Route::get('//super/admin/delete/{id}',[SuperAdminController::class, 'delete_admin']);
 Route::get('/super/admin/password/{id}', [SuperAdminController::class, 'show_admin_password_change']);
 Route::post('/super/admin/password/{id}', [SuperAdminController::class, 'store_admin_password_change']);
+Route::get('/super/admin/settings', [SuperAdminController::class, 'show_settings']);
 Route::get('/super/admin/logout', [SuperAdminController::class, 'logout']);
 
