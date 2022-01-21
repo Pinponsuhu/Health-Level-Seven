@@ -4,7 +4,15 @@
             @include('layouts.department.nav')
         <div class="px-8 mt-3">
            <div class="bg-white p-6 rounded-md w-full shadow-md">
-            <h1 class="text-center font-bold text-2xl text-green-600 my-5">Telephone Consultancy Appointments</h1>
+            <div class="flex justify-between items-center">
+                <h1 class="font-bold text-2xl text-green-600 my-5">Telephone Consultancy Appointments</h1>
+                <div class="flex items-center gap-x-3">
+                    <a href="/department/telephone/appointments/{{ Crypt::encrypt('Cancelled') }}" class="py-2 px-4 rounded-md text-white bg-yellow-400">Cancelled</a>
+                    <a href="/department/telephone/appointments/{{ Crypt::encrypt('Active') }}" class="py-2 px-4 rounded-md text-white bg-green-400">Active</a>
+                    <a href="/department/telephone/appointments/{{ Crypt::encrypt('Missed') }}" class="py-2 px-4 rounded-md text-white bg-red-400">Missed</a>
+                </div>
+            </div>
+            <p class="text-center text-green-500 font-medium my-2 text-xl">Status: {{ $statuss }}</p>
             <table class="w-full shadow-md display" id="basic-1">
                 <thead>
                     <tr class="text-green-50 font-medium text-md">

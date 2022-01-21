@@ -100,6 +100,7 @@ Route::get('/edit/staff/{id}', [HospitalAdminController::class, 'show_edit']);
 Route::post('/edit/staff/{id}', [HospitalAdminController::class, 'update_staff']);
 Route::get('/delete/staff/{id}', [HospitalAdminController::class, 'delete_staff']);
 Route::get('/all/staffs',[HospitalAdminController::class, 'all_staff']);
+Route::get('/delete/radiology/file/{id}',[RadiologyController::class, 'delete_file']);
 Route::get('/staff/details/{id}',[HospitalAdminController::class, 'staff_details']);
 Route::get('/all/departments',[HospitalAdminController::class, 'all_department']);
 Route::get('/department/login',[HospitalAdminController::class, 'login']);

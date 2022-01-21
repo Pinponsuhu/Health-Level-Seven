@@ -67,4 +67,13 @@ class RadiologyController extends Controller
         return redirect('/hospital/dashboard');
         }
     }
+
+    public function delete_file($id){
+        $idd = RadiologyFiles::find(Crypt::decrypt($id));
+        $path = 'storage/results';
+        unlink($path.'/' .$idd->file_path);
+        $back = $idd->upload_id;
+        $idd->delete();
+        return redirect('/upload/details/' . Crypt::encrypt($back));
+    }
 }

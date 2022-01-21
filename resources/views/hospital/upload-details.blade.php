@@ -45,7 +45,10 @@
                         @foreach ($files as $file)
                     <div class="flex gap-x-6 justify-between items-center">
                         <p>{{ $file->created_at }}</p>
-                        <a href="{{ asset('/storage/results/' . $file->file_path) }}" download class="px-6 py-3 bg-blue-500 rounded-md flex items-center text-white">View <i class="fa fa-arrow-right ml-4"></i></a>
+                        <div class="flex items-center gap-x-4">
+                            <a href="{{ asset('/storage/results/' . $file->file_path) }}" download class="px-6 py-3 bg-blue-500 rounded-md flex items-center text-white">View <i class="fa fa-arrow-right ml-4"></i></a>
+                        <a href="/delete/radiology/file/{{ Crypt::encrypt($file->id) }}"><i class="fa fa-trash text-red-400"></i></a>
+                        </div>
                     </div>
                     @endforeach
                     </div>
