@@ -49,7 +49,7 @@
     <div class="w-11/12 md:w-10/12 overflow-y-scroll h-full mx-auto shadow p-8 rounded-md bg-white text-green-500">
         <div class="flex gap-x-2 items-center mb-4">
             <a href="#" class="px-8 py-3 bg-green-500 text-white rounded-md">Change Password</a>
-            <a href="#" class="px-8 py-3 bg-blue-500 text-white rounded-md">Edit <i class="fa fa-pen"></i></a>
+            <a href="/super/admin/edit/hospital/{{ Crypt::encrypt($hospital->id) }}" class="px-8 py-3 bg-blue-500 text-white rounded-md">Edit <i class="fa fa-pen"></i></a>
             <a href="#" class="px-8 py-3 bg-red-400 text-white rounded-md">Delete <i class="fa fa-trash"></i></a>
         </div>
         <div class="px-8 mt-2">

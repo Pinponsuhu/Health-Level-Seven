@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 
 class NewHospitalController extends Controller
@@ -49,8 +50,8 @@ class NewHospitalController extends Controller
     }
 
     public function hospital_details($id){
-        $hospital = User::find($id);
-        $departments = Department::where('hospital_id', '=', $id)->get();
+        $hospital = User::find(Crypt::decrypt($id));
+        $departments = Department::where('hospital_id', '=', Crypt::decrypt($id))->get();
         return view('super-admin.hospital-details',['hospital' => $hospital,'departments'=> $departments]);
     }
 }

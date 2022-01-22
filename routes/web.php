@@ -194,5 +194,7 @@ Route::get('/super/admin/settings/update/profile', [SuperAdminController::class,
 Route::post('/super/admin/settings/update/profile', [SuperAdminController::class, 'update_my_profile']);
 Route::post('/super/admin/settings/change/passport', [SuperAdminController::class, 'store_admin_new_passport']);
 Route::post('/super/admin/settings/change/password', [SuperAdminController::class, 'store_admin_new_password']);
+Route::get('/super/admin/edit/hospital/{id}',[SuperAdminController::class, 'edit_hospital']);
+Route::post('/super/admin/edit/hospital/{id}',[SuperAdminController::class, 'store_edited_hospital']);
 Route::get('/super/admin/logout', [SuperAdminController::class, 'logout']);
 

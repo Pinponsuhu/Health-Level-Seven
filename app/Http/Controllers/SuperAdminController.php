@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Hash;
 
 class SuperAdminController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('superadmin');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('superadmin');
+    // }
 
     public function index(){
         return view('super-admin.index');
@@ -188,6 +188,38 @@ class SuperAdminController extends Controller
         $admin->save();
 
         return redirect('/super/admin/index');
+    }
+
+    public function edit_hospital($id){
+        $hospital = User::find(Crypt::decrypt($id));
+
+        return view('super-admin.edit-hospital',['hospital'=> $hospital]);
+    }
+
+    public function store_edited_hospital(Request $request){
+        $request->validate([
+            'hospital_name' => 'required|min:2',
+            'head_of_hospital' => 'required',
+            'email_address' => 'required|email',
+            'phone_number' => 'required|numeric',
+            'hospital_address' => 'required',
+            'shelf_number' => 'numeric|required',
+            'bed_number' => 'numeric|required'
+        ]);
+        // dd($request->all());
+        $user = new User(Crypt::decrypt($request->id));
+        dd($user);
+
+        $user->hospital_name = $request->hospital_name;
+        $user->head_of_hospital = $request->head_of_hospital;
+        $user->email_address = $request->email_address;
+        $user->phone_number = $request->phone_number;
+        $user->hospital_address = $request->hospital_address;
+        $user->shelf_number = $request->shelf_number;
+        $user->bed_number = $request->bed_number;
+        $user->save();
+
+        return redirect('/super/admin/hospital/details/'. $request->id);
     }
 
 

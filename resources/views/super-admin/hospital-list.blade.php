@@ -65,7 +65,7 @@
                         <td class=" py-3 bg-white px-3 text-center capitalize">{{ $hospital->head_of_hospital }}</td>
                         <td class=" py-3 bg-green-100 px-3 text-center">{{ $hospital->phone_number }}</td>
                         <td class=" py-3 bg-white px-3 text-center">{{ $hospital->email_address }}</td>
-                        <td class="px-3 bg-green-100"><a href="/super/admin/hospital/details/{{ $hospital->id }}" class="px-5 py-2 bg-blue-500 text-white rounded-md">More</a></td>
+                        <td class="px-3 bg-green-100"><a href="/super/admin/hospital/details/{{ Crypt::encrypt($hospital->id) }}" class="px-5 py-2 bg-blue-500 text-white rounded-md">More</a></td>
                     </tr>
                 @endforeach
             </tbody>
