@@ -20,9 +20,10 @@ class CreateRequestsTable extends Migration
             $table->string('status');
             $table->string('to');
             $table->string('from');
-            $table->string('hospital_id');
+            $table->unsignedInteger('hospital_id');
             $table->string('is_read');
             $table->timestamps();
+            $table->foreign('hospital_id')->references('id')->on('users')->onDelete('cascade');
         });
 
         Schema::create('request_files', function (Blueprint $table) {

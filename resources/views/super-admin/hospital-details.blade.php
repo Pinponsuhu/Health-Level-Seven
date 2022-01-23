@@ -48,15 +48,15 @@
 <body class="w-screen bg-gray-100 h-screen p-4 md:p-8">
     <div class="w-11/12 md:w-10/12 overflow-y-scroll h-full mx-auto shadow p-8 rounded-md bg-white text-green-500">
         <div class="flex gap-x-2 items-center mb-4">
-            <a href="#" class="px-8 py-3 bg-green-500 text-white rounded-md">Change Password</a>
+            <a href="/super/hospital/change/password/{{ Crypt::encrypt($hospital->id) }}" class="px-8 py-3 bg-green-500 text-white rounded-md">Change Password</a>
             <a href="/super/admin/edit/hospital/{{ Crypt::encrypt($hospital->id) }}" class="px-8 py-3 bg-blue-500 text-white rounded-md">Edit <i class="fa fa-pen"></i></a>
-            <a href="#" class="px-8 py-3 bg-red-400 text-white rounded-md">Delete <i class="fa fa-trash"></i></a>
+            <a href="/super/hospital/delete/{{ Crypt::encrypt($hospital->id) }}" class="px-8 py-3 bg-red-400 text-white rounded-md">Delete <i class="fa fa-trash"></i></a>
         </div>
         <div class="px-8 mt-2">
             <div class="flex gap-x-4 bg-white shadow-md rounded-md px-6 py-4 mt-4">
                 <div class="w-72 h-full">
                     <img src="{{ asset('/storage/users/' . $hospital->hospital_logo) }}" class="w-72 block rounded shadow-md h-auto" alt="">
-                    <a href="/super/admin/hospital/change-logo/{{ $hospital->id }}" class="text-md font-medium block mt-2 text-center text-green-500">Change Hospital logo</a>
+                    <a href="/super/admin/change/logo/{{ Crypt::encrypt($hospital->id) }}" class="text-md font-medium block mt-2 text-center text-green-500">Change Hospital logo</a>
                 </div>
                 <div class="w-full h-full">
                     <h1 class="text-3xl font-bold text-gray-900">{{ $hospital->hospital_name }}</h1>

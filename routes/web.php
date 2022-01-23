@@ -196,5 +196,10 @@ Route::post('/super/admin/settings/change/passport', [SuperAdminController::clas
 Route::post('/super/admin/settings/change/password', [SuperAdminController::class, 'store_admin_new_password']);
 Route::get('/super/admin/edit/hospital/{id}',[SuperAdminController::class, 'edit_hospital']);
 Route::post('/super/admin/edit/hospital/{id}',[SuperAdminController::class, 'store_edited_hospital']);
+Route::get('/super/admin/change/logo/{id}',[SuperAdminController::class, 'change_logo']);
+Route::post('/super/admin/change/logo/{id}',[SuperAdminController::class, 'update_logo']);
+Route::get('/super/hospital/delete/{id}',[SuperAdminController::class, 'delete_hospital']);
+Route::get('//super/hospital/change/password/{id}',[SuperAdminController::class, 'change_hospital_password']);
+Route::post('//super/hospital/change/password/{id}',[SuperAdminController::class, 'update_hospital_password']);
 Route::get('/super/admin/logout', [SuperAdminController::class, 'logout']);
 

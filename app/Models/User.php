@@ -55,4 +55,7 @@ class User extends Authenticatable
     public function RadiologyUpload(){
         return $this->hasMany(RadiologyUpload::class);
     }
+    public function Request(){
+        return $this->hasMany(Requests::class);
+    }
 }

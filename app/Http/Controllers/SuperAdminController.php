@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BedSpace;
+use App\Models\Department;
 use App\Models\Hospital;
+use App\Models\Requests;
 use App\Models\SuperAdmin;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -206,9 +209,7 @@ class SuperAdminController extends Controller
             'shelf_number' => 'numeric|required',
             'bed_number' => 'numeric|required'
         ]);
-        // dd($request->all());
-        $user = new User(Crypt::decrypt($request->id));
-        dd($user);
+        $user = User::find(Crypt::decrypt($request->id));
 
         $user->hospital_name = $request->hospital_name;
         $user->head_of_hospital = $request->head_of_hospital;
@@ -220,6 +221,47 @@ class SuperAdminController extends Controller
         $user->save();
 
         return redirect('/super/admin/hospital/details/'. $request->id);
+    }
+
+    public function change_logo($id){
+        $hospital = User::find(Crypt::decrypt($id));
+
+        return view('super-admin.change-hospital-logo', ['hospital'=>$hospital]);
+    }
+
+    public function update_logo(Request $request){
+        $hospital = User::find(Crypt::decrypt($request->id));
+        $path = 'storage/users';
+        unlink($path.'/' . $hospital->hospital_logo);
+        $dest = '/public/users';
+        $path = $request->file('logo')->store($dest);
+        $hospital->hospital_logo = str_replace('public/users/','',$path);
+        $hospital->save();
+
+        return redirect('/super/admin/hospital/details/'. $request->id);
+    }
+
+    public function delete_hospital($id){
+        $idd = Crypt::decrypt($id);
+        $hospital = User::where('id',$idd);
+        $hospital->delete();
+
+        return redirect('/super/admin/index');
+    }
+
+    public function change_hospital_password($id){
+        return view('super-admin.change-hospital-password',['id'=> $id]);
+    }
+
+    public function update_hospital_password(Request $request){
+        $this->validate($request,[
+            'password' =>'required|confirmed',
+        ]);
+        $hospital = User::find(Crypt::decrypt($request->id));
+        $hospital->password = Hash::make($request->password);
+        $hospital->save();
+
+        return redirect('/super/admin/index');
     }
 
 
