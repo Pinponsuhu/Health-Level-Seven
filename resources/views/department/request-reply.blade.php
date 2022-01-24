@@ -14,6 +14,6 @@
                     <button class="block mt-2 w-32 text-center py-3 rounded-md text-white bg-green-500">Submit</button>
                 </form>
             </div>
-        </div>
+        </div>  
     </main>
 @endsection
