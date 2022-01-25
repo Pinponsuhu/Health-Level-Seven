@@ -13,7 +13,7 @@ class Complain extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['title','content','from','to','status','is_read'];
+    protected $fillable = ['title','content','from','hospital_id','to','status','is_read'];
 
     public function ComplainFiles(){
         return $this->hasMany(ComplainFiles::class);

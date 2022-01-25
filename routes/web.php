@@ -109,6 +109,9 @@ Route::post('/department/login',[HospitalAdminController::class, 'sign_in']);
 Route::get('/hospital/data/exchange',[HospitalDataExchange::class , 'show']);
 Route::get('/dataex/send/message/{id}',[HospitalDataExchange::class, 'get_msg']);
 Route::get('/hospital/active/complain/',[HospitalComplaintController::class, 'all_complaint']);
+Route::get('hospital/new/complain',[HospitalComplaintController::class, 'show_complaint']);
+Route::post('hospital/new/complain',[HospitalComplaintController::class, 'store_complaint']);
+Route::get('/hospital/complain/track/{id}',[HospitalComplaintController::class, 'track_complaint']);
 Route::get('/hospital/dataex/send',[HospitalDataExchange::class, 'send_msg']);
 //testing file
 Route::get('/hospital/datex/send', [HospitalDataExchange::class, 'send_file']);
