@@ -14,8 +14,15 @@ class CreateReplyComplainsTable extends Migration
     public function up()
     {
         Schema::create('reply_complains', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->longText('message');
+            $table->unsignedInteger('complain_id');
+            $table->string('from');
+            $table->string('to');
+            $table->string('is_read');
+            $table->string('status');
             $table->timestamps();
+            $table->foreign('complain_id')->references('id')->on('complains')->onDelete('cascade');
         });
     }
 

@@ -264,6 +264,10 @@ class SuperAdminController extends Controller
         return redirect('/super/admin/index');
     }
 
+    public function all_complain(){
+        
+    }
+
 
     public function logout(){
         auth()->guard('superadmin')->logout();

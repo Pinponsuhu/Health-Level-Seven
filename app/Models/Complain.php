@@ -15,10 +15,11 @@ class Complain extends Model
 
     protected $fillable = ['title','content','from','to','status','is_read'];
 
-    public function User(){
-        return $this->belongsTo(User::class);
-    }
     public function ComplainFiles(){
         return $this->hasMany(ComplainFiles::class);
+    }
+
+    public function ReplyComplain(){
+        return $this->hasMany(ReplyComplain::class);
     }
 }

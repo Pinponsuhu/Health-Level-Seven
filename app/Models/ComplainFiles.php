@@ -13,7 +13,7 @@ class ComplainFiles extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['requests_id','request_title','filename'];
+    protected $fillable = ['complain_id','complain_title','filename'];
 
     public function Complain(){
         return $this->belongsTo(Complain::class);
