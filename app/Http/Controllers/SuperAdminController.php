@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\BedSpace;
+use App\Models\Complain;
+use App\Models\ComplainFiles;
 use App\Models\Department;
 use App\Models\Hospital;
+use App\Models\ReplyComplain;
+use App\Models\ReplyComplainFile;
 use App\Models\Requests;
 use App\Models\SuperAdmin;
 use App\Models\User;
@@ -265,7 +269,58 @@ class SuperAdminController extends Controller
     }
 
     public function all_complain(){
-        
+        $complaint = Complain::latest()->where('status','Open')->get();
+        return view('super-admin.all-complaint',['complaint'=> $complaint]);
+    }
+
+    public function track_complaint($id){
+        $req_id = Crypt::decrypt($id);
+        $req = Complain::find($req_id);
+        $replies = ReplyComplain::where('complain_id',$req_id)->get();
+
+        // dd($replies);
+        $reply_files = ReplyComplainFile::where('complain_id',$req_id)->get();
+        $department = User::select('hospital_name')->where('id',$req->hospital_id)->first();
+        $files = ComplainFiles::where('complain_id',$req_id)->get();
+
+        return view('super-admin.track-complaint',['req'=>$req, 'files'=> $files,'department'=>$department,'replies'=>$replies,'reply_files'=> $reply_files]);
+    }
+
+    public function show_reply_complain($id){
+        $complain = Complain::find(Crypt::decrypt($id));
+        return view('super-admin.reply-complaint',['complain'=>$complain]);
+    }
+
+    public function send_reply_complaint(Request $request){
+        $request->validate([
+            'message'=> 'required',
+            'status'=> 'required',
+            'files.*' => 'mimes:png,jpg,jpeg,html,doc,docx,pdf'
+        ]);
+        // dd($request->all());
+        $req = Complain::find(Crypt::decrypt($request->id));
+        $reply = new ReplyComplain;
+        $reply->message = $request->message;
+        $reply->from = 'Super Admin';
+        $reply->complain_id = $req->id;
+        $reply->to = $req->hospital_id;
+        $reply->is_read = 0;
+        $reply->status = 'Open';
+        $reply->save();
+        $dest = 'public/complain_reply';
+        if($request->hasFile('files')){
+            foreach($request->file('files') as $file){
+                $name = $file->store($dest);
+                $complainfiles = new ReplyComplainFile;
+                $complainfiles->complain_id = $req->id;
+                $complainfiles->reply_id = $reply->id;
+                $complainfiles->filename = str_replace('public/complain_reply/','',$name);
+                $complainfiles->save();
+            }
+    }
+    $req->status = $request->status;
+    $req->save();
+    return redirect('/super/all/complaint');
     }
 
 

@@ -112,6 +112,8 @@ Route::get('/hospital/active/complain/',[HospitalComplaintController::class, 'al
 Route::get('hospital/new/complain',[HospitalComplaintController::class, 'show_complaint']);
 Route::post('hospital/new/complain',[HospitalComplaintController::class, 'store_complaint']);
 Route::get('/hospital/complain/track/{id}',[HospitalComplaintController::class, 'track_complaint']);
+Route::get('/hospital/reply/complain/{id}',[HospitalComplaintController::class, 'show_reply_complaint']);
+Route::post('/hospital/reply/complain/{id}',[HospitalComplaintController::class, 'send_reply_complaint']);
 Route::get('/hospital/dataex/send',[HospitalDataExchange::class, 'send_msg']);
 //testing file
 Route::get('/hospital/datex/send', [HospitalDataExchange::class, 'send_file']);
@@ -207,4 +209,7 @@ Route::get('/super/hospital/delete/{id}',[SuperAdminController::class, 'delete_h
 Route::get('//super/hospital/change/password/{id}',[SuperAdminController::class, 'change_hospital_password']);
 Route::post('//super/hospital/change/password/{id}',[SuperAdminController::class, 'update_hospital_password']);
 Route::get('/super/admin/logout', [SuperAdminController::class, 'logout']);
-
+Route::get('/super/all/complaint',[SuperAdminController::class, 'all_complain']);
+Route::get('/super/complain/track/{id}',[SuperAdminController::class, 'track_complaint']);
+Route::get('super/reply/complain/{id}',[SuperAdminController::class, 'show_reply_complain']);
+Route::post('/super/reply/complain/{id}',[SuperAdminController::class, 'send_reply_complaint']);

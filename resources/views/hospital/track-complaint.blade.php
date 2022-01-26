@@ -14,7 +14,7 @@
                         @endforeach
                     </div>
                     @if ($replies->count() == 0)
-                    <a href="/reply/request/{{ Crypt::encrypt($req->id) }}" class="bg-blue-500 block mt-3 w-28 text-center py-2 text-white">Reply</a>
+                    <a href="/hospital/reply/complain/{{ Crypt::encrypt($req->id) }}" class="bg-blue-500 block mt-3 w-28 text-center py-2 text-white">Reply</a>
                     @endif
                 </div>
                 <div class="mt-4 w-11/12 mx-auto">
@@ -22,11 +22,11 @@
                         <div class="border-b-2 py-4 border-gray-200">
                             <p class="text-md">{{ $reply->message }}</p>
                             @php
-                                $files = \App\Models\RequestReplyFiles::where(['reply_id' => $reply->id])->pluck('filename');
+                                $files = \App\Models\ReplyComplainFile::where(['reply_id' => $reply->id])->pluck('filename');
                             @endphp
                             <div class="mt-2 flex gap-x-4">
                                 @foreach ($files as $rep_f)
-                                <a href="{{ '/storage/requests_reply/' . $rep_f }}" target="_blank"><img class="h-14 w-14 rounded-md shadow-md" src="{{ '/storage/requests_reply/' . $rep_f }}" alt=""></a>
+                                <a href="{{ '/storage/complain_reply/' . $rep_f }}" target="_blank"><img class="h-14 w-14 rounded-md shadow-md" src="{{ '/storage/complain_reply/' . $rep_f }}" alt=""></a>
                                 @endforeach
                             </div>
                             <p class="mt-0.5 text-sm">{{ $reply->from }}</p>
@@ -34,7 +34,7 @@
                         </div>
                     @endforeach
                     @if ($replies->count() != 0)
-                    <a href="/reply/request/{{ Crypt::encrypt($req->id) }}" class="bg-blue-500 block mt-3 w-28 text-center py-2 text-white">Reply</a>
+                    <a href="/hospital/reply/complain/{{ Crypt::encrypt($req->id) }}" class="bg-blue-500 block mt-3 w-28 text-center py-2 text-white">Reply</a>
                     @endif
                 </div>
             </div>

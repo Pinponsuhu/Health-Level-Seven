@@ -82,7 +82,6 @@ class HospitalComplaintController extends Controller
         $reply->message = $request->message;
         $reply->from = auth()->user()->hospital_name;
         $reply->complain_id = $req->id;
-        $reply->hospital_id = auth()->user()->id;
         $reply->to = 'Super Admin';
         $reply->is_read = 0;
         $reply->status = 'Open';
