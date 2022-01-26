@@ -75,51 +75,51 @@
     <body  class="antialiased bg-gray-200 flex">
         <nav class="w-80 bg-green-600 h-screen hidden md:block overflow-y-scroll py-3">
             <h1 class="uppercase text-3xl font-bold text-white text-center pb-4">Menu</h1>
-            <a href="/hospital/dashboard"><li class="flex text-gray-50 items-center pl-7 mt-3"><i class="fa fa-chart-pie mr-6 text-2xl"></i> <p class="text-lg">Dashboard</p></li></a>
+            <a href="/hospital/dashboard"><li class="flex text-gray-50 items-center pl-7 mt-3"><i class="fa fa-chart-pie mr-6 text-2xl"></i> <p class="text-sm">Dashboard</p></li></a>
             <ul class="pl-4 mt-3 py-3">
-                <a href="/hospital/changing/password"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-lock mr-7 text-2xl"></i> <p class="text-md">Change Password</p></li></a>
+                <a href="/hospital/changing/password"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-lock mr-7 text-2xl"></i> <p class="text-sm">Change Password</p></li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
-                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-x-ray mr-5 text-2xl"></i> <p class="text-md">Radiology Upload</p></li>
-                <a href="/track/uploads"><li class="text-md py-2 ml-16 text-white">Track Uploads</li></a>
-                <a href="/upload/radiology"><li class="text-md py-2 ml-16 text-white">Add New</li></a>
+                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-x-ray mr-5 text-2xl"></i> <p class="text-sm">Radiology Upload</p></li>
+                <a href="/track/uploads"><li class="text-sm py-2 ml-16 text-white">Track Uploads</li></a>
+                <a href="/upload/radiology"><li class="text-sm py-2 ml-16 text-white">Add New</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
-                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user-injured mr-8 text-2xl"></i> <p class="text-md">Patient management</p></li>
-                <a href="/view/all/patient"><li  class="text-md py-2 ml-16 text-white">All Patient</li></a>
-                <a href="/hospital/new/patient"><li class="text-md py-2 ml-16 text-white">New Patient</li></a>
+                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user-injured mr-8 text-2xl"></i> <p class="text-sm">Patient management</p></li>
+                <a href="/view/all/patient"><li  class="text-sm py-2 ml-16 text-white">All Patient</li></a>
+                <a href="/hospital/new/patient"><li class="text-sm py-2 ml-16 text-white">New Patient</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
-                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-procedures mr-5 text-2xl"></i> <p class="text-md">Bed Management</p></li>
-                <a href="/bed/management"><li class="text-md py-2 ml-16 text-white">Overview</li></a>
-                    <a href="/bed/history"><li class="text-md py-2 ml-16 text-white">View All</li></a>
+                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-procedures mr-5 text-2xl"></i> <p class="text-sm">Bed Management</p></li>
+                <a href="/bed/management"><li class="text-sm py-2 ml-16 text-white">Overview</li></a>
+                    <a href="/bed/history"><li class="text-sm py-2 ml-16 text-white">View All</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
-                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user-cog mr-5 text-2xl"></i> <p class="text-md">Admin</p></li>
-                <li class="text-md py-2 ml-16 text-white"><a href="/admin/overview">Overview</a></li>
-                <li class="text-md py-2 ml-16 text-white"><a href="/add/department">Departments</a></li>
-                <li class="text-md py-2 ml-16 text-white"><a href="/staff/registration">Staff Registration</a></li>
+                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user-cog mr-5 text-2xl"></i> <p class="text-sm">Admin</p></li>
+                <li class="text-sm py-2 ml-16 text-white"><a href="/admin/overview">Overview</a></li>
+                <li class="text-sm py-2 ml-16 text-white"><a href="/add/department">Departments</a></li>
+                <li class="text-sm py-2 ml-16 text-white"><a href="/staff/registration">Staff Registration</a></li>
             </ul>
             <ul class="pl-4 mt-3 py-3">
-                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-calendar-check mr-7 text-2xl"></i> <p class="text-md">Appointment</p></li>
-                <li class="text-md py-2 ml-16 text-white"><a href="/routine/appointment/{{ Crypt::encrypt('Active') }}">Routine</a></li>
-                <li class="text-md py-2 ml-16 text-white"><a href="/prebooked/appointment/{{ Crypt::encrypt('Active') }}">Pre-Booked</a></li>
-                <a href="/telephone/appointments/{{ Crypt::encrypt('Active') }}"><li class="text-md py-2 ml-16 text-white">Telephone consultation</li></a>
-                <a href="/book/appointment"><li class="text-md py-2 ml-16 text-white">Add new</li></a>
+                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-calendar-check mr-7 text-2xl"></i> <p class="text-sm">Appointment</p></li>
+                <li class="text-sm py-2 ml-16 text-white"><a href="/routine/appointment/{{ Crypt::encrypt('Active') }}">Routine</a></li>
+                <li class="text-sm py-2 ml-16 text-white"><a href="/prebooked/appointment/{{ Crypt::encrypt('Active') }}">Pre-Booked</a></li>
+                <a href="/telephone/appointments/{{ Crypt::encrypt('Active') }}"><li class="text-sm py-2 ml-16 text-white">Telephone consultation</li></a>
+                <a href="/book/appointment"><li class="text-sm py-2 ml-16 text-white">Add new</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
-                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-clipboard-list mr-7 text-2xl"></i> <p class="text-md">Inventory</p></li>
-                <a href="/inventory/dashboard"><li class="text-md py-2 ml-16 text-white">Overview</li></a>
-                <a href="/all/items"><li class="text-md py-2 ml-16 text-white">All Items</li></a>
+                <li class="flex text-gray-50 items-center px-3"><i class="fa fa-clipboard-list mr-7 text-2xl"></i> <p class="text-sm">Inventory</p></li>
+                <a href="/inventory/dashboard"><li class="text-sm py-2 ml-16 text-white">Overview</li></a>
+                <a href="/all/items"><li class="text-sm py-2 ml-16 text-white">All Items</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
-                <a href="/request/all"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-md">Request</p></li></a>
+                <a href="/request/all"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-sm">Request</p></li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
-                <a href="/hospital/data/exchange"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-md">Chatbox</p></li></a>
+                <a href="/hospital/data/exchange"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-sm">Chatbox</p></li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
-                <a href="/logout"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-power-off mr-7 text-2xl"></i> <p class="text-md">Logout</p></li></a>
+                <a href="/logout"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-power-off mr-7 text-2xl"></i> <p class="text-sm">Logout</p></li></a>
             </ul>
         </nav>
         @yield('content')

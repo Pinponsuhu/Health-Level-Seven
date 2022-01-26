@@ -67,5 +67,41 @@ class HospitalComplaintController extends Controller
         return view('hospital.track-complaint',['req'=>$req, 'files'=> $files,'department'=>$department,'replies'=>$replies,'reply_files'=> $reply_files]);
     }
 
+    public function show_reply_complaint($id){
+        $complain = Complain::find(Crypt::decrypt($id));
+        return view('hospital.complain-reply',['complain'=>$complain]);
+    }
+
+    public function send_reply_complaint(Request $request){
+        $request->validate([
+            'message'=> 'required',
+            'files.*' => 'mimes:png,jpg,jpeg,html,doc,docx,pdf'
+        ]);
+        $req = Complain::find(Crypt::decrypt($request->id));
+        $reply = new ReplyComplain;
+        $reply->message = $request->message;
+        $reply->from = auth()->user()->hospital_name;
+        $reply->complain_id = $req->id;
+        $reply->hospital_id = auth()->user()->id;
+        $reply->to = 'Super Admin';
+        $reply->is_read = 0;
+        $reply->status = 'Open';
+        $reply->save();
+        $dest = 'public/complain_reply';
+        if($request->hasFile('files')){
+            foreach($request->file('files') as $file){
+                $name = $file->store($dest);
+                $complainfiles = new ReplyComplainFile;
+                $complainfiles->complain_id = $req->id;
+                $complainfiles->reply_id = $reply->id;
+                $complainfiles->filename = str_replace('public/complain_reply/','',$name);
+                $complainfiles->save();
+            }
+    }
+    $req->status = 'Open';
+    $req->save();
+    return redirect('/department/request/all');
+    }
+
 
 }

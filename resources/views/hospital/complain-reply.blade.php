@@ -1,7 +1,7 @@
-@extends('layouts.department.app')
+@extends('layouts.hospital.app')
 @section('content')
     <main class="w-full h-screen">
-        @include('layouts.department.nav')
+        @include('layouts.hospital.nav')
         <div class="mt-3 px-8">
             <div class="p-6 bg-white rounded-md shadow-md">
                 <h1 class="text-xl font-bold text-green-400 mb-3">Reply Request: "{{ $req->title }}"</h1>
