@@ -49,10 +49,10 @@
     <div class="w-11/12 md:w-10/12 overflow-y-scroll h-full mx-auto shadow p-8 rounded-md bg-white text-green-500">
         <a href="/super/admin/index" class="flex gap-x-2 items-center mb-4"><i class="fa fa-arrow-left"></i> Dashboard</a>
         <div class="flex justify-between">
-            <h1 class="text-green-500 items-center font-bold text-xl mb-4">All Active Complaint</h1>
+            <h1 class="capitalize text-green-500 items-center font-bold text-xl mb-4">All {{ $stat }} Complaint</h1>
             <div class="flex items-center gap-x-2">
-                <a href="/hospital/active/complain" class="py-2 rounded-md px-4 bg-blue-400 text-white">Active</a>
-                <a href="/hospital/closed/complain" class="py-2 rounded-md px-6 bg-red-400 text-white">Closed Complaint</a>
+                <a href="/super/{{ Crypt::encrypt('Open') }}/complaint" class="py-2 rounded-md px-4 bg-blue-400 text-white">Active</a>
+                <a href="/super/{{ Crypt::encrypt('Closed') }}/complaint" class="py-2 rounded-md px-6 bg-red-400 text-white">Closed Complaint</a>
             </div>
         </div>
        <div class="mt-3">
@@ -69,7 +69,11 @@
         </a>
         @endforeach
     @else
-    <p class="text-center font-medium italic text-lg text-green-500">No Active complaint</p>
+    <p class="text-center font-medium italic text-lg text-green-500">No @if ($stat == 'Open')
+        Active
+    @else
+        Closed
+    @endif complaint</p>
     @endif
        </div>
     </div>

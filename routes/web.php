@@ -209,7 +209,7 @@ Route::get('/super/hospital/delete/{id}',[SuperAdminController::class, 'delete_h
 Route::get('//super/hospital/change/password/{id}',[SuperAdminController::class, 'change_hospital_password']);
 Route::post('//super/hospital/change/password/{id}',[SuperAdminController::class, 'update_hospital_password']);
 Route::get('/super/admin/logout', [SuperAdminController::class, 'logout']);
-Route::get('/super/all/complaint',[SuperAdminController::class, 'all_complain']);
+Route::get('/super/{status}/complaint',[SuperAdminController::class, 'all_complain']);
 Route::get('/super/complain/track/{id}',[SuperAdminController::class, 'track_complaint']);
 Route::get('super/reply/complain/{id}',[SuperAdminController::class, 'show_reply_complain']);
 Route::post('/super/reply/complain/{id}',[SuperAdminController::class, 'send_reply_complaint']);

@@ -79,7 +79,9 @@
                         <div class="my-4">
                             @foreach ($departments as $department)
                             <div class="py-3 border-b-2 border-gray-200 flex justify-between items-center">
-                                <p class="text-lg">{{ $department->name }}</p>
+                                <form action="" method="post">
+                                    <input type="text" name="department" value="{{ $department->name }}" disabled id="">
+                                </form>
                                 <div class="flex gap-x-5">
                                     <a href="#"><i class="fa fa-pen"></i></a>
                                     <a href="#"><i class="fa fa-trash text-red-400"></i></a>

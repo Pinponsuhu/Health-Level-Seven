@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </a>
-            <a href="/super/all/complaint" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
+            <a href="/super/{{ Crypt::encrypt('Open') }}/complaint" class="w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
                 <div class="mt-5">
                     <i class="fa fa-envelope text-4xl block text-center mx-auto"></i>
                     <div>

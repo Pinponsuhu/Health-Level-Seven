@@ -268,9 +268,10 @@ class SuperAdminController extends Controller
         return redirect('/super/admin/index');
     }
 
-    public function all_complain(){
-        $complaint = Complain::latest()->where('status','Open')->get();
-        return view('super-admin.all-complaint',['complaint'=> $complaint]);
+    public function all_complain($status){
+        $complaint = Complain::latest()->where('status',Crypt::decrypt($status))->get();
+        $stat = Crypt::decrypt($status);
+        return view('super-admin.all-complaint',['complaint'=> $complaint,'stat'=>$stat]);
     }
 
     public function track_complaint($id){
@@ -320,7 +321,7 @@ class SuperAdminController extends Controller
     }
     $req->status = $request->status;
     $req->save();
-    return redirect('/super/all/complaint');
+    return redirect('/super/admin/index');
     }
 
 
