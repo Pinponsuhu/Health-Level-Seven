@@ -1,18 +1,24 @@
-@extends('layouts.department.app')
+@extends('layouts.hospital.app')
 @section('content')
     <main class="w-full h-screen overflow-y-scroll">
-        @include('layouts.department.nav')
+        @include('layouts.hospital.nav')
         <div class="px-8 mt-4">
             <div class="p-6 rounded-md shadow-md bg-white">
                 <div class="flex justify-between items-center">
                     <h1 class="font-bold text-2xl text-green-600 my-5">Telephone Consultancy Appointments</h1>
-                    <div class="flex items-center gap-x-3">
+                    <div class="md:flex hidden items-center gap-x-3">
                         <a href="/department/telephone/appointments/{{ Crypt::encrypt('Cancelled') }}" class="py-2 px-4 rounded-md text-white bg-yellow-400">Cancelled</a>
                         <a href="/department/telephone/appointments/{{ Crypt::encrypt('Active') }}" class="py-2 px-4 rounded-md text-white bg-green-400">Active</a>
                         <a href="/department/telephone/appointments/{{ Crypt::encrypt('Missed') }}" class="py-2 px-4 rounded-md text-white bg-red-400">Missed</a>
                     </div>
                 </div>
+                <div class="flex md:hidden items-center gap-x-3">
+                    <a href="/department/telephone/appointments/{{ Crypt::encrypt('Cancelled') }}" class="py-2 px-4 rounded-md text-white bg-yellow-400">Cancelled</a>
+                    <a href="/department/telephone/appointments/{{ Crypt::encrypt('Active') }}" class="py-2 px-4 rounded-md text-white bg-green-400">Active</a>
+                    <a href="/department/telephone/appointments/{{ Crypt::encrypt('Missed') }}" class="py-2 px-4 rounded-md text-white bg-red-400">Missed</a>
+                </div>
                 <p class="text-center text-green-500 font-medium my-2 text-xl">Status: {{ $statuss }}</p>
+       <div class="w-full overflow-x-scroll">
         <table class="w-full shadow-md display" id="basic-1">
             <thead>
                 <tr class="text-green-50 border-b-2 border-gray-300 font-medium text-md">
@@ -47,6 +53,7 @@
                 @endforeach
             </tbody>
         </table>
+       </div>
             </div>
         </div>
     </main>

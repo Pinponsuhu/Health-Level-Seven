@@ -4,6 +4,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\DepartmentAppointment;
+use App\Http\Controllers\DepartmentAuthController;
 use App\Http\Controllers\DepartmentBed;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DepartmentInventory;
@@ -108,7 +109,7 @@ Route::get('/department/login',[HospitalAdminController::class, 'login']);
 Route::post('/department/login',[HospitalAdminController::class, 'sign_in']);
 Route::get('/hospital/data/exchange',[HospitalDataExchange::class , 'show']);
 Route::get('/dataex/send/message/{id}',[HospitalDataExchange::class, 'get_msg']);
-Route::get('/hospital/active/complain/',[HospitalComplaintController::class, 'all_complaint']);
+Route::get('/hospital/{status}/complain/',[HospitalComplaintController::class, 'all_complaint']);
 Route::get('hospital/new/complain',[HospitalComplaintController::class, 'show_complaint']);
 Route::post('hospital/new/complain',[HospitalComplaintController::class, 'store_complaint']);
 Route::get('/hospital/complain/track/{id}',[HospitalComplaintController::class, 'track_complaint']);
@@ -122,10 +123,11 @@ Route::get('/request/all',[HospitalRequestController::class, 'show']);
 Route::get('/request/track/{id}',[HospitalRequestController::class, 'track']);
 Route::get('/reply/request/{id}',[HospitalRequestController::class, 'show_reply']);
 Route::post('/reply/request/{id}',[HospitalRequestController::class, 'send_reply']);
+Route::get('/hospital/covid/tracker', [ClinicController::class, 'covid_tracker']);
 
 //Department logics
-Route::get('/department/login',[DepartmentController::class,'show_login']);
-Route::post('/department/login',[DepartmentController::class, 'login']);
+Route::get('/department/login',[DepartmentAuthController::class,'show_login']);
+Route::post('/department/login',[DepartmentAuthController::class, 'login']);
 Route::get('/department/dashboard',[DepartmentController::class, 'department_dashboard'])->middleware('department');
 Route::get('/department/add/radiology',[DepartmentRadiology::class, 'show_form'])->middleware('department');
 Route::post('/department/upload/radiology',[DepartmentRadiology::class, 'store_credentials']);
@@ -175,6 +177,8 @@ Route::get('/department/request/track/{id}',[DepartmentRequest::class, 'req_deta
 Route::get('department/reply/request/{id}',[DepartmentRequest::class, 'show_reply']);
 Route::post('department/reply/request/{id}',[DepartmentRequest::class, 'send_reply']);
 Route::get('/department/closed/request',[DepartmentRequest::class, 'closed_request']);
+Route::get('/department/covid/tracker',[DepartmentController::class, 'covid_tracker']);
+Route::get('/department/logout',[DepartmentController::class, 'logout']);
 
 //superadmin logics
 Route::get('/super/admin/index',[SuperAdminController::class, 'index']);
@@ -190,6 +194,8 @@ Route::get('/super/admin/settings',[SuperAdminController::class, 'setting']);
 Route::get('/super/admin/all/admins',[SuperAdminController::class, 'all_admin']);
 Route::get('/super/all/admin/details/{id}',[SuperAdminController::class, 'admin_details']);
 Route::get('/super/admin/edit/{id}', [SuperAdminController::class, 'edit_admin_details']);
+Route::get('/super/admin/change/passport/{id}',[SuperAdminController::class, 'change_passport']);
+Route::post('/super/admin/change/passport/{id}',[SuperAdminController::class, 'update_admin_passport']);
 Route::post('/super/admin/edit/{id}', [SuperAdminController::class, 'store_admin_update']);
 Route::get('//super/admin/delete/{id}',[SuperAdminController::class, 'delete_admin']);
 Route::get('/super/admin/password/{id}', [SuperAdminController::class, 'show_admin_password_change']);
@@ -213,4 +219,4 @@ Route::get('/super/{status}/complaint',[SuperAdminController::class, 'all_compla
 Route::get('/super/complain/track/{id}',[SuperAdminController::class, 'track_complaint']);
 Route::get('super/reply/complain/{id}',[SuperAdminController::class, 'show_reply_complain']);
 Route::post('/super/reply/complain/{id}',[SuperAdminController::class, 'send_reply_complaint']);
-Route::get('/covid/tracker',[DepartmentController::class, 'covid_tracker']);
+

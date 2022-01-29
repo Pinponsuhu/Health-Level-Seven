@@ -50,10 +50,14 @@
         <a href="/super/admin/index" class="flex gap-x-2 items-center mb-4"><i class="fa fa-arrow-left"></i> Dashboard</a>
         <div class="flex justify-between">
             <h1 class="capitalize text-green-500 items-center font-bold text-xl mb-4">All {{ $stat }} Complaint</h1>
-            <div class="flex items-center gap-x-2">
+            <div class="hidden md:flex items-center gap-x-2">
                 <a href="/super/{{ Crypt::encrypt('Open') }}/complaint" class="py-2 rounded-md px-4 bg-blue-400 text-white">Active</a>
                 <a href="/super/{{ Crypt::encrypt('Closed') }}/complaint" class="py-2 rounded-md px-6 bg-red-400 text-white">Closed Complaint</a>
             </div>
+        </div>
+        <div class="flex items-center gap-x-2">
+            <a href="/super/{{ Crypt::encrypt('Open') }}/complaint" class="py-2 rounded-md px-4 bg-blue-400 text-white">Active</a>
+            <a href="/super/{{ Crypt::encrypt('Closed') }}/complaint" class="py-2 rounded-md px-6 bg-red-400 text-white">Closed Complaint</a>
         </div>
        <div class="mt-3">
         @if ($complaint->count() != null)

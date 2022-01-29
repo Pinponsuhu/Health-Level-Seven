@@ -6,10 +6,14 @@
             <div class="bg-white rounded-md shadow-md p-6">
                 <div class="flex justify-between">
                     <h1 class="text-green-500 items-center font-bold text-xl mb-4">All Open Request</h1>
-                    <div class="flex items-center gap-x-2">
+                    <div class="md:flex hidden items-center gap-x-2">
                         <a href="#" class="py-2 rounded-md px-4 bg-green-400 text-white">Open</a>
                         <a href="#" class="py-2 rounded-md px-6 bg-red-400 text-white">Closed</a>
                     </div>
+                </div>
+                <div class="flex md:hidden items-center gap-x-2">
+                    <a href="#" class="py-2 rounded-md px-4 bg-green-400 text-white">Open</a>
+                    <a href="#" class="py-2 rounded-md px-6 bg-red-400 text-white">Closed</a>
                 </div>
                 <div class="mt-4">
                     @foreach ($reqs as $req)

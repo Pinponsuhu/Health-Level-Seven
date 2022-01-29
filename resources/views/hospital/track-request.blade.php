@@ -2,8 +2,8 @@
 @section('content')
     <main class="w-full h-screen pb-8 overflow-y-scroll">
         @include('layouts.hospital.nav')
-        <div class="mt-3 px-8 h-full">
-            <div class="bg-white rounded-md shadow-md p-6 h-full overflow-y-scroll">
+        <div class="mt-3 px-4 md:px-8 h-full">
+            <div class="bg-white rounded-md shadow-md p-3 md:p-6 h-full overflow-y-scroll">
                 <div class="w-11/12 mx-auto">
                     <h1 class="text-2xl mb-0.5 font-bold text-green-400">{{ $req->title }}</h1>
                     <p class="mb-3 text-sm text-gray-600">From: {{ $department->name }}</p>

@@ -2,9 +2,9 @@
 @section('content')
 <main class="w-full overflow-y-scroll h-screen">
     @include('layouts.hospital.nav')
-    <form action="{{ route('staff_reg') }}" class="w-8/12 mb-6 grid grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md shadow-md mt-8 bg-white" method="post" enctype="multipart/form-data">
+    <form action="{{ route('staff_reg') }}" class="w-11/12 md:w-8/12 mb-6 grid md:grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md shadow-md mt-8 bg-white" method="post" enctype="multipart/form-data">
         @csrf
-        <h1 class="col-span-2 text-2xl font-semibold text-green-600 mb-3">Register New Patient</h1>
+        <h1 class="md:col-span-2 text-2xl font-semibold text-green-600 mb-3">Register New Patient</h1>
 
         <div class="my-2">
             <label class="font-semibold text-md block mb-1">Passport Photograph</label>
@@ -113,7 +113,7 @@
                 <p class="text-sm text-red-500">{{ $message }}</p>
             @enderror
         </div>
-        <div class="col-span-2">
+        <div class="md:col-span-2">
             <label class="font-semibold text-md block mb-1">Residential Address</label>
             <textarea name="resident_address" class="outline-none border-l-4 p-4 border-green-500 block mt-3 w-full rounded-md resize-none shadow-md" id="" cols="30" rows="4"  placeholder="Enter Staff Address">{{ old('resident_address') }}</textarea>
 
@@ -122,8 +122,8 @@
                 <p class="text-sm text-red-500">{{ $message }}</p>
             @enderror
         </div>
-       <div class="col-span-2 my-2 grid grid-cols-2 gap-x-3">
-           <h1 class="font-bold text-green-600 text-xl col-span-2">Next of Kin Details</h1>
+       <div class="md:col-span-2 my-2 grid md:grid-cols-2 gap-x-3">
+           <h1 class="font-bold text-green-600 text-xl md:col-span-2">Next of Kin Details</h1>
         <div class="my-2">
             <label class="font-semibold text-md block mb-1">Name</label>
             <input type="text" value="{{ old('next_of_kin') }}" name="next_of_kin" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block"  placeholder="Enter Next of kin Fullname">
@@ -141,7 +141,7 @@
             @enderror
         </div>
        </div>
-        <button type="submit" class="w-32 py-3 block mx-auto text-center text-white bg-green-600 rounded-md mt-2 shadow-md col-span-2">Register</button>
+        <button type="submit" class="w-32 py-3 block mx-auto text-center text-white bg-green-600 rounded-md mt-2 shadow-md md:col-span-2">Register</button>
     </form>
 </main>
 @endsection

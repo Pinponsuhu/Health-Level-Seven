@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Crypt;
 
 class HospitalComplaintController extends Controller
 {
-    public function all_complaint(){
-        $complaint = Complain::latest()->where('status','Open')->get();
-        return view('hospital.complain',['complaint'=> $complaint]);
+    public function all_complaint($status){
+        $complaint = Complain::latest()->where('status',Crypt::decrypt($status))->get();
+        return view('hospital.complain',['complaint'=> $complaint,'status'=>Crypt::decrypt($status)]);
     }
 
     public function show_complaint(){
@@ -99,7 +99,7 @@ class HospitalComplaintController extends Controller
     }
     $req->status = 'Open';
     $req->save();
-    return redirect('/department/request/all');
+    return redirect('/hospital/active/complain/');
     }
 
 

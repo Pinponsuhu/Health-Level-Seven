@@ -73,7 +73,7 @@
     {{-- oncontext menu is to disable inspect element --}}
     {{-- oncontextmenu="return false;" --}}
     <body  class="antialiased bg-gray-200 flex">
-        <nav class="w-80 bg-green-600 h-screen hidden md:block overflow-y-scroll py-3">
+        <nav id="nav-sec" class="z-50 w-80 bg-green-600 md:relative h-screen hidden md:block overflow-y-scroll py-3">
             <h1 class="uppercase text-3xl font-bold text-white text-center pb-4">Menu</h1>
             <a href="/hospital/dashboard"><li class="flex text-gray-50 items-center pl-7 mt-3"><i class="fa fa-chart-pie mr-6 text-2xl"></i> <p class="text-sm">Dashboard</p></li></a>
             <ul class="pl-4 mt-3 py-3">
@@ -125,9 +125,26 @@
         @yield('content')
 
         <div class="w-16 flex justify-center items-center fixed bottom-4 right-5 shadow-md h-16 rounded-full bg-green-600  text-white">
-            <a href="/hospital/active/complain">
+            <a href="/hospital/{{ Crypt::encrypt('Open') }}/complain">
                 <i class="fa fa-envelope text-2xl"></i>
             </a>
 
         </div>
+
+        <div id="nav-btn" onclick="open_menu()" class="fixed z-50 top-20 left-1 md:hidden bg-green-500 p-3 rounded-md text-white">
+            <p class="text-4xl font-bold">≡</p>
+        </div>
+        <script>
+            function open_menu(){
+                if(document.getElementById('nav-btn').innerText == '≡'){
+                    document.getElementById('nav-sec').classList.remove('hidden');
+                    document.getElementById('nav-sec').classList.add('fixed','top-0','left-0','h-screen','overflow-y-scroll');
+                    document.getElementById('nav-btn').innerText = 'x';
+                }else{
+                    document.getElementById('nav-sec').classList.add('hidden');
+                    document.getElementById('nav-sec').classList.remove('fixed','top-0','left-0','h-screen','overflow-y-scroll');
+                    document.getElementById('nav-btn').innerText = '≡';
+                }
+            }
+        </script>
     </body>

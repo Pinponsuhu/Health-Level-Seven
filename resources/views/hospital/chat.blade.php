@@ -1,7 +1,7 @@
 @extends('layouts.hospital.chat-app')
 @section('content')
     <main class="w-full flex h-screen">
-        <nav class="w-96 bg-green-400 h-full overflow-y-scroll p-4">
+        <nav id="hospital" class="w-96 bg-green-400 h-full hidden md:flex overflow-y-scroll p-4">
             <a href="/hospital/dashboard" class="px-8 py-3 rounded-full text-green-500 bg-white"><i class="fa fa-arrow-left"></i> Back</a>
             <h1 class="font-bold text-2xl text-white mt-3">Data Exchange</h1>
             <p class="font-medium text-white mt-1 text-sm">Hospital ID: {{ auth()->user()->HID }}</p>
@@ -28,4 +28,18 @@
             </div>
         </section>
     </main>
+    <div onclick="all_hospital()" id="nav" class="fixed top-16 p-4 rounded-md bg-white text-green-500">
+        <p class="text-xl font-bold">≡</p>
+    </div>
+    <script>
+        function all_hospital(){
+            if(document.getElementById('nav').innerText == '≡'){
+                document.getElementById('nav').innerText = 'x';
+                document.getElementById('hospital').classList.remove('hidden');
+            }else{
+                document.getElementById('nav').innerText = '≡';
+                document.getElementById('hospital').classList.add('hidden');
+            }
+        }
+    </script>
 @endsection

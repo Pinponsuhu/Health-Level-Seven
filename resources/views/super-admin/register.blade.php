@@ -1,17 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register new Hospital</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
-<body class="bg-gray-100">
-    <main class="w-11/12 mx-auto mt-4">
-        <form action="/super/admin/new/hospital" class="w-8/12 mb-6 grid grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md shadow-md mt-8 bg-white" method="post" enctype="multipart/form-data">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Health Level Seven</title>
+
+        <!-- Fonts -->
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+        <script src="{{ asset('js/all.js') }}"></script>
+
+        <!-- Styles -->
+
+        <style>
+            body {
+                font-family: 'Cabin', sans-serif;
+            }
+            *::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+*::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+    background: rgb(46, 189, 137);
+}
+
+/* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+    background: #095134;
+}
+
+        </style>
+    </head>
+<body class="bg-gray-100 h-screen">
+    <main class="w-11/12 mx-auto h-screen py-4">
+
+        <a href="/super/admin/index" class="flex gap-x-2 items-center mb-4"><i class="fa fa-arrow-left"></i> Dashboard</a>
+        <form action="/super/admin/new/hospital" class="w-10/12 md:w-8/12 mb-6 grid md:grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md shadow-md mt-8 bg-white h-full overflow-y-scroll" method="post" enctype="multipart/form-data">
             @csrf
-            <h1 class="col-span-2 text-2xl font-semibold text-green-600 mb-3">Register new Hospital</h1>
+            <h1 class="md:col-span-2 text-2xl font-semibold text-green-600 mb-3">Register new Hospital</h1>
             <div class="my-2">
                 <label class="font-semibold text-md block mb-1">Hospital Logo</label>
                 <input type="file" value="{{ old('hospital_logo') }}" name="hospital_logo" placeholder="Enter Patient's Surname" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block">
@@ -68,7 +106,7 @@
                     <p class="text-sm text-red-500">{{ $message }}</p>
                 @enderror
             </div>
-            <button type="submit" class="w-32 py-3 block mx-auto text-center text-white bg-green-600 rounded-md mt-2 shadow-md col-span-2">Register</button>
+            <button type="submit" class="w-32 py-1.5 block mx-auto text-center text-white bg-green-600 rounded-md mt-2 shadow-md md:col-span-2">Register</button>
         </form>
     </main>
 </body>

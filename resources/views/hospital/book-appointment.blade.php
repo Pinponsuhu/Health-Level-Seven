@@ -2,9 +2,9 @@
 @section('content')
 <main class="w-full">
     @include('layouts.hospital.nav')
-    <form action="{{ route('store_bookings') }}" class="w-8/12 mb-6 grid grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md shadow-md mt-8 bg-white" method="post" enctype="multipart/form-data">
+    <form action="{{ route('store_bookings') }}" class="w-11/12 md:w-8/12 mb-6 grid md:grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md shadow-md mt-8 bg-white" method="post" enctype="multipart/form-data">
         @csrf
-        <h1 class="col-span-2 text-2xl font-semibold text-green-600 mb-3">Book an Appointment</h1>
+        <h1 class="md:col-span-2 text-xl md:text-2xl font-semibold text-green-600 mb-3">Book an Appointment</h1>
         <div class="my-2">
             <label class="font-semibold text-md block mb-1">Surname</label>
             <input type="text" name="surname" placeholder="Enter Patient's Surname" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block">
@@ -52,7 +52,7 @@
                 <option value="Optician">Optician</option>
             </select>
         </div>
-        <button type="submit" class="w-48 py-3 block mx-auto text-center text-white bg-green-600 rounded-md mt-2 shadow-md col-span-2">Book Appointment</button>
+        <button type="submit" class="w-48 py-3 block mx-auto text-center text-white bg-green-600 rounded-md mt-2 shadow-md md:col-span-2">Book Appointment</button>
     </form>
 </main>
 @endsection

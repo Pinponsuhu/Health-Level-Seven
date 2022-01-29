@@ -41,8 +41,8 @@
 
 <body onload="states();" class="bg-gray-100 h-screen py-6">
  <main class="w-9/12 mx-auto bg-white h-full overflow-y-scroll rounded-md shadow-md p-8 ">
-  <a href="">Dashboard</a>
-    <div class="">
+  <a href="/department/dashboard" class="bg-gray-100 px-4 py-3 hover:bg-gray-200 rounded-full shadow-md text-green-500"><i class="fa fa-arrow-left"></i> Dashboard</a>
+    <div class="mt-3">
         <p class="font-bold text-2xl text-green-500"><i class="fa fa-viruses"></i> CovidNG Tracker</p>
       </div>
       <div id="states">
@@ -60,7 +60,7 @@
           </tbody>
         </table>
         <div>
-            <a href="https://covid19.ncdc.gov.ng/" class="block text-center italic fot-medium text-green-500 mt-3"><i class="fa fa-arrow-alt-circle-down animate-bounce"></i> Click here for more infomation</a>
+            <a href="https://covid19.ncdc.gov.ng/" class="block text-center underline pb-1.5 italic fot-medium text-green-500 mt-3"><i class="fa fa-arrow-alt-circle-down animate-bounce"></i> Click here for more infomation</a>
         </div>
       </div>
  </main>

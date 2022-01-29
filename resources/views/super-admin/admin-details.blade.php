@@ -46,18 +46,18 @@
         </style>
     </head>
 <body class="w-screen bg-gray-100 h-screen p-4 md:p-8">
-    <div class="w-11/12 md:w-10/12 overflow-y-scroll h-full mx-auto shadow p-8 rounded-md bg-white text-green-500">
+    <div class="w-full md:w-10/12 overflow-y-scroll h-full mx-auto shadow-md p-8 rounded-md bg-white text-green-500">
         <a href="/super/admin/index" class="flex gap-x-2 items-center mb-4"><i class="fa fa-arrow-left"></i> Dashboard</a>
-        <div class="flex gap-x-2 items-center mb-4">
-            <a href="/super/admin/password/{{ Crypt::encrypt($admin->id) }}" class="px-8 py-3 bg-green-500 text-white rounded-md">Change Password</a>
+        <div class="grid grid-cols-2 md:flex gap-y-2 gap-x-2 items-center mb-4">
             <a href="/super/admin/edit/{{ Crypt::encrypt($admin->id) }}" class="px-8 py-3 bg-blue-500 text-white rounded-md">Edit <i class="fa fa-pen"></i></a>
             <a href="/super/admin/delete/{{ Crypt::encrypt($admin->id) }}" class="px-8 py-3 bg-red-400 text-white rounded-md">Delete <i class="fa fa-trash"></i></a>
+            <a href="/super/admin/password/{{ Crypt::encrypt($admin->id) }}" class="px-8 py-3 col-span-2 bg-green-500 text-white rounded-md">Change Password</a>
         </div>
-        <div class="px-8 mt-2">
-            <div class="flex gap-x-4 bg-white shadow-md rounded-md px-6 py-4 mt-4">
-                <div class="w-72 h-full">
-                    <img src="{{ asset('/storage/super_admins/' . $admin->passport) }}" class="w-72 block rounded shadow-md h-auto" alt="">
-                    <a href="/super/admin/admin/change-logo/{{ $admin->id }}" class="text-md font-medium block mt-2 text-center text-green-500">Change admin logo</a>
+        <div class="px-2 md:px-8 mt-2">
+            <div class="md:flex gap-x-4 bg-white rounded-md md:px-6 py-4 mt-4">
+                <div class="w-52 md:w-72 h-full mb-4 mx-auto md:mx-0 md:mb-0">
+                    <img src="{{ asset('/storage/super_admins/' . $admin->passport) }}" class="w-full block rounded shadow-md h-auto" alt="">
+                    <a href="/super/admin/change/passport/{{ Crypt::encrypt($admin->id) }}" class="text-md font-medium block mt-2 text-center text-green-500">Change admin Passport</a>
                 </div>
                 <div class="w-full h-full">
                     <h1 class="text-3xl font-bold text-gray-900">{{ $admin->fullname }}</h1>

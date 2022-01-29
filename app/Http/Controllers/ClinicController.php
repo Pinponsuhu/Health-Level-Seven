@@ -24,4 +24,8 @@ class ClinicController extends Controller
         $appointments = Appointment::latest()->where('hospital_id','=',auth()->user()->id)->where('preferred_date','=', Carbon::now()->format('Y-m-d'))->get();
         return view('hospital.dashboard', ['appointments' => $appointments, 'chart' => $chart->build(), 'chart2' => $chart2->build()]);
     }
+
+    public function covid_tracker(){
+        return view('hospital.covid-tracker.index');
+    }
 }

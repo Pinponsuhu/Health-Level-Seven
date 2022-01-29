@@ -14,23 +14,9 @@ use Illuminate\Support\Facades\Hash;
 
 class DepartmentController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('department');
-    // }
-    public function show_login(){
-        return view('department.login');
-    }
-
-    public function login(Request $request){
-        $this->validate($request,[
-            'name' => 'required',
-            'password' => 'required'
-        ]);
-        if(!Auth::guard('department')->attempt($request->only('name','password'))){
-            return back();
-        }
-        return redirect('department/dashboard');
+    public function __construct()
+    {
+        $this->middleware('department');
     }
 
     public function department_dashboard(DepartmentBedChart $chart)
@@ -60,7 +46,12 @@ class DepartmentController extends Controller
     }
 
     public function covid_tracker(){
-        return view('covid-tracker.index');
+        return view('department.covid-tracker.index');
+    }
+
+    public function logout(){
+        auth()->guard('department')->logout();
+        return redirect('/department/login');
     }
 }
 

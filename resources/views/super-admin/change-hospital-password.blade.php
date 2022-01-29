@@ -49,7 +49,7 @@
     <div class="w-11/12 md:w-10/12 overflow-y-scroll h-full mx-auto shadow p-8 rounded-md bg-white text-green-500">
         <a href="/super/admin/index" class="flex gap-x-2 items-center mb-4"><i class="fa fa-arrow-left"></i> Dashboard</a>
         <h1 class="text-xl font-bold mb-4 text-green-500">Change Password</h1>
-        <form action="/super/hospital/change/password/{{ $id }}" class="w-5/12 mx-auto" method="POST">
+        <form action="/super/hospital/change/password/{{ $id }}" class="w-10/12 md:w-5/12 mx-auto" method="POST">
             @csrf
             <input type="password" autocomplete="off" name="password" placeholder="New password" class="border-l-4 outline-none border-green-500 px-3 py-3 text-md rounded-md shadow-md bg-white block mt-3 w-full" id="">
             @error('password')

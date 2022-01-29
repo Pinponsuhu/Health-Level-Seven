@@ -8,8 +8,8 @@
                     <a href="/delete/bed/details/{{ Crypt::encrypt($patient->id) }}" class="py-3 px-7 rounded-full bg-red-400 text-white">Delete</a>
                 </div>
                 <h1 class="text-2xl font-bold text-green-500 text-center">Patient in bed</h1>
-                <div class="w-full h-full grid col-span-2 items-center gap-x-4">
-                    <h1 class="text-3xl font-bold col-span-2 text-gray-900">{{ $patient->surname . ' ' . $patient->othernames }}</h1>
+                <div class="w-full h-full grid md:col-span-2 items-center gap-x-4">
+                    <h1 class="text-3xl font-bold md:col-span-2 text-gray-900">{{ $patient->surname . ' ' . $patient->othernames }}</h1>
 
                     <div class="flex gap-x-2 mt-4">
                         <label class="text-green-500 text-md font-semibold">Patient ID: </label>
@@ -51,7 +51,7 @@
                         <label class="text-green-500 text-md font-semibold">Bed Number: </label>
                         <p class="text-md font-medium">{{ $patient->bed_number }}</p>
                     </div>
-                    <p class="mt-4 font-bold col-span-2 text-gray-900 text-xl">Next of Kin</p>
+                    <p class="mt-4 font-bold md:col-span-2 text-gray-900 text-xl">Next of Kin</p>
                     <div class="flex gap-x-2 mt-2">
                         <label class="text-green-500 text-md font-semibold">Name: </label>
                         <p class="text-md font-medium">{{ $patient->next_of_kin }}</p>

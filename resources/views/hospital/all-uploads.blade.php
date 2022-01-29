@@ -2,7 +2,7 @@
 @section('content')
     <main class="w-full h-screen overflow-y-scroll">
         @include('layouts.hospital.nav')
-        <div class="px-8">
+        <div class="px-8 w-full overflow-x-scroll">
             <table class="w-full mx-auto bg-white shadow-md rounded-md mt-2">
                 <thead>
                     <tr class="font-medium text-white text-md border-b-2 border-green-600">

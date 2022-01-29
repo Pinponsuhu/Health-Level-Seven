@@ -3,13 +3,14 @@
 <main class="w-full h-screen overflow-y-scroll">
 
             @include('layouts.hospital.nav')
-    <div class="px-8 mt-6 flex gap-x-2 justify-end">
+
+   <div class="px-2 md:px-8 mt-2 bg-white shadow-md rounded-md py-4">
+    <div class="px-3 md:px-8 mt-6 flex gap-x-2 justify-end">
         <a href="/update/patient/{{ Crypt::encrypt($patient->id) }}" class="py-3 px-8 bg-green-500 w-36 text-white rounded-full shadow-md text-center">Update</a>
         <a href="/delete/patient/{{ Crypt::encrypt($patient->id) }}" class="py-3 px-6 bg-red-500 w-36 text-white rounded-full shadow-md text-center">Delete</a>
     </div>
-   <div class="px-8 mt-2">
-    <div class="flex gap-x-4 bg-white shadow-md rounded-md px-6 py-4 mt-4">
-        <div class="w-72 h-full">
+    <div class="md:flex gap-x-4  px-6 py-4 mt-4">
+        <div class="w-72 h-full mx-auto md:mx-0 mb-3 md:mb-0">
             <img src="{{ asset('/storage/patients/' . $patient->passport) }}" class="w-72 block rounded shadow-md h-auto" alt="">
             <a href="/change-passport/{{ Crypt::encrypt($patient->id) }}" class="text-md font-medium block mt-2 text-center text-green-500">Change Passport photograph</a>
         </div>

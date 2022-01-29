@@ -47,14 +47,16 @@
     </head>
 <body class="w-screen bg-gray-100 h-screen p-4 md:p-8">
     <div class="w-11/12 md:w-10/12 overflow-y-scroll h-full mx-auto shadow p-8 rounded-md bg-white text-green-500">
-        <div class="flex gap-x-2 items-center mb-4">
-            <a href="/super/hospital/change/password/{{ Crypt::encrypt($hospital->id) }}" class="px-8 py-3 bg-green-500 text-white rounded-md">Change Password</a>
+
+        <a href="/super/admin/index" class="flex gap-x-2 items-center mb-4"><i class="fa fa-arrow-left"></i> Dashboard</a>
+        <div class="grid grid-cols-2 gap-y-3 md:flex gap-x-2 items-center mb-4">
             <a href="/super/admin/edit/hospital/{{ Crypt::encrypt($hospital->id) }}" class="px-8 py-3 bg-blue-500 text-white rounded-md">Edit <i class="fa fa-pen"></i></a>
             <a href="/super/hospital/delete/{{ Crypt::encrypt($hospital->id) }}" class="px-8 py-3 bg-red-400 text-white rounded-md">Delete <i class="fa fa-trash"></i></a>
+            <a href="/super/hospital/change/password/{{ Crypt::encrypt($hospital->id) }}" class="px-8 py-3 bg-green-500 text-white col-span-2 rounded-md">Change Password</a>
         </div>
-        <div class="px-8 mt-2">
-            <div class="flex gap-x-4 bg-white shadow-md rounded-md px-6 py-4 mt-4">
-                <div class="w-72 h-full">
+        <div class="px-2 md:px-8 mt-2">
+            <div class="flex flex-col md:flex-row gap-x-4 bg-white md:shadow-md rounded-md md:px-6 py-4 mt-4">
+                <div class="w-72 h-full mb-4 md:mb-0">
                     <img src="{{ asset('/storage/users/' . $hospital->hospital_logo) }}" class="w-72 block rounded shadow-md h-auto" alt="">
                     <a href="/super/admin/change/logo/{{ Crypt::encrypt($hospital->id) }}" class="text-md font-medium block mt-2 text-center text-green-500">Change Hospital logo</a>
                 </div>
@@ -78,7 +80,7 @@
                         <h1 class="text-xl font-bold text-green-500 my-2">Departments</h1>
                         <div class="my-4">
                             @foreach ($departments as $department)
-                            <div class="py-3 border-b-2 border-gray-200 flex justify-between items-center">
+                            <div class="py-3 border-b-2 border-gray-200 flex px-2 justify-between items-center">
                                 <form action="" method="post">
                                     <input type="text" name="department" value="{{ $department->name }}" disabled id="">
                                 </form>

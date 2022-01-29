@@ -46,7 +46,9 @@
         </style>
     </head>
 <body class="w-screen bg-gray-100 h-screen p-4 md:p-8">
+
     <div class="w-11/12 md:w-10/12 overflow-y-scroll h-full mx-auto shadow p-8 rounded-md bg-white text-green-500">
+        <a href="/super/admin/index" class="flex gap-x-2 items-center mb-4"><i class="fa fa-arrow-left"></i> Dashboard</a>
         <h1 class="text-xl font-bold mb-4 text-green-500">All Hospitals</h1>
         <table class="w-full mx-auto bg-white shadow-md rounded-md mt-2">
             <thead>

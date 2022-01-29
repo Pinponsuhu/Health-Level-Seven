@@ -10,8 +10,8 @@
                     <a href="/assign/item/{{ Crypt::encrypt($item->id) }}" class="text-white bg-green-500 rounded-md px-6 py-3">Assign</a>
                     <a href="/delete/item/{{ Crypt::encrypt($item->id) }}" class="text-white bg-red-500 rounded-md px-6 py-3">Delete</a>
                 </div>
-                <div class="w-full h-full grid col-span-2 items-center gap-x-4">
-                    <h1 class="text-3xl font-bold col-span-2 text-gray-900">{{ $item->name }}</h1>
+                <div class="w-full h-full grid md:col-span-2 items-center gap-x-4">
+                    <h1 class="text-3xl font-bold md:col-span-2 text-gray-900">{{ $item->name }}</h1>
 
                     <div class="flex gap-x-2 mt-4">
                         <label class="text-green-500 text-md font-semibold">Item ID: </label>

@@ -5,36 +5,40 @@
 @section('content')
     <main class="w-full">
         @include('layouts.hospital.nav')
-        <div class="px-8">
-            <h1 class="text-xl font-bold text-center text-green-500 my-4">All Registered Patient</h1>
-        <table class="w-full mx-auto bg-white shadow-md rounded-md mt-2">
-            <thead>
-                <tr class="font-medium text-white text-md border-b-2 border-green-600">
-                    <td  class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Name</td>
-                    <td class="py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Phone Number</td>
-                    <td class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Email Address</td>
-                    <td class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Gender</td>
-                    <td class="py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Next of Kin</td>
-                    <td class="py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Next of Kin Number</td>
-                    <td class="py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Patient ID</td>
-                    <td class="py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Action</td>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($patients as $patient)
-                    <tr>
-                        <td class=" py-3 bg-green-100 px-3 text-center capitalize">{{ $patient->surname . ' ' . $patient->othernames }}</td>
-                        <td class=" py-3 bg-white px-3 text-center">{{ $patient->phone_number }}</td>
-                        <td class=" py-3 bg-green-100 px-3 text-center">{{ $patient->email_address }}</td>
-                        <td class=" py-3 bg-white px-3 text-center">{{ $patient->gender }}</td>
-                        <td class=" py-3 bg-green-100 px-3 text-center capitalize">{{ $patient->next_of_kin }}</td>
-                        <td class=" py-3 bg-white px-3 text-center">{{ $patient->next_of_kin_number1}}</td>
-                        <td class=" py-3 bg-green-100 px-3 text-center capitalize">{{ $patient->PID }}</td>
-                        <td class="px-3"><a href="/patient/details/{{ Crypt::encrypt($patient->id) }}" class="px-5 py-2 bg-blue-500 text-white rounded-md">More</a></td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="px-4 md:px-8">
+            <div class="p-2 md:p-4 bg-white py-4 mt-4 rounded-md shadow-md">
+                <h1 class="text-xl font-bold text-center text-green-500 my-4">All Registered Patient</h1>
+               <div class="w-full overflow-x-scroll">
+                <table class="w-full mx-auto bg-white shadow-md rounded-md mt-2">
+                    <thead>
+                        <tr class="font-medium text-white text-md border-b-2 border-green-600">
+                            <td  class=" py-3 bg-green-500 w-1/6 px-3 text-center border-r-4 border-green-100">Name</td>
+                            <td class="py-3 bg-green-500 px-3 w-1/6 text-center border-r-4 border-green-100">Phone Number</td>
+                            <td class=" py-3 bg-green-500 px-3 w-1/6 text-center border-r-4 border-green-100">Email Address</td>
+                            <td class=" py-3 bg-green-500 px-3 w-1/6 text-center border-r-4 border-green-100">Gender</td>
+                            <td class="py-3 bg-green-500 px-3 w-1/6 text-center border-r-4 border-green-100">Next of Kin</td>
+                            <td class="py-3 bg-green-500 px-3 w-1/6 text-center border-r-4 border-green-100">Next of Kin Number</td>
+                            <td class="py-3 bg-green-500 px-3 w-1/6 text-center border-r-4 border-green-100">Patient ID</td>
+                            <td class="py-3 bg-green-500 px-3 w-1/6 text-center border-r-4 border-green-100">Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($patients as $patient)
+                            <tr>
+                                <td class=" py-3 bg-green-100 px-3 text-center capitalize">{{ $patient->surname . ' ' . $patient->othernames }}</td>
+                                <td class=" py-3 bg-white px-3 text-center">{{ $patient->phone_number }}</td>
+                                <td class=" py-3 bg-green-100 px-3 text-center">{{ $patient->email_address }}</td>
+                                <td class=" py-3 bg-white px-3 text-center">{{ $patient->gender }}</td>
+                                <td class=" py-3 bg-green-100 px-3 text-center capitalize">{{ $patient->next_of_kin }}</td>
+                                <td class=" py-3 bg-white px-3 text-center">{{ $patient->next_of_kin_number1}}</td>
+                                <td class=" py-3 bg-green-100 px-3 text-center capitalize">{{ $patient->PID }}</td>
+                                <td class="px-3"><a href="/patient/details/{{ Crypt::encrypt($patient->id) }}" class="px-5 py-2 bg-blue-500 text-white rounded-md">More</a></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+               </div>
+            </div>
         </div>
     </main>
 @endsection

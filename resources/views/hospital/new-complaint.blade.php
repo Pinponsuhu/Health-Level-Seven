@@ -5,7 +5,7 @@
         <div class="mt-3 px-8">
             <div class="p-6 bg-white rounded-md shadow-md">
                 <h1 class="text-xl font-bold text-green-400 mb-3">Send New Complain</h1>
-                <form action="/hospital/new/complain" mt-3 class="w-7/12" enctype="multipart/form-data" method="post">
+                <form action="/hospital/new/complain" class="w-11/12 md:w-7/12 mt-3" enctype="multipart/form-data" method="post">
                     @csrf
                     <label class="block font-bold mb-1 text-md text-green-800">Title *</label>
                     <input type="text" name="title" class="outline-none shadow-md w-full block py-3 px-3 border-l-4 rounded-md border-green-400" placeholder="Complain Title" value="{{ old('title') }}" id="">

@@ -324,6 +324,22 @@ class SuperAdminController extends Controller
     return redirect('/super/admin/index');
     }
 
+    public function change_passport($id){
+        $details = SuperAdmin::find(Crypt::decrypt($id));
+        return view('super-admin.change-admin-passport', ['details'=> $details, 'id'=>$id]);
+    }
+
+    public function update_admin_passport(Request $request){
+        $admin = SuperAdmin::find(Crypt::decrypt($request->id));
+        $path = 'storage/super_admins';
+        unlink($path.'/' . $admin->passport);
+        $dest = '/public/super_admins';
+        $path = $request->file('passport')->store($dest);
+        $admin->passport = str_replace('public/super_admins/','',$path);
+        $admin->save();
+        return redirect('/super/admin/index');
+    }
+
 
     public function logout(){
         auth()->guard('superadmin')->logout();
