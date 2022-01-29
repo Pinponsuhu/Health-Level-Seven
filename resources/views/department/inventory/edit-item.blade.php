@@ -21,7 +21,14 @@
             </div>
             <div class="my-2">
                 <label class="font-semibold text-md block mb-1">Shelf Number</label>
-                <input type="text" value="{{ $item->shelf_no }}" name="shelf_number" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block"  placeholder="Enter Shelf Number">
+                <select name="shelf_number" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block" id="">
+                    <option value="{{ $item->shelf_no }}" selected>{{$item->shelf_no}}</option>
+                    @for ($i = 1;$i <= $no; $i++)
+                   @if ($i != $item->shelf_no)
+                   <option value="{{ $i }}">{{ $i }}</option>
+                   @endif
+                    @endfor
+                </select>
                 @error('shelf_number')
                     <p class="text-sm text-red-500">{{ $message }}</p>
                 @enderror
@@ -37,11 +44,12 @@
             <div class="my-2">
                 <label class="font-semibold text-md block mb-1">Item Category</label>
                 <select name="item_category" id="" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block">
-                    <option disabled selected>--Select Gender--</option>
-                    <option value="Medicinal">Medicinal</option>
-                    <option value="Stationery">Stationery</option>
-                    <option value="Hardware">Hardware</option>
-                    <option value="Others">Others</option>
+                    <option value="{{ $item->item_category }}" selected>{{ $item->item_category }}</option>
+                    @foreach ($category as $cat)
+                        @if ($cat != $item->item_category)
+                        <option value="{{ $cat }}">{{ $cat }}</option>
+                        @endif
+                    @endforeach
                 </select>
                 @error('item_category')
                     <p class="text-sm text-red-500">{{ $message }}</p>

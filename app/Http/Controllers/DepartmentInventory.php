@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Assign;
 use App\Models\InventoryItem;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +33,10 @@ class DepartmentInventory extends Controller
         ->where('hospital_id','=',auth()->guard('department')->user()->hospital_id)
         ->limit(3)
         ->get();
-        return view('department.inventory.dashboard',['items'=> $items,'stock_count'=>$stock_count,'assign_count'=>$assign_count,'meds'=>$meds,'stationery'=>$stationery]);
+
+        $shelf_no =  User::select('shelf_number')
+        ->where('id', auth()->guard('department')->user()->hospital_id)->first();
+        return view('department.inventory.dashboard',['items'=> $items,'stock_count'=>$stock_count,'assign_count'=>$assign_count,'meds'=>$meds,'stationery'=>$stationery,'shelf_no'=> $shelf_no]);
     }
 
     public function view_all(){
@@ -43,7 +47,9 @@ class DepartmentInventory extends Controller
     }
 
     public function show_add(){
-        return view('department.inventory.add-new-item');
+        $shelf_no =  User::where('id', auth()->guard('department')->user()->hospital_id)->first();
+        $no = (int)$shelf_no->shelf_number;
+        return view('department.inventory.add-new-item', ['no'=> $no]);
     }
 
     public function store_add(Request $request){
@@ -110,11 +116,7 @@ class DepartmentInventory extends Controller
 
     public function assign($id){
         $item = InventoryItem::find(Crypt::decrypt($id));
-        if($item->hospital_id == auth()->guard('department')->user()->hospital_id){
-            return view('department.inventory.assign-item',['item'=>$item]);
-        }else{
-            return redirect()->back();
-        }
+        return view('department.inventory.assign-item',['item'=>$item]);
     }
 
     public function store_assign(Request $request){
@@ -154,9 +156,11 @@ class DepartmentInventory extends Controller
         $condition = array('Good','Bad','Broken Seal','Returned');
         $category = array('Medicinal','Stationery','Hardware','Others');
         $status = array('In stock','Assigned');
+        $shelf_no =  User::where('id', auth()->guard('department')->user()->hospital_id)->first();
+        $no = (int)$shelf_no->shelf_number;
         $item = InventoryItem::find(Crypt::decrypt($id));
         if($item->hospital_id == auth()->guard('department')->user()->hospital_id){
-            return view('department.inventory.edit-item',['item'=>$item]);
+            return view('department.inventory.edit-item',['item'=>$item,'no'=>$no,'category' => $category]);
         }else{
             return redirect()->back();
         }
@@ -167,19 +171,16 @@ class DepartmentInventory extends Controller
             'name' => 'required',
             'quantity' => 'required|numeric',
             'shelf_number' => 'required|numeric',
-            'item_status' => 'required',
             'item_category' => 'required',
             'date_brought_in' => 'required|date',
             'delivered_by' => 'required',
             'serial_number' => 'required',
             'deliverer_number' => 'required',
-            'expiry_date' => 'required|nullable',
         ]);
         $item = InventoryItem::find(Crypt::decrypt($request->id));
             $item->name = $request->name;
             $item->quantity = $request->quantity;
             $item->shelf_no = $request->shelf_number;
-            $item->item_status = $request->item_status;
             $item->item_category = $request->item_category;
             $item->last_edited_by = auth()->guard('department')->user()->name;
             $item->date_brought_in = $request->date_brought_in;
@@ -187,7 +188,6 @@ class DepartmentInventory extends Controller
             $item->hospital_id = auth()->guard('department')->user()->hospital_id;
             $item->serial_number = $request->serial_number;
             $item->deliverer_number = $request->deliverer_number;
-            $item->item_condition = $request->item_condition;
             $item->save();
 
             return redirect('/department/dashboard');

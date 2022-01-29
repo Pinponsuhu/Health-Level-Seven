@@ -22,7 +22,12 @@
                 </div>
                 <div class="my-2">
                     <label class="font-semibold text-md block mb-1">Shelf Number</label>
-                    <input type="text" value="{{ old('shelf_number') }}" name="shelf_number" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block"  placeholder="Enter Shelf Number">
+                    <select name="shelf_number" class="border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block" id="">
+                        <option disabled selected>--Select Shelf Number--</option>
+                        @for ($i = 1;$i <= $no; $i++)
+                       <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                    </select>
                     @error('shelf_number')
                         <p class="text-sm text-red-500">{{ $message }}</p>
                     @enderror

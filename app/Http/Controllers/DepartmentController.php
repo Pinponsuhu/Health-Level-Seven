@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Charts\BedspaceChart;
+use App\Charts\DepartmentBedChart;
 use App\Models\Appointment;
 use App\Models\Department;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,8 +33,9 @@ class DepartmentController extends Controller
         return redirect('department/dashboard');
     }
 
-    public function department_dashboard(BedspaceChart $chart)
+    public function department_dashboard(DepartmentBedChart $chart)
     {
+        // dd($bed_no);
             $appointments = Appointment::latest()->where('hospital_id','=',Auth()->guard('department')->user()->hospital_id)->where('preferred_date','=', Carbon::now()->format('Y-m-d'))->get();
             return view('department.dashboard', ['appointments' => $appointments, 'chart' => $chart->build()]);
     }
@@ -55,6 +57,10 @@ class DepartmentController extends Controller
         }else{
             return back();
         }
+    }
+
+    public function covid_tracker(){
+        return view('covid-tracker.index');
     }
 }
 

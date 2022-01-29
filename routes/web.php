@@ -213,3 +213,4 @@ Route::get('/super/{status}/complaint',[SuperAdminController::class, 'all_compla
 Route::get('/super/complain/track/{id}',[SuperAdminController::class, 'track_complaint']);
 Route::get('super/reply/complain/{id}',[SuperAdminController::class, 'show_reply_complain']);
 Route::post('/super/reply/complain/{id}',[SuperAdminController::class, 'send_reply_complaint']);
+Route::get('/covid/tracker',[DepartmentController::class, 'covid_tracker']);

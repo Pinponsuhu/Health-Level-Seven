@@ -25,7 +25,7 @@
                         <label class="font-semibold text-md block mb-1">Number of Assigned Items</label>
                         <select name="number_of_item" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block" id="">
                             <option value="" disabled selected>--Select Quantity --</option>
-                            @for ($i = 1; $i<= $item->quantity; $i++)
+                            @for ($i = 1; $i <= $item->quantity; $i++)
                                 <option value="{{ $i }}">{{ $i }}</option>
                             @endfor
                         </select>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Assign;
 use App\Models\InventoryItem;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
