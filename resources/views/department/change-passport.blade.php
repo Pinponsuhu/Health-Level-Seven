@@ -2,8 +2,8 @@
 @section('content')
     <main class="w-full overflow-y-scroll h-screen">
         @include('layouts.department.nav');
-        <div class="px-8 mt-4">
-            <div class="rounded-md shadow-md bg-white p-6">
+        <div class="px-4 md:px-8 mt-3">
+            <div class="rounded-md shadow-md bg-white p-3 md:p-6">
                 <h1 class="text-xl font-bold mb-3 text-green-500">Update Patient Passport</h1>
                 <form action="/department/store/update/{{ Crypt::encrypt($patient->id) }}" class="md:w-6/12" enctype="multipart/form-data" method="POST">
                     @csrf

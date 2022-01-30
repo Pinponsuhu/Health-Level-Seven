@@ -2,11 +2,11 @@
 @section('content')
 <main class="w-full h-screen overflow-y-scroll">
     @include('layouts.department.nav')
-    <div class="h-96 grid grid-cols-3 gap-x-3 mt-3 px-6">
-        <section class="col-span-2 bg-white py-4 px-6 rounded-md h-full shadow-md">
+    <div class="h-72 md:h-96 grid md:grid-cols-3 gap-x-3 mt-3 px-6 mb-6">
+        <section class="md:col-span-2 bg-white py-4 px-6 rounded-md h-72 md:h-full shadow-md">
             {!! $chart->container() !!}
         </section>
-        <section class="relative col-span-1 overflow-y-scroll rounded-md h-full shadow-md bg-white px-6 py-2">
+        <section class="relative md:col-span-1 overflow-y-scroll rounded-md mt-4 md:mt-0 h-28 md:h-full shadow-md bg-white px-6 py-2">
                 <h1 class="text-md mb-2 font-bold">Add new</h1>
                 <div class="flex gap-x-3 justify-center mt-2">
                     <a href="/department/existing/patient" class="bg-green-500 hover:bg-green-600 px-3 text-white py-2 rounded-md">Existing Patient</a>
@@ -24,14 +24,15 @@
             </div>
         </section>
     </div>
-    <div class="px-6 mt-6">
+    <div class="px-6 mt-36 md:mt-6">
        <div  class="w-full bg-white px-4 py-3 rounded-md shadow-md mb-5">
-        <form action="/department/bed/search" class="w-8/12 mx-auto grid capitalize grid-cols-4 gap-x-3 items-center my-3" method="get">
+        <form action="/department/bed/search" class="w-11/12 md:w-8/12 mx-auto grid capitalize grid-cols-4 gap-x-3 items-center my-3" method="get">
             @csrf
             <input type="search" id="search" name="search" placeholder="Search By Surname, Ward, Status or Bed Number" class="bg-green-500 col-span-3 outline-none rounded-md shadow-md px-3 h-12 py-3 text-white placeholder-green-50 block">
             <button type="submit" class="w-full rounded-md shadow-md bg-green-500 block h-12 text-white">Search</button>
         </form>
         {{-- <h1 class="text-xl font-semibold text-green-500 text-center">Patients In Bed</h1> --}}
+       <div class="w-full overflow-x-scroll">
         <table class="w-full shadow-md bg-white">
             <thead>
                 <tr class="text-green-50 font-medium text-md">
@@ -72,6 +73,7 @@
                 @endforeach
             </tbody>
         </table>
+       </div>
        </div>
     </div>
 </main>

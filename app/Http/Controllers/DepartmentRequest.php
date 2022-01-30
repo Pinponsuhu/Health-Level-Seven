@@ -9,13 +9,12 @@ use App\Models\RequestReplyFiles;
 use App\Models\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\DB;
 
 class DepartmentRequest extends Controller
 {
-    public function show(){
-        $reqs = Requests::latest()->where('from',auth()->guard('department')->user()->id)->where('status','Open')->get();
-        return view('department.request',['reqs'=>$reqs]);
+    public function show($status){
+        $reqs = Requests::latest()->where('from',auth()->guard('department')->user()->id)->where('status',Crypt::decrypt($status))->get();
+        return view('department.request',['reqs'=>$reqs,'status'=> Crypt::decrypt($status)]);
     }
     public function show_add(){
         return view('department.new-request');

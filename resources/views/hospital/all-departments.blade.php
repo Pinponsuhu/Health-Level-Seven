@@ -2,8 +2,8 @@
 @section('content')
 <main class="w-full overflow-y-scroll h-screen">
         @include('layouts.hospital.nav')
-        <div class="px-8">
-            <div class="p-6 mt-6 bg-white rounded-md shadow-md">
+        <div class="px-4 md:px-8">
+            <div class="p-3 md:p-6 mt-3 bg-white rounded-md shadow-md">
             <h1 class="text-xl font-bold text-center text-green-500 my-4">All Registered Departments</h1>
         <div class="w-full overflow-x-scroll">
             <table class="w-full mx-auto bg-white shadow-md rounded-md mt-2">

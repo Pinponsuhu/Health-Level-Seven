@@ -19,10 +19,10 @@ use Illuminate\Support\Facades\Hash;
 
 class SuperAdminController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('superadmin');
-    // }
+    public function __construct()
+    {
+        $this->middleware('superadmin');
+    }
 
     public function index(){
         return view('super-admin.index');
@@ -338,6 +338,50 @@ class SuperAdminController extends Controller
         $admin->passport = str_replace('public/super_admins/','',$path);
         $admin->save();
         return redirect('/super/admin/index');
+    }
+
+    public function edit_department($id){
+        $department = Department::find(Crypt::decrypt($id));
+        return view('super-admin.edit-department',['department'=> $department]);
+    }
+
+    public function update_department(Request $request){
+        $request->validate([
+            'name' => 'required'
+        ]);
+        $department =Department::find(Crypt::decrypt($request->id));
+
+        $department->name = $request->name;
+        $department->radiology_permission = $request->radiology;
+        $department->bed_permission = $request->bed;
+        $department->appointment_permission = $request->appointment;
+        $department->inventory_permission = $request->inventory;
+        $department->save();
+
+        return redirect('super/admin/hospital/list');
+    }
+
+    public function edit_department_password($id){
+        return view('super-admin.edit-department-password',['id'=> $id]);
+    }
+    public function update_department_password(Request $request){
+        $request->validate([
+            'password' => 'required|confirmed',
+        ]);
+
+        $department = Department::find(Crypt::decrypt($request->id));
+
+        $department->password = Hash::make($request->password);
+        $department->save();
+
+        return redirect('super/admin/hospital/list');
+    }
+
+    public function delete_department($id){
+        $department = Department::find(Crypt::decrypt($id));
+        
+        $department->delete();
+        return redirect('super/admin/hospital/list');
     }
 
 

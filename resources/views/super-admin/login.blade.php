@@ -25,12 +25,12 @@
         </style>
     </head>
     <body class="antialiased bg-gray-100">
-        <form action="/super/admin/login" class="w-4/12 mx-auto bg-white shadow-md rounded-md pb-6 mt-14" method="POST">
-            <h1 class="w-full bg-green-600 text-white py-3 text-center rounded-tr-md rounded-tl-md text-xl mb-4 font-semibold">Login</h1>
+        <form action="/super/admin/login" class="w-11/12 md:w-4/12 mx-auto bg-white shadow-md rounded-md pb-6 mt-14" method="POST">
+            <h1 class="w-full bg-green-600 text-white py-3 text-center rounded-tr-md rounded-tl-md text-xl mb-4 font-semibold">Super Admin Login</h1>
             @csrf
             <div class="px-7">
                 @if (session('status'))
-                    {{ session('status') }}
+                    <p class="text-red-400 text-center my-2">{{ session('status') }}</p>
                 @endif
                 <label for="" class="mt-2 block font-medium">Username</label>
                 <input type="text" autocomplete="off" name="username" placeholder="Admin Username" class="border-4 border-green-600 px-3 py-3 text-md rounded-md shadow-md bg-white block mt-2 w-full" id="">

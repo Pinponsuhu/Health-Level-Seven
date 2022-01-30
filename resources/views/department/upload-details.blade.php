@@ -2,14 +2,14 @@
 @section('content')
     <main class="w-full h-screen overflow-y-scroll">
         @include('layouts.department.nav')
-        <div class="px-8 mt-3">
-            <div class="p-8 bg-white rounded-md shadow-md">
+        <div class="px-4 md:px-8 mt-3">
+            <div class="p-3 md:p-6 bg-white rounded-md shadow-md">
                 <div class="flex justify-between items-center">
-                    <h1 class="text-2xl font-bold text-green-500 mb-3">Test Details</h1>
+                    <h1 class="text-xl md:text-2xl font-bold text-green-500 md:mb-3">Test Details</h1>
                     <a href="#" onclick="add_result()" class="px-8 py-2 bg-green-500 text-white rounded-md items-center"><i class="fa fa-plus"></i> Add result</a>
                 </div>
-                <div class="w-full h-full grid col-span-2 items-center gap-x-4">
-                    <h1 class="text-3xl font-bold col-span-2 text-gray-900">{{ $upload->full_name}}</h1>
+                <div class="w-full h-full grid md:col-span-2 items-center gap-x-4">
+                    <h1 class="text-2xl md:text-3xl font-bold md:col-span-2 text-gray-900">{{ $upload->full_name}}</h1>
 
                     <div class="flex gap-x-2 mt-4">
                         <label class="text-green-500 text-md font-semibold">Patient ID: </label>
@@ -40,7 +40,7 @@
                         <p class="text-md font-medium">{{ date($upload->created_at) }}</p>
                     </div>
 
-                    <h1 class="col-span-2 text-xl font-bold text-green-500 my-4">Result Section</h1>
+                    <h1 class="md:col-span-2 text-xl font-bold text-green-500 my-4">Result Section</h1>
                     <div class="flex flex-col gap-y-5">
                         @foreach ($files as $file)
                     <div class="flex gap-x-6 justify-between items-center">

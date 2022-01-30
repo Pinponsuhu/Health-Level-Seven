@@ -85,8 +85,9 @@
                                     <input type="text" name="department" value="{{ $department->name }}" disabled id="">
                                 </form>
                                 <div class="flex gap-x-5">
-                                    <a href="#"><i class="fa fa-pen"></i></a>
-                                    <a href="#"><i class="fa fa-trash text-red-400"></i></a>
+                                    <a href="/super/admin/department/password/{{ Crypt::encrypt($department->id) }}"><i class="fa fa-lock"></i></a>
+                                    <a href="/super/admin/edit/department/{{ Crypt::encrypt($department->id) }}"><i class="fa fa-pen"></i></a>
+                                    <a href="/super/admin/delete/department/{{ Crypt::encrypt($department->id) }}"><i class="fa fa-trash text-red-400"></i></a>
                                 </div>
                             </div>
                             @endforeach

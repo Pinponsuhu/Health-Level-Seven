@@ -120,7 +120,7 @@ class DepartmentPatient extends Controller
 
     public function patient_details($id){
         $patient = Patient::find(Crypt::decrypt($id));
-        $bed_histories = BedSpace::where('PID','=',$patient->PID)->where('hospital_id','=',auth()->user()->id)->get();
+        $bed_histories = BedSpace::where('PID','=',$patient->PID)->where('hospital_id','=',auth()->guard('department')->user()->hospital_id)->get();
         if($patient->hospital_id == auth()->guard('department')->user()->hospital_id){
             return view('department.patient-details',['patient'=> $patient,'bed_histories'=> $bed_histories]);
         }else{

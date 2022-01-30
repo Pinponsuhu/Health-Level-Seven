@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Charts\BedspaceChart;
+use App\Charts\DepartmentBedChart;
 use App\Models\BedSpace;
 use App\Models\Patient;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class DepartmentBed extends Controller
         $this->middleware('bed');
     }
 
-    public function bed_management(BedspaceChart $chart, Request $request){
+    public function bed_management(DepartmentBedChart $chart, Request $request){
         $beds = BedSpace::latest()
         ->where('status','!=','Released')
         ->where('status', '!=', 'Deceased')

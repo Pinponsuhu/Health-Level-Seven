@@ -2,9 +2,9 @@
 @section('content')
     <main class="w-full h-screen overflow-y-scroll">
         @include('layouts.department.nav')
-        <form action="/department/upload/radiology" class=" w-8/12 mb-6 grid grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md shadow-md mt-8 bg-white" method="post" enctype="multipart/form-data">
+        <form action="/department/upload/radiology" class="w-11/12 md:w-8/12 mb-6 grid md:grid-cols-2 mx-auto gap-x-5 px-8 py-5 rounded-md shadow-md mt-3 bg-white" method="post" enctype="multipart/form-data">
             @csrf
-            <h1 class="col-span-2 text-2xl font-semibold text-green-600 mb-3">Result Tracker</h1>
+            <h1 class="md:col-span-2 text-xl md:text-2xl font-semibold text-green-600 mb-3">Result Tracker</h1>
             <div class="my-2">
                 <label class="font-semibold text-md block mb-1">Full name</label>
                 <input type="text" value="{{ old('full_name') }}" name="full_name" placeholder="Enter Patient's fullname" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block">
@@ -45,7 +45,7 @@
                     <p class="text-sm text-red-500">{{ $message }}</p>
                 @enderror
             </div>
-            <button type="submit" class="w-32 py-3 block mx-auto text-center text-white bg-green-600 rounded-md mt-2 shadow-md col-span-2">Register</button>
+            <button type="submit" class="w-32 py-3 block mx-auto text-center text-white bg-green-600 rounded-md mt-2 shadow-md md:col-span-2">Register</button>
         </form>
     </main>
 @endsection

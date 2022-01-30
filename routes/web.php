@@ -84,6 +84,7 @@ Route::get('/assign/item/{id}', [InventoryController::class, 'assign']);
 Route::post('/store/assign/{id}', [InventoryController::class, 'store_assign']);
 Route::get('/edit/item/{id}', [InventoryController::class, 'edit_item']);
 Route::post('/store/edit/item/{id}', [InventoryController::class, 'store_edit']);
+Route::get('/search/items',[InventoryController::class, 'search_items']);
 Route::get('/send/reminder', [routineController::class, 'reminder']);
 Route::get('/hospital/changing/password',[HospitalAdminController::class, 'change_password']);
 Route::post('/hospital/changing/password/{id}',[HospitalAdminController::class, 'changing_password']);
@@ -119,7 +120,7 @@ Route::get('/hospital/dataex/send',[HospitalDataExchange::class, 'send_msg']);
 //testing file
 Route::get('/hospital/datex/send', [HospitalDataExchange::class, 'send_file']);
 //request controller
-Route::get('/request/all',[HospitalRequestController::class, 'show']);
+Route::get('/request/{status}',[HospitalRequestController::class, 'show']);
 Route::get('/request/track/{id}',[HospitalRequestController::class, 'track']);
 Route::get('/reply/request/{id}',[HospitalRequestController::class, 'show_reply']);
 Route::post('/reply/request/{id}',[HospitalRequestController::class, 'send_reply']);
@@ -170,13 +171,12 @@ Route::get('/department/assign/item/{id}', [DepartmentInventory::class, 'assign'
 Route::post('/department/store/assign',[DepartmentInventory::class, 'store_assign']);
 Route::get('/department/change/password',[DepartmentController::class, 'change_password']);
 Route::post('/department/changing/password/{id}', [DepartmentController::class, 'changing_password']);
-Route::get('/department/request/all',[DepartmentRequest::class, 'show']);
+Route::get('/department/request/{status}',[DepartmentRequest::class, 'show']);
 Route::get('/department/new/request',[DepartmentRequest::class, 'show_add']);
 Route::post('/department/new/request',[DepartmentRequest::class, 'store_new']);
 Route::get('/department/request/track/{id}',[DepartmentRequest::class, 'req_details']);
 Route::get('department/reply/request/{id}',[DepartmentRequest::class, 'show_reply']);
 Route::post('department/reply/request/{id}',[DepartmentRequest::class, 'send_reply']);
-Route::get('/department/closed/request',[DepartmentRequest::class, 'closed_request']);
 Route::get('/department/covid/tracker',[DepartmentController::class, 'covid_tracker']);
 Route::get('/department/logout',[DepartmentController::class, 'logout']);
 
@@ -208,6 +208,8 @@ Route::post('/super/admin/settings/update/profile', [SuperAdminController::class
 Route::post('/super/admin/settings/change/passport', [SuperAdminController::class, 'store_admin_new_passport']);
 Route::post('/super/admin/settings/change/password', [SuperAdminController::class, 'store_admin_new_password']);
 Route::get('/super/admin/edit/hospital/{id}',[SuperAdminController::class, 'edit_hospital']);
+Route::get('/super/admin/edit/department/{id}',[SuperAdminController::class, 'edit_department']);
+Route::post('/super/admin/edit/department/{id}',[SuperAdminController::class, 'update_department']);
 Route::post('/super/admin/edit/hospital/{id}',[SuperAdminController::class, 'store_edited_hospital']);
 Route::get('/super/admin/change/logo/{id}',[SuperAdminController::class, 'change_logo']);
 Route::post('/super/admin/change/logo/{id}',[SuperAdminController::class, 'update_logo']);
@@ -219,4 +221,8 @@ Route::get('/super/{status}/complaint',[SuperAdminController::class, 'all_compla
 Route::get('/super/complain/track/{id}',[SuperAdminController::class, 'track_complaint']);
 Route::get('super/reply/complain/{id}',[SuperAdminController::class, 'show_reply_complain']);
 Route::post('/super/reply/complain/{id}',[SuperAdminController::class, 'send_reply_complaint']);
+Route::get('/super/admin/department/password/{id}',[SuperAdminController::class, 'edit_department_password']);
+Route::post('/super/admin/department/password/{id}',[SuperAdminController::class, 'update_department_password']);
+Route::get('/super/admin/delete/department/{id}',[SuperAdminController::class, 'delete_department']);
+
 

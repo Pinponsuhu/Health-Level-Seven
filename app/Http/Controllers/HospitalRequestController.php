@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Crypt;
 
 class HospitalRequestController extends Controller
 {
-    public function show(){
-        $reqs = Requests::latest()->where('status','Open')->get();
-        return view('hospital.request', ['reqs'=>$reqs]);
+    public function show($status){
+        $reqs = Requests::latest()->where('status',Crypt::decrypt($status))->where('hospital_id',auth()->user()->id)->get();
+        return view('hospital.request', ['reqs'=>$reqs,'status'=> Crypt::decrypt($status)]);
     }
     public function track($id){
         $req_id = Crypt::decrypt($id);

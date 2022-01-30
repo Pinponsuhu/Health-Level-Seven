@@ -83,7 +83,6 @@ public function search_items(Request $request){
     $items = InventoryItem::orderBy('name')->where('name', '=', $request->search)
     ->where('hospital_id','=',auth()->user()->id)
     ->orWhere('shelf_no','=',$request->search)
-    ->orWhere('item_status','=',$request->search)
     ->orWhere('item_category','=',$request->search)
     ->orWhere('date_brought_in','=',$request->search)->get();
     $search = $request->search;

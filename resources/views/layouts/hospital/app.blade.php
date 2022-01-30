@@ -113,7 +113,7 @@
                 <a href="/all/items"><li class="text-sm py-2 ml-16 text-white">All Items</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
-                <a href="/request/all"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-sm">Request</p></li></a>
+                <a href="/request/{{ Crypt::encrypt('Open') }}"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-sm">Request</p></li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <a href="/hospital/data/exchange"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-sm">Chatbox</p></li></a>
@@ -131,7 +131,7 @@
 
         </div>
 
-        <div id="nav-btn" onclick="open_menu()" class="fixed z-50 top-20 left-1 md:hidden bg-green-500 p-3 rounded-md text-white">
+        <div id="nav-btn" onclick="open_menu()" class="fixed z-50 top-20 right-1 md:hidden bg-green-500 p-3 rounded-md text-white">
             <p class="text-4xl font-bold">≡</p>
         </div>
         <script>

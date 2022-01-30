@@ -2,8 +2,10 @@
 @section('content')
     <main class="w-full h-screen overflow-y-scroll">
         @include('layouts.department.nav')
-        <div class="px-8">
-            <div class="w-full bg-white rounded-md shadow-md p-6">
+        <div class="px-4 md:px-8">
+            <div class="w-full mt-3 bg-white rounded-md shadow-md p-3 md:p-6">
+                <h1 class="text-xl text-green-500 md:text-2xl font-bold">All Test</h1>
+               <div class="w-full overflow-x-scroll">
                 <table class="w-full mx-auto bg-white shadow-md rounded-md mt-2">
                     <thead>
                         <tr class="font-medium text-white text-md border-b-2 border-green-600">
@@ -28,6 +30,7 @@
                         @endforeach
                     </tbody>
                 </table>
+               </div>
                 <div class="mt-4 px-8">
                         {{ $uploads->links() }}
                 </div>

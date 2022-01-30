@@ -46,7 +46,7 @@
         </style>
     </head>
     <body class="antialiased bg-gray-200 flex">
-        <nav class="w-80 bg-green-600 h-screen hidden md:block overflow-y-scroll py-3">
+        <nav id="nav-sec" class="w-80 z-50 bg-green-600 h-screen hidden md:block overflow-y-scroll py-3">
             <h1 class="uppercase text-3xl font-bold text-white text-center pb-4">Menu</h1>
             <a href="/department/dashboard"><li class="flex text-gray-50 items-center pl-7 mt-3"><i class="fa fa-chart-pie mr-6 text-xl"></i> <p class="text-sm">Dashboard</p></li></a>
             <ul class="pl-4 mt-3 py-3">
@@ -97,11 +97,27 @@
             </ul>
             @endif
             <ul class="pl-4 mt-3 py-3">
-                <a href="/department/request/all"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-xl"></i> <p class="text-sm">Request</p></li></a>
+                <a href="/department/request/{{ Crypt::encrypt('Open') }}"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-xl"></i> <p class="text-sm">Request</p></li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <a href="/department/logout"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-power-off mr-7 text-xl"></i> <p class="text-sm">Logout</p></li></a>
             </ul>
         </nav>
         @yield('content')
+        <div id="nav-btn" onclick="open_menu()" class="fixed z-50 top-24 right-1 md:hidden bg-green-500 p-3 rounded-md text-white">
+            <p class="text-4xl font-bold">≡</p>
+        </div>
+        <script>
+            function open_menu(){
+                if(document.getElementById('nav-btn').innerText == '≡'){
+                    document.getElementById('nav-sec').classList.remove('hidden');
+                    document.getElementById('nav-sec').classList.add('fixed','top-0','left-0','h-screen','overflow-y-scroll');
+                    document.getElementById('nav-btn').innerText = 'x';
+                }else{
+                    document.getElementById('nav-sec').classList.add('hidden');
+                    document.getElementById('nav-sec').classList.remove('fixed','top-0','left-0','h-screen','overflow-y-scroll');
+                    document.getElementById('nav-btn').innerText = '≡';
+                }
+            }
+        </script>
     </body>

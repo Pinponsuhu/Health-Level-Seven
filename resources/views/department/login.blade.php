@@ -25,9 +25,9 @@
         </style>
     </head>
     <body class="antialiased bg-gray-100">
-        <form action="/department/login" class="w-4/12 mx-auto bg-white shadow-md rounded-md pb-6 mt-14" method="POST">
+        <form action="/department/login" class="w-10/12 md:w-4/12 mx-auto bg-white shadow-md rounded-md pb-6 mt-14" method="POST">
             @csrf
-            <h1 class="w-full bg-green-600 text-white py-3 text-center rounded-tr-md rounded-tl-md text-xl mb-4 font-semibold">Login</h1>
+            <h1 class="w-full bg-green-600 text-white py-3 text-center rounded-tr-md rounded-tl-md text-xl mb-4 font-semibold">Department Login</h1>
             <div class="px-7">
                 @if (session('status'))
                     {{ session('status') }}

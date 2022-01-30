@@ -2,11 +2,11 @@
 @section('content')
     <main class="w-full">
             @include('layouts.department.nav')
-        <div class="mt-3 px-8">
-            <div class="bg-white rounded-md shadow-md p-6 w-full">
+        <div class="mt-3 px-4 md:px-8">
+            <div class="bg-white rounded-md shadow-md p-3 md:p-6 w-full">
                 <div>
                     <h1 class="text-xl text-green-500 text-center font-bold mt-4">Confirm Patient Identity</h1>
-                    <form action="/department/confirm/patient" method="get" class="w-8/12 mx-auto mt-2 flex gap-x-3">
+                    <form action="/department/confirm/patient" method="get" class="w-11/12 md:w-8/12 mx-auto mt-2 flex gap-x-3">
                         @csrf
                         <input type="text" class="shadow-lg rounded-md outline-none flex w-9/12 bg-white py-2 px-3" name="search" placeholder="Search By Patient ID or Surname" id="">
                         <button type="submit" class="shadow-md bg-green-500 hover:bg-green-600 text-white rounded-md py-3 px-4">Confirm</button>
@@ -17,7 +17,7 @@
                     <div>
                         @isset($patients)
                             @if ($patient_count > 0)
-                            <div class="px-8 mt-3">
+                            <div class="px-3 md:px-8 mt-3 overflow-x-scroll">
                                 <table class="w-full mx-auto bg-white shadow-md rounded-md mt-2">
                                     <thead>
                                         <tr class="font-medium text-white text-md border-b-2 border-green-600">

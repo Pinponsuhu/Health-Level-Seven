@@ -50,28 +50,30 @@
     <div class="w-11/12 md:w-10/12 overflow-y-scroll h-full mx-auto shadow p-8 rounded-md bg-white text-green-500">
         <a href="/super/admin/index" class="flex gap-x-2 items-center mb-4"><i class="fa fa-arrow-left"></i> Dashboard</a>
         <h1 class="text-xl font-bold mb-4 text-green-500">All Hospitals</h1>
-        <table class="w-full mx-auto bg-white shadow-md rounded-md mt-2">
-            <thead>
-                <tr class="font-medium text-white text-md border-b-2 border-green-600">
-                    <td  class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Hospital Name</td>
-                    <td  class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Head Of Hospital</td>
-                    <td class="py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Phone Number</td>
-                    <td class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Email Address</td>
-                    <td class="py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Action</td>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($hospitals as $hospital)
-                    <tr>
-                        <td class=" py-3 bg-green-100 px-3 text-center capitalize">{{ $hospital->hospital_name }}</td>
-                        <td class=" py-3 bg-white px-3 text-center capitalize">{{ $hospital->head_of_hospital }}</td>
-                        <td class=" py-3 bg-green-100 px-3 text-center">{{ $hospital->phone_number }}</td>
-                        <td class=" py-3 bg-white px-3 text-center">{{ $hospital->email_address }}</td>
-                        <td class="px-3 bg-green-100"><a href="/super/admin/hospital/details/{{ Crypt::encrypt($hospital->id) }}" class="px-5 py-2 bg-blue-500 text-white rounded-md">More</a></td>
+        <div class="w-full overflow-x-scroll">
+            <table class="w-full mx-auto bg-white shadow-md rounded-md mt-2">
+                <thead>
+                    <tr class="font-medium text-white text-md border-b-2 border-green-600">
+                        <td  class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Hospital Name</td>
+                        <td  class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Head Of Hospital</td>
+                        <td class="py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Phone Number</td>
+                        <td class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Email Address</td>
+                        <td class="py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Action</td>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($hospitals as $hospital)
+                        <tr>
+                            <td class=" py-3 bg-green-100 px-3 text-center capitalize">{{ $hospital->hospital_name }}</td>
+                            <td class=" py-3 bg-white px-3 text-center capitalize">{{ $hospital->head_of_hospital }}</td>
+                            <td class=" py-3 bg-green-100 px-3 text-center">{{ $hospital->phone_number }}</td>
+                            <td class=" py-3 bg-white px-3 text-center">{{ $hospital->email_address }}</td>
+                            <td class="px-3 bg-green-100"><a href="/super/admin/hospital/details/{{ Crypt::encrypt($hospital->id) }}" class="px-5 py-2 bg-blue-500 text-white rounded-md">More</a></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </body>

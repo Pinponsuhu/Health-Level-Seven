@@ -46,7 +46,7 @@
     <body class="antialiased bg-gray-100 h-screen py-4">
         <div class="lg:w-10/12 w-9/12 bg-white rounded-md shadow-md mx-auto p-8 h-full overflow-y-scroll">
             <h1 class="flex justify-center gap-x-3 items-center text-center mb-1 text-lg md:text-xl font-medium text-green-600">Welcome,  <img class="w-12 h-12 hidden md:flex rounded-full shadow-lg" src="{{ '/storage/super_admins/' . auth()->guard('superadmin')->user()->passport }}" alt=""> <br class="md:hidden"> <u>{{ auth()->guard('superadmin')->user()->fullname }}</u></h1>
-            <div class="grid md:grid-cols-2 lg:col-span-3 lg:w-11/12 gap-y-3 gap-x-3 border-2 border-red-400 py-4 items-center">
+            <div class="grid md:grid-cols-2 lg:col-span-3 lg:w-11/12 gap-y-3 gap-x-3 py-4 items-center">
                 <a href="/super/admin/hospital/list" class="col-span-1 w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
                     <div class="mt-5">
                         <i class="fa fa-building text-4xl block text-center mx-auto"></i>

@@ -2,10 +2,11 @@
 @section('content')
 <main class="w-full h-screen overflow-y-scroll">
     @include('layouts.department.nav')
-    <div class="mt-3 px-8">
+    <div class="mt-3 px-4 md:px-8">
         <div class="bg-white p-6 w-full rounded-md shadow-md">
-            <h1 class="text-xl font-semibold text-green-500 text-center my-4 drop-shadow-sm">All Bed Space History</h1>
-        <form action="/department/bed/search" class="w-8/12 mx-auto flex capitalize gap-x-2 items-center my-3" method="get">
+            <div class="bg-white">
+                <h1 class="text-xl font-semibold text-green-500 text-center my-4 drop-shadow-sm">All Bed Space History</h1>
+        <form action="/department/bed/search" class="w-11/12 md:w-8/12 mx-auto flex capitalize gap-x-2 items-center my-3" method="get">
             @csrf
             <input type="search" id="search" name="search" placeholder="Search Here" class="bg-white w-9/12 flex outline-none rounded-md shadow-md px-3 h-12 py-3">
             <button type="submit" class=" rounded-md shadow-md bg-green-500 flex px-5 py-3 text-center text-white">Search</button>
@@ -41,6 +42,7 @@
         <div class="my-4">
             {{ $beds->links() }}
         </div>
+            </div>
         </div>
     </div>
 </main>
