@@ -14,8 +14,9 @@
                 <section class="bg-white rounded-md shadow-md md:col-span-3 py-3 px-4">
                     <div class="flex items-center py-3 justify-between px-8 mb-4">
                         <p class="text-gray-500 text-lg font-semibold">Today's Appointment</p>
-                        <a href="#" class="text-lg font-medium text-green-500">See all</a>
+                        <a href="/today/appointments/{{ Crypt::encrypt('Active') }}" class="text-lg font-medium text-green-500">See all</a>
                     </div>
+                   <div class="w-full overflow-x-scroll">
                     <table class="w-full shadow-md">
                         <thead>
                             <tr class="text-green-50 font-medium text-md">
@@ -39,6 +40,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                   </div>
                 </section>
                 <a href="/hospital/covid/tracker">
                     <section class="md:grid bg-gradient-to-br mt-4 md:mt-0 px-6 py-12 from-green-500 to-green-400 rounded-md shadow-md">

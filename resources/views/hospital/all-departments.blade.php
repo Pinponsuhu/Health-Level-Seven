@@ -20,7 +20,7 @@
                 <tbody>
                     @foreach ($departments as $department)
                         <tr>
-                            <td class=" py-3 bg-green-100 px-3 text-center capitalize"><a href="/department/details/{{ Crypt::encrypt($department->id) }}" class="italic underline">{{ $department->name }}</a></td>
+                            <td class=" py-3 bg-green-100 px-3 text-center capitalize"><a href="/hospital/department/details/{{ Crypt::encrypt($department->id) }}" class="italic underline">{{ $department->name }}</a></td>
                             <td class=" py-3 bg-white px-3 text-center">@if ($department->radiology_permission == 'on')
                                 Yes
                             @else

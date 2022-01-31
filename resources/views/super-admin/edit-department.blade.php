@@ -49,7 +49,7 @@
     <div class="w-11/12 md:w-10/12 overflow-y-scroll h-full mx-auto shadow p-8 rounded-md bg-white text-green-500">
         <a href="/super/admin/index" class="flex gap-x-2 items-center mb-4"><i class="fa fa-arrow-left"></i> Dashboard</a>
         <h1 class="text-xl font-bold mb-4 text-green-500">Department Details</h1>
-        <form action="/super/admin/edit/department/{{ Crypt::encrypt($department->id) }}" class="w-11/12 mb-6 grid gap-y-3 md:grid-cols-2 mx-auto gap-x-5 mt-4" method="post">
+        <form action="/hospital/edit/department/{{ Crypt::encrypt($department->id) }}" class="w-11/12 mb-6 grid gap-y-3 md:grid-cols-2 mx-auto gap-x-5 mt-4" method="post">
             @csrf
             <div>
                 <label  class="font-semibold text-md block mb-1">Name</label>
@@ -68,25 +68,25 @@
                 </div>
                 <div class="flex gap-x-3 items-center">
                     <label>Patient Management</label>
-                    <input type="checkbox" @if ($department->patient_permission)
+                    <input type="checkbox" @if ($department->patient_permission == 'on')
                     checked
                     @endif name="patient" id="">
                 </div>
                 <div class="flex gap-x-3 items-center">
                     <label>Appointment Management</label>
-                    <input type="checkbox" @if ($department->appointment_permission)
+                    <input type="checkbox" @if ($department->appointment_permission == 'on')
                     checked
                     @endif name="appointment" id="">
                 </div>
                 <div class="flex gap-x-3 items-center">
                     <label>Bed Management</label>
-                    <input type="checkbox" @if ($department->bed_permission)
-
+                    <input type="checkbox" @if ($department->bed_permission == 'on')
+                        checked
                     @endif name="bed" id="">
                 </div>
                 <div class="flex gap-x-3 items-center">
                     <label>Inventory Management</label>
-                    <input type="checkbox" @if ($department->inventory_permission)
+                    <input type="checkbox" @if ($department->inventory_permission == 'on')
                     checked
                     @endif name="inventory" id="">
                 </div>

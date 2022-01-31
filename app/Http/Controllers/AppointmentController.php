@@ -96,6 +96,29 @@ class AppointmentController extends Controller
         }
     }
 
+    public function today_appointment($stat){
+        $status = array('Active','Cancelled','Missed','Postpone');
+        if(Crypt::decrypt($stat) == 'Active'){
+        $appointments = Appointment::where('hospital_id','=', auth()->user()->id)
+        ->where('status','Active')
+        ->paginate(20);
+        $statuss = 'Active';
+        return view('hospital.today-appointment',['appointments'=>$appointments,'status'=>$status, 'statuss' => $statuss]);
+        }elseif( Crypt::decrypt($stat) == 'Cancelled'){
+            $appointments = Appointment::where('hospital_id','=', auth()->user()->id)
+            ->where('status','Cancelled')
+            ->paginate(20);
+            $statuss = 'Cancelled';
+            return view('hospital.today-appointment',['appointments'=>$appointments,'status'=>$status, 'statuss' => $statuss]);
+        }else{
+            $appointments = Appointment::where('hospital_id','=', auth()->user()->id)
+            ->where('status','Missed')
+            ->paginate(20);
+            $statuss = 'Missed';
+            return view('hospital.today-appointment',['appointments'=>$appointments,'status'=>$status, 'statuss' => $statuss]);
+        }
+    }
+
     public function store_bookings(Request $request){
         $request->validate([
             'surname' => 'required|min:2|alpha',
