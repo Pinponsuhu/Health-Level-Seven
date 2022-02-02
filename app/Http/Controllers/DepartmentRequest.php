@@ -32,6 +32,7 @@ class DepartmentRequest extends Controller
         $req->from = auth()->guard('department')->user()->id;
         $req->hospital_id = auth()->guard('department')->user()->hospital_id;
         $req->to = 'Admin';
+        $req->sender_name = auth()->guard('department')->user()->name;
         $req->is_read = 0;
         $req->status = 'Open';
         $req->save();
@@ -49,7 +50,7 @@ class DepartmentRequest extends Controller
             }
         }
 
-        return redirect('/department/request/all');
+        return redirect('/department/request/' . Crypt::encrypt('Open'));
     }
 
     public function reply(){

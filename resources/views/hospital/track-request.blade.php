@@ -6,7 +6,7 @@
             <div class="bg-white rounded-md shadow-md p-3 md:p-6 h-full overflow-y-scroll">
                 <div class="w-11/12 mx-auto">
                     <h1 class="text-2xl mb-0.5 font-bold text-green-400">{{ $req->title }}</h1>
-                    <p class="mb-3 text-sm text-gray-600">From: {{ $department->name }}</p>
+                    <p class="mb-3 text-sm text-gray-600">From: {{ $req->sender_name }}</p>
                     <p class="text-md">{{ $req->content }}</p>
                     <div class="mt-3 flex gap-x-4 mb-2 border-b-2 border-gray-200 pb-5 items-center">
                         @foreach ($files as $file)

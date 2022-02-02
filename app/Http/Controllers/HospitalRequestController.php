@@ -21,7 +21,7 @@ class HospitalRequestController extends Controller
         $req = Requests::find($req_id);
         $replies = RequestReply::where('request_id',$req_id)->where('from','Admin')->orWhere('to','Admin')->get();
         $reply_files = RequestReplyFiles::where('request_id',$req_id)->get();
-        $department = Department::select('name')->where('id',$req->from)->first();
+        $department = Department::select('name')->where('id',3)->first();
         $files = RequestFiles::where('requests_id',$req_id)->get();
 
         return view('hospital.track-request',['req'=>$req, 'files'=> $files,'department'=>$department,'replies'=>$replies,'reply_files'=> $reply_files]);
@@ -44,6 +44,7 @@ class HospitalRequestController extends Controller
         $reply->hospital_id = auth()->user()->id;
         $reply->to = $req->from;
         $reply->is_read = 0;
+        $req->sender_name = 'Admin';
         $reply->status = $request->status;
         $reply->save();
         $dest = 'public/requests_reply';
