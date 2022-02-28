@@ -12,9 +12,9 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
 
-        <script src="{{ asset('js/all.js') }}"></script>
+        <script src="{{ secure_asset('js/all.js') }}"></script>
 
         <!-- Styles -->
 
@@ -63,7 +63,7 @@
             <div class="py-4 w-full px-4 bg-green-600 mx-auto ">
                 <input type="text" name="" class="w-11/12 py-4 px-3 rounded-lg bg-white placeholder-green-600 text-green-600" placeholder="Search something here..." id="">
             </div>
-            
+
         </main>
         <div class="p-4 rounded-full bg-green-600 text-white fixed bottom-5 right-7">
             <i class="fa fa-envelope text-3xl"></i>
