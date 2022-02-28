@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Hash;
 
 class SuperAdminRegistration extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('superadmin');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('superadmin');
+    // }
 
     public function index(){
         return view('super-admin.reg-admin');
