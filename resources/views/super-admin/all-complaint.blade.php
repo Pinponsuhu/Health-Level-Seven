@@ -12,11 +12,11 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ secure_asset('css/jquery.dataTables.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.css') }}">
 
-        <script src="{{ secure_asset('js/all.js') }}"></script>
-        <script src="{{ secure_asset('js/jquery.js') }}"></script>
+        <script src="{{ asset('js/all.js') }}"></script>
+        <script src="{{ asset('js/jquery.js') }}"></script>
 
         <!-- Styles -->
 
@@ -55,9 +55,9 @@
                 <a href="/super/{{ Crypt::encrypt('Closed') }}/complaint" class="py-2 rounded-md px-6 bg-red-400 text-white">Closed Complaint</a>
             </div>
         </div>
-        <div class="flex items-center gap-x-2">
+        <div class="flex md:hidden gap-y-2 items-center gap-x-2">
             <a href="/super/{{ Crypt::encrypt('Open') }}/complaint" class="py-2 rounded-md px-4 bg-blue-400 text-white">Active</a>
-            <a href="/super/{{ Crypt::encrypt('Closed') }}/complaint" class="py-2 rounded-md px-6 bg-red-400 text-white">Closed Complaint</a>
+            <a href="/super/{{ Crypt::encrypt('Closed') }}/complaint" class="py-2 rounded-md px-3 bg-red-400 text-white">Closed Complaint</a>
         </div>
        <div class="mt-3">
         @if ($complaint->count() != null)

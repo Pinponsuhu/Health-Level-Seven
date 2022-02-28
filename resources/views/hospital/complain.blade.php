@@ -11,13 +11,13 @@
                         Closed
                     @endif Complaint</h1>
                     <div class="md:flex items-center hidden gap-x-2">
-                        <a href="/hospital/new/complain" class="py-2 rounded-md px-4 bg-green-400 text-white">Add new</a>
+                        <a href="/hospital/new/complaint" class="py-2 rounded-md px-4 bg-green-400 text-white">Add new</a>
                         <a href="/hospital/{{ Crypt::encrypt('Open') }}/complain" class="py-2 rounded-md px-4 bg-blue-400 text-white">Active</a>
                         <a href="/hospital/{{ Crypt::encrypt('Closed') }}/complain" class="py-2 rounded-md px-6 bg-red-400 text-white">Closed Complaint</a>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 md:hidden items-center gap-x-2">
-                    <a href="/hospital/new/complain" class="py-2 rounded-md px-4 bg-green-400 text-white">Add new</a>
+                    <a href="/hospital/new/complaint" class="py-2 rounded-md px-4 bg-green-400 text-white">Add new</a>
                     <a href="/hospital/{{ Crypt::encrypt('Open') }}/complain" class="py-2 rounded-md px-4 bg-blue-400 text-white">Active</a>
                     <a href="/hospital/{{ Crypt::encrypt('Closed') }}/complain" class="col-span-2 mt-1.5 py-2 rounded-md px-6 bg-red-400 text-white">Closed Complaint</a>
                 </div>

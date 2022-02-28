@@ -60,6 +60,6 @@ class HospitalRequestController extends Controller
     }
     $req->status = $request->status;
     $req->save();
-    return redirect('/request/all');
+    return redirect('/request/' . Crypt::encrypt('open'));
 }
 }

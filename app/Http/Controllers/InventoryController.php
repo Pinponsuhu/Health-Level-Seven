@@ -92,10 +92,10 @@ public function search_items(Request $request){
     public function item_details($id){
         $item = InventoryItem::find(Crypt::decrypt($id));
         if($item->hospital_id == auth()->user()->id){
-            $history_count = Assign::where('itemr_id','=',$id)
+            $history_count = Assign::where('itemr_id','=',Crypt::decrypt($id))
                         ->where('hospital_id','=',auth()->user()->id)
                         ->count();
-            $history = Assign::where('itemr_id','=',$id)
+            $history = Assign::where('itemr_id','=',Crypt::decrypt($id))
                         ->where('hospital_id','=',auth()->user()->id)
                         ->get();
 
@@ -130,10 +130,12 @@ public function search_items(Request $request){
         $assign->hospital_id = auth()->user()->id;
         $assign->issue_to = $request->issued_to;
         $assign->save();
-        $item = InventoryItem::where('id','=',$request->item_id_no)->first();
-        $number = $item->quantity - $request->number_of_item;
-        $item->quantity = $number;
-        $item->save();
+        $item_id = InventoryItem::where('id',Crypt::decrypt($request->id))->first();
+        // dd($item_id);
+        // $item = InventoryItem::where('id','=',$request->item_id_no)->first();
+        $number = $item_id->quantity - $request->number_of_item;
+        $item_id->quantity = $number;
+        $item_id->save();
 
         return redirect('/all/items');
     }

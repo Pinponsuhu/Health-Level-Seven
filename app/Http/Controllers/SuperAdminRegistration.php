@@ -21,11 +21,11 @@ class SuperAdminRegistration extends Controller
         $this->validate($request,[
             'passport' => 'required','mimes:png,jpg,jpeg',
             'fullname' => 'required',
-            'username' => 'required',
+            'username' => 'required|unique:super_admins,username',
             'level' => 'required',
             'gender' => 'required',
-            'phone_number' => 'required',
-            'email_address' => 'required|email',
+            'phone_number' => 'required|unique:super_admins,phone_number',
+            'email_address' => 'required|email|unique:super_admins,email_address',
             'password' => 'required|confirmed',
         ]);
 

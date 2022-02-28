@@ -12,9 +12,9 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-        <script src="{{ secure_asset('js/all.js') }}"></script>
+        <script src="{{ asset('js/all.js') }}"></script>
 
         <!-- Styles -->
 
@@ -65,7 +65,7 @@
             </div>
             <div class="grid grid-cols-2 items-center px-8">
                 <h1 class="text-2xl font-medium text-green-600 my-3 text-center col-span-2">Add new hospital</h1>
-                <object data="{{ secure_asset('svg/doctor.svg') }}" class="w-8/12 mx-auto" type=""></object>
+                <object data="{{ asset('svg/doctor.svg') }}" class="w-8/12 mx-auto" type=""></object>
                 <form action="" class="w-11/12 px-6 py-7 mx-auto" enctype="multipart/form-data">
                     @csrf
                     <div id="one">

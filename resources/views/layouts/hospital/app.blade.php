@@ -36,11 +36,11 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ secure_asset('css/jquery.dataTables.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.css') }}">
 
-        <script src="{{ secure_asset('js/all.js') }}"></script>
-        <script src="{{ secure_asset('js/jquery.js') }}"></script>
+        <script src="{{ asset('js/all.js') }}"></script>
+        <script src="{{ asset('js/jquery.js') }}"></script>
 
         <!-- Styles -->
 
@@ -125,7 +125,7 @@
         @yield('content')
 
         <div class="w-16 flex justify-center items-center fixed bottom-4 right-5 shadow-md h-16 rounded-full bg-green-600  text-white">
-            <a href="/hospital/{{ Crypt::encrypt('Open') }}/complain">
+            <a href="/hospital/{{ Crypt::encrypt('all') }}/complain">
                 <i class="fa fa-envelope text-2xl"></i>
             </a>
 

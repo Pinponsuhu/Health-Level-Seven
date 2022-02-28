@@ -12,9 +12,9 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-        <script src="{{ secure_asset('js/all.js') }}"></script>
+        <script src="{{ asset('js/all.js') }}"></script>
 
         <!-- Styles -->
 
@@ -89,6 +89,20 @@
                 <label class="font-semibold text-md block mb-1">Hospital Address</label>
                 <input type="text" value="{{ old('hospital_address') }}" name="hospital_address" placeholder="Enter Patient's Surname" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block">
                 @error('hospital_address')
+                    <p class="text-sm text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="my-2">
+                <label class="font-semibold text-md block mb-1">Bed Number</label>
+                <input type="text" value="{{ old('hospital_address') }}" name="bed_number" placeholder="Enter Bed Number" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block">
+                @error('bed_number')
+                    <p class="text-sm text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="my-2">
+                <label class="font-semibold text-md block mb-1">Shelf Number</label>
+                <input type="text" value="{{ old('shelf_number') }}" name="shelf_number" placeholder="Enter Shelf Number" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block">
+                @error('shelf_number')
                     <p class="text-sm text-red-500">{{ $message }}</p>
                 @enderror
             </div>

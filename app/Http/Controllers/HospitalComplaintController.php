@@ -51,7 +51,7 @@ class HospitalComplaintController extends Controller
             }
         }
 
-        return redirect('/hospital/active/complain/');
+        return redirect('/hospital/dashboard');
     }
 
     public function track_complaint($id){
