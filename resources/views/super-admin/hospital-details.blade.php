@@ -12,11 +12,11 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/jquery.dataTables.css') }}">
 
-        <script src="{{ asset('js/all.js') }}"></script>
-        <script src="{{ asset('js/jquery.js') }}"></script>
+        <script src="{{ secure_asset('js/all.js') }}"></script>
+        <script src="{{ secure_asset('js/jquery.js') }}"></script>
 
         <!-- Styles -->
 
@@ -57,7 +57,7 @@
         <div class="px-2 md:px-8 mt-2">
             <div class="flex flex-col md:flex-row gap-x-4 bg-white md:shadow-md rounded-md md:px-6 py-4 mt-4">
                 <div class="w-72 h-full mb-4 md:mb-0">
-                    <img src="{{ asset('/storage/users/' . $hospital->hospital_logo) }}" class="w-72 block rounded shadow-md h-auto" alt="">
+                    <img src="{{ secure_asset('/storage/users/' . $hospital->hospital_logo) }}" class="w-72 block rounded shadow-md h-auto" alt="">
                     <a href="/super/admin/change/logo/{{ Crypt::encrypt($hospital->id) }}" class="text-md font-medium block mt-2 text-center text-green-500">Change Hospital logo</a>
                 </div>
                 <div class="w-full h-full">
