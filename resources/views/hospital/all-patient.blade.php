@@ -7,7 +7,7 @@
         @include('layouts.hospital.nav')
         <div class="px-4 md:px-8">
             <div class="p-2 md:p-4 bg-white py-4 mt-4 rounded-md shadow-md">
-                <form action="/view/all/patient" class="w-11/12 md:w-8/12 mx-auto grid capitalize grid-cols-4 gap-x-3 items-center my-3" method="post">
+                <form action="/view/all/patient" class="w-11/12 md:w-8/12 mx-auto grid capitalize grid-cols-4 gap-x-3 items-center my-3" method="get">
                     @csrf
                     <input type="search" id="search" value="@isset($search)
                     {{ $search }}
