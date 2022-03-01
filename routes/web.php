@@ -233,3 +233,6 @@ Route::post('/super/admin/department/password/{id}',[SuperAdminController::class
 Route::get('/super/admin/delete/department/{id}',[SuperAdminController::class, 'delete_department']);
 
 
+//reidrect link
+
+Route::redirect('/', '/login', 301);
