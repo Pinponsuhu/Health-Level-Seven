@@ -9,14 +9,16 @@
             <div class="p-2 md:p-4 bg-white py-4 mt-4 rounded-md shadow-md">
                 <form action="/view/all/patient" class="w-11/12 md:w-8/12 mx-auto grid capitalize grid-cols-4 gap-x-3 items-center my-3" method="post">
                     @csrf
-                    <input type="search" id="search" value="{{ $search }}" name="search" placeholder="Search By Surname, Patient ID, Email or Phone Number" class="bg-green-500 col-span-3 outline-none rounded-md shadow-md px-3 h-12 py-3 text-white placeholder-green-50 block">
+                    <input type="search" id="search" value="@isset($search)
+                    {{ $search }}
+                    @endisset" name="search" placeholder="Search By Surname, Patient ID, Email or Phone Number" class="bg-green-500 col-span-3 outline-none rounded-md shadow-md px-3 h-12 py-3 text-white placeholder-green-50 block">
                     <button type="submit" class="w-full rounded-md shadow-md bg-green-500 block h-12 text-white">Search</button>
                 </form>
-                @isset ($search)
+                @if ($search)
                 <h1 class="text-xl font-bold text-center text-green-500 my-4">"{{ $search }}"</h1>
-                @endisset
-                {{-- <h1 class="text-xl font-bold text-center text-green-500 my-4">All Registered Patient</h1>
-                @endif --}}
+                @else
+                <h1 class="text-xl font-bold text-center text-green-500 my-4">All Registered Patient</h1>
+                @endif
                <div class="w-full overflow-x-scroll">
                 <table class="w-full mx-auto bg-white shadow-md rounded-md mt-2">
                     <thead>
