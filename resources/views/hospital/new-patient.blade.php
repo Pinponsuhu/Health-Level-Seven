@@ -24,7 +24,7 @@
         </div>
         <div class="my-2">
             <label class="font-semibold text-md block mb-1">Other names</label>
-            <input type="text" value="{{ old('othernames') }}" name="othernames" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block"  placeholder="Enter Patient's Lastname">
+            <input type="text" value="{{ old('othernames') }}" name="othernames" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block"  placeholder="Enter Patient's Othername">
 
             @error('othername')
                 <p class="text-sm text-red-500">{{ $message }}</p>
