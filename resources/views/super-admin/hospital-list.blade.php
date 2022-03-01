@@ -55,6 +55,7 @@
                 <thead>
                     <tr class="font-medium text-white text-md border-b-2 border-green-600">
                         <td  class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Hospital Name</td>
+                        <td  class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Hospital ID</td>
                         <td  class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Head Of Hospital</td>
                         <td class="py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Phone Number</td>
                         <td class=" py-3 bg-green-500 px-3 text-center border-r-4 border-green-100">Email Address</td>
@@ -65,6 +66,7 @@
                     @foreach ($hospitals as $hospital)
                         <tr>
                             <td class=" py-3 bg-green-100 px-3 text-center capitalize">{{ $hospital->hospital_name }}</td>
+                            <td class=" py-3 bg-green-100 px-3 text-center capitalize">{{ $hospital->HID }}</td>
                             <td class=" py-3 bg-white px-3 text-center capitalize">{{ $hospital->head_of_hospital }}</td>
                             <td class=" py-3 bg-green-100 px-3 text-center">{{ $hospital->phone_number }}</td>
                             <td class=" py-3 bg-white px-3 text-center">{{ $hospital->email_address }}</td>
