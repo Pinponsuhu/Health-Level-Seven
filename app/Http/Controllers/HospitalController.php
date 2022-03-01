@@ -273,11 +273,21 @@ $active_bed_numbers = BedSpace::latest()
         }
     }
 
-    public function all_patient(){
-        $patients = Patient::latest()
+    public function all_patient(Request $request){
+        if($request->search == ''){
+            $patients = Patient::latest()
         ->where('hospital_id','=', auth()->user()->id)
         ->get();
         return view('hospital.all-patient', ['patients'=> $patients]);
+        }else{
+            $patients = Patient::latest()->where('surname', '=', $request->search)
+                                  ->orWhere('PID','=',$request->search)
+                                  ->orWhere('email_address','=',$request->search)
+                                  ->orWhere('phone_number','=',$request->search)
+                                  ->where('hospital_id','=', auth()->user()->id)
+                                  ->get();
+                                  return view('hospital.all-patient',['patients'=>$patients,'search'=>$request->search]);
+        }
     }
 
     public function existing_patient(){
