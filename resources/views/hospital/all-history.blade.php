@@ -4,7 +4,7 @@
     @include('layouts.hospital.nav')
     <div class="mt-5 px-6">
         <h1 class="text-xl font-semibold text-green-500 text-center my-4 drop-shadow-sm">All Bed Space History</h1>
-        <form action="/bed/search" class="w-11/12 md:w-8/12 mx-auto flex capitalize gap-x-2 items-center my-3" method="post">
+        <form action="/bed/search" class="w-11/12 md:w-8/12 mx-auto flex capitalize gap-x-2 items-center my-3" method="get">
             @csrf
             <input type="search" id="search" name="search" placeholder="Search Here" class="bg-white w-9/12 flex outline-none rounded-md shadow-md px-3 h-12 py-3">
             <button type="submit" class=" rounded-md shadow-md bg-green-500 flex px-5 py-3 text-center text-white">Search</button>
