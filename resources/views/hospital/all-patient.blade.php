@@ -17,9 +17,9 @@
                 @isset ($search)
                 <h1 class="text-xl font-bold text-center text-green-500 my-4">"{{ $search }}"</h1>
                 @endisset
-                @isset (!$search)
+                @empty ($search)
                 <h1 class="text-xl font-bold text-center text-green-500 my-4">All Registered Patient</h1>
-                @endisset
+                @endempty
                <div class="w-full overflow-x-scroll">
                 <table class="w-full mx-auto bg-white shadow-md rounded-md mt-2">
                     <thead>
