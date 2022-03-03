@@ -63,14 +63,14 @@
                         </div>
                     </div>
                 </a>
-                <a href="/super/admin/new/hospital" class="col-span-1 w-56   mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
+                {{-- <a href="/super/admin/new/hospital" class="col-span-1 w-56   mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
                     <div class="mt-5">
                         <i class="fa fa-user-injured text-4xl block text-center mx-auto"></i>
                         <div>
                             <h2 class="text-xl mt-3 font-medium text-center">Register <br>Hospitals</h2>
                         </div>
                     </div>
-                </a>
+                </a> --}}
                 <a href="/super/admin/settings" class="col-span-1 w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
                     <div class="mt-5">
                         <i class="fa fa-cog text-4xl block text-center mx-auto"></i>
