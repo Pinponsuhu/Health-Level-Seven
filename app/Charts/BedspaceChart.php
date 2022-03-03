@@ -17,7 +17,7 @@ class BedspaceChart
     {
         return $this->chart->pieChart()
             ->setTitle('Hospital Bed Data')
-            ->addData([ \App\Models\BedSpace::latest()->where('status','!=','Released')->where('status', '!=', 'Deceased')->count(),
+            ->addData([ \App\Models\BedSpace::latest()->where('hospital_id',auth()->user()->id)->where('status','!=','Released')->where('status', '!=', 'Deceased')->count(),
             auth()->user()->bed_number - \App\Models\BedSpace::latest()->where('status','!=','Released')->where('status', '!=', 'Deceased')->count() ])
             ->setHeight(360)
             ->setLabels(['Active Beds', 'Available Beds', ]);

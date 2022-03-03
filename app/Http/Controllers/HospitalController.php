@@ -280,13 +280,13 @@ $active_bed_numbers = BedSpace::latest()
         ->get();
         return view('hospital.all-patient', ['patients'=> $patients]);
         }else{
-            $patients = Patient::latest()->where('surname', '=', $request->search)
-                                  ->orWhere('PID','=',$request->search)
-                                  ->orWhere('email_address','=',$request->search)
-                                  ->orWhere('phone_number','=',$request->search)
-                                  ->where('hospital_id','=', auth()->user()->id)
-                                  ->get();
-                                  return view('hospital.all-patient',['patients'=>$patients,'search'=>$request->search]);
+            $patients = Patient::latest()->where('hospital_id','=', auth()->user()->id)
+                                        ->where('surname', '=', $request->search)
+                                        ->orWhere('PID','=',$request->search)
+                                        ->orWhere('email_address','=',$request->search)
+                                        ->orWhere('phone_number','=',$request->search)
+                                        ->get();
+            return view('hospital.all-patient',['patients'=>$patients,'search'=>$request->search]);
         }
     }
 
