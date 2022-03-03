@@ -89,16 +89,6 @@
                     </div>
                 </a>
                 @endif
-                @if (auth()->guard('superadmin')->user()->level == 1)
-                <a href="/super/add/admin" class="col-span-1 w-56 mx-auto py-5 px-4 rounded-md hover:bg-green-600 hover:text-white bg-white text-green-600 shadow-md">
-                    <div class="mt-5">
-                        <i class="fa fa-plus text-4xl block text-center mx-auto"></i>
-                        <div>
-                            <h2 class="text-xl mt-3 font-medium text-center ">Add <br> Admin</h2>
-                        </div>
-                    </div>
-                </a>
-                @endif
 
                 <a href="/super/admin/logout" class="md:col-span-2 lg:col-span-3 block w-36 text-center py-3 bg-green-500 text-white rounded-md shadow-md mx-auto">Logout</a>
             </div>

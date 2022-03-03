@@ -14,6 +14,9 @@ class SuperAdminRegistration extends Controller
     // }
 
     public function index(){
+        if(auth()->guard('superadmin')->user()->level != 1){
+            return redirect('/super/admin/index');
+        }
         return view('super-admin.reg-admin');
     }
 

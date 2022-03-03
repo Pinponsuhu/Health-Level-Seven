@@ -50,7 +50,9 @@
         <a href="/super/admin/index" class="flex gap-x-2 items-center mb-4"><i class="fa fa-arrow-left"></i> Dashboard</a>
         <div class="flex justify-between px-8 my-3 items-center">
             <h1 class="text-xl font-bold mb-4 text-green-500">All Admin</h1>
-            <a href="/super/add/admin" class="bg-green-500 px-4 py-2 text-white font-medium"></a>
+            @if (auth()->guard('superadmin')->user()->level == 1)
+            <a href="/super/add/admin" class="bg-green-500 px-4 py-2 text-white font-medium">Add Admin</a>
+            @endif
         </div>
         <table class="w-full mx-auto bg-white shadow-md rounded-md mt-2">
             <thead>
