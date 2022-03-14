@@ -1,8 +1,8 @@
-<div class="mt-3 bg-white py-4 rounded-md w-full shadow-sm px-4">
+<div class="md:mt-3 bg-white py-4 rounded-md w-full shadow-sm px-4">
     <h1 class="text-green-400 text-xl font-medium">{{ $username->hospital_name }}</h1>
     <p class="text-sm mt-0.5 text-gray-400">{{ $username->HID }}</p>
 </div>
-<div class="w-full h-96 msg-sec mt-4 flex flex-col gap-y-2 bg-white rounded-md overflow-y-scroll p-4">
+<div class="w-full h-80 msg-sec mt-1 flex flex-col gap-y-2 bg-white rounded-md overflow-y-scroll p-4">
     @foreach ($messages as $message)
     <div class="flex @if ($message->from == auth()->user()->id)
         justify-end
@@ -17,9 +17,9 @@
     @endforeach
 </div>
 <div class="flex bg-white rounded-md px-3 mt-5 py-3 items-center send-msg">
-    <form action="" method="get" enctype="multipart/form-data" id="send-files">
+    <form action="" method="get" class="w-36" enctype="multipart/form-data" id="send-files">
         @csrf
-        <input type="file" name="files" id="send-file">
+        <input type="file" class="w-36 block" name="files" id="send-file">
     </form>
     <input type="text" id="send-msg" placeholder="Type message here" class="bg-white block w-full outline-none py-3 px-3">
 </div>

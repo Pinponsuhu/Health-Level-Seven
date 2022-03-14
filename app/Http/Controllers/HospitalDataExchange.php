@@ -29,7 +29,7 @@ class HospitalDataExchange extends Controller
         return view('hospital.messages.index',['messages'=> $messages,'username'=>$username]);
     }
     public function send_msg(Request $request){
-        dd($_FILES["files"]["name"]);
+        // dd($_FILES["files"]["name"]);
         $from = auth()->user()->id;
         $to = $request->receiver_id;
         $content = $request->message;

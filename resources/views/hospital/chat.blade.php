@@ -1,7 +1,7 @@
 @extends('layouts.hospital.chat-app')
 @section('content')
     <main class="w-full flex h-screen">
-        <nav id="hospital" class="w-96 bg-green-400 h-full hidden md:flex overflow-y-scroll p-4">
+        <nav id="hospital" class="w-72 md:w-96 bg-green-400 fixed left-0 top-0 md:relative h-full hidden md:flex overflow-y-scroll md:p-4">
             <a href="/hospital/dashboard" class="px-8 py-3 rounded-full text-green-500 bg-white"><i class="fa fa-arrow-left"></i> Back</a>
             <h1 class="font-bold text-2xl text-white mt-3">Data Exchange</h1>
             <p class="font-medium text-white mt-1 text-sm">Hospital ID: {{ auth()->user()->HID }}</p>
@@ -23,7 +23,7 @@
             </div>
         </nav>
         <section class="w-full">
-            <div class="bg-green-900 bg-opacity-95 w-full p-5 h-full" id="messages">
+            <div class="bg-green-900 bg-opacity-95 w-full md:p-5 h-full" id="messages">
 
             </div>
         </section>

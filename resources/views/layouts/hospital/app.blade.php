@@ -116,7 +116,7 @@
                 <a href="/request/{{ Crypt::encrypt('Open') }}"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-sm">Request</p></li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
-                <a href="#"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-sm">Chatbox</p></li></a>
+                <a href="/hospital/data/exchange"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-sm">Chatbox</p></li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <a href="/logout"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-power-off mr-7 text-2xl"></i> <p class="text-sm">Logout</p></li></a>
