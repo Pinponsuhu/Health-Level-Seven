@@ -77,9 +77,6 @@
             <h1 class="uppercase text-3xl font-bold text-white text-center pb-4">Menu</h1>
             <a href="/hospital/dashboard"><li class="flex text-gray-50 items-center pl-7 mt-3"><i class="fa fa-chart-pie mr-6 text-2xl"></i> <p class="text-sm">Dashboard</p></li></a>
             <ul class="pl-4 mt-3 py-3">
-                <a href="/hospital/changing/password"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-lock mr-7 text-2xl"></i> <p class="text-sm">Change Password</p></li></a>
-            </ul>
-            <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-x-ray mr-5 text-2xl"></i> <p class="text-sm">Radiology Upload</p></li>
                 <a href="/track/uploads"><li class="text-sm py-2 ml-16 text-white">Track Uploads</li></a>
                 <a href="/upload/radiology"><li class="text-sm py-2 ml-16 text-white">Add New</li></a>
@@ -117,6 +114,9 @@
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <a href="/hospital/data/exchange"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-sm">Chatbox</p></li></a>
+            </ul>
+            <ul class="pl-4 mt-3 py-3">
+                <a href="/hospital/changing/password"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-lock mr-7 text-2xl"></i> <p class="text-sm">Change Password</p></li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
                 <a href="/logout"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-power-off mr-7 text-2xl"></i> <p class="text-sm">Logout</p></li></a>

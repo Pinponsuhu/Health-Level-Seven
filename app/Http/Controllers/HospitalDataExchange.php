@@ -11,8 +11,8 @@ use Pusher\Pusher;
 class HospitalDataExchange extends Controller
 {
     public function show(){
-        $hospitals = DB::select(" select users.id, users.hospital_name, users.hospital_logo, users.HID, count(is_read) as unread from users LEFT JOIN messages ON users.id = messages.from and is_read = 0 and messages.to = " . auth()->user()->id . " where users.id != ". auth()->user()->id . " group by users.id, users.hospital_name, users.hospital_logo,users.HID, users.id");
-        dd($hospitals);
+        $hospitals = DB::select("select users.id, users.hospital_name, users.hospital_logo, users.HID, count(is_read) as unread from users LEFT JOIN messages ON users.id = messages.from and is_read = 0 and messages.to = " . auth()->user()->id . " where users.id != ". auth()->user()->id . " group by users.id, users.hospital_name, users.hospital_logo,users.HID, users.id");
+        // dd($hospitals);
         return view('hospital.chat',['hospitals' => $hospitals]);
     }
     public function get_msg($user_id){
@@ -60,6 +60,6 @@ class HospitalDataExchange extends Controller
     }
 
     public function send_file(Request $request){
-        echo($request->text);
+       dd($request->all());
     }
 }

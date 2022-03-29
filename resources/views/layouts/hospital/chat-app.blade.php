@@ -7,7 +7,6 @@
     <title>Data exchange</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
      <!-- Fonts -->
-
      <link rel="preconnect" href="https://fonts.googleapis.com">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
@@ -46,6 +45,39 @@ background: #095134;
 </body>
 <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 <script>
+                $(document).ready(function (e) {
+ $("#formiii").on('submit',(function(e) {
+  e.preventDefault();
+  $.ajax({
+         url: "http://127.0.0.1:8000/hospital/datex/send",
+   type: "POST",
+   data:  new FormData(this),
+   contentType: false,
+         cache: false,
+   processData:false,
+
+   success: function(data)
+      {
+          console.log(data);
+    if(data=='invalid')
+    {
+     // invalid file format.
+     $("#err").html("Invalid File !").fadeIn();
+    }
+    else
+    {
+     // view uploaded file.
+     $("#preview").html(data).fadeIn();
+     $("#form")[0].reset();
+    }
+      },
+     error: function(e)
+      {
+    $("#err").html(e).fadeIn();
+      }
+    });
+ }));
+});
     var receiver_id = "";
     var my_id = "{{ auth()->user()->id }}";
      $(document).ready(function () {
@@ -54,6 +86,7 @@ background: #095134;
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
          });
+        });
     // Pusher.logToConsole = true;
 
 var pusher = new Pusher('2679c497925c8ac812ee', {
@@ -98,104 +131,12 @@ channel.bind('my-event', function(data) {
                     }
                 });
             });
-        $(document).on('keyup','.send-msg #send-msg', function (e) {
-            var message = $(this).val();
-            if(e.keyCode == 13 && message != '' && receiver_id != ''){
-                $(this).val('');
-                var datastr = "receiver_id=" + receiver_id + "&message=" + message + "&msg_type= text";
-                $.ajax({
-                    type: "get",
-                    url: "/hospital/dataex/send",
-                    cache: false,
-                    data: datastr,
-                    success: function (data) {
 
-                    },
-                    error: function (jqXHR, status, err) {
-                        console.log(err);
-                    },
-                    complete: function(){
-                        scrollToBottom();
-                    }
-                });
-            }
-        });
         $(document).on('change', '.send-msg #send-file', function(e){
             $(this).closest('form').submit();
             e.preventDefault();
             });
-        $(document).on('submit', '#send-files', function(e){
-                e.preventDefault();
-                // filesssss = $('#send-file').val()
-                // alert(filesssss);
-                // var form = $('#send-files')[0];
-                // console.log(form.val());
-            var formdata = new FormData();
-            var file_data = $('.send-msg #send-file')[0].files[0];
-            // console.log(file_data);
-            formdata.append('file', file_data);
-            formdata.append('text', 'file_data');
-            for (let [key, value] of formdata) {
-            console.log(`${key}: ${value}`);
-            }
-            // console.log(formdata);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-});
-            $.ajax({
-                url: "/hospital/datex/send",
-                method: "get",
-                data: formdata,
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data){
 
-                },
-                error: function(error){
-                    console.log(error);
-                }
-            });
-
-        });
-        // $(document).on('change', '.send-msg #send-file',function (e){
-        //     // var file_data = $('.send-msg #send-file').prop('file');
-        //     // var form_data = new FormData();
-        //     // form_data.append('file', file_data);
-        //     file = $(".send-msg #send-file").prop('files')[0];
-        //     console.log(file);
-        //     if(file.length > 0){
-        //  var fd = new FormData();
-
-        //  // Append data
-        //  fd.append('file',file[0]);
-        //  fd.append('_token',CSRF_TOKEN);
-        // console.log(fd);
-        // $.ajax({
-        //    url: "/sendd",
-        //    method: 'post',
-        //    data: fd,
-        //    contentType: false,
-        //    processData: false,
-        //    dataType: 'json',
-        //    success: function(response){}
-        // });
-        //     }
-        // //     $.ajax({
-        // //     url: "/send",
-        // //     type: "POST",
-        // //     data: message,
-        // //     contentType: false,
-        // //     cache: false,
-        // //     processData:false,
-        // //     success: function(data){
-        // //         console.log(data);
-        // //     }
-        // // });
-        // });
-    });
     function scrollToBottom() {
         $('.msg-sec').scrollTop($('.msg-sec')[0].scrollHeight);
     }

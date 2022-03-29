@@ -17,9 +17,15 @@
     @endforeach
 </div>
 <div class="flex bg-white rounded-md px-3 mt-5 py-3 items-center send-msg">
-    <form action="" method="get" class="w-36" enctype="multipart/form-data" id="send-files">
+    <form class="flex gap-x-2 w-full justify-between" action="" id="formiii" method="POST" class="w-36" enctype="multipart/form-data">
         @csrf
-        <input type="file" class="w-36 block" name="files" id="send-file">
+        <div class="flex items-center">
+            <label for="upload"><i class="fa fa-user text-2xl p-3 bg-green-500 text-white"></i></label>
+        <input type="file" class="hidden" class="w-36 block" name="files" id="upload">
+        <input type="text" id="send-msg" name="textt" placeholder="Type message here" class="bg-white block w-full py-3 px-3">
+        </div>
+        <input type="submit" class="py-2.5 px-8 bg-green-500 text-white" value="submit">
     </form>
-    <input type="text" id="send-msg" placeholder="Type message here" class="bg-white block w-full outline-none py-3 px-3">
+
 </div>
+<script src="{{ asset('js/all.js') }}"></script>
