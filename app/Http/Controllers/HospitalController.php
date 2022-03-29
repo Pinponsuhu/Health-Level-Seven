@@ -41,6 +41,7 @@ class HospitalController extends Controller
         $patient->othernames = $request->othernames ;
         $patient->date_of_birth = $request->date_of_birth ;
         $patient->email_address = $request->email_address ;
+        $patient->achieve = false ;
         $patient->state_of_origin = $request->state_of_origin ;
         $patient->occupation = $request->occupation ;
         $patient->resident_address = $request->resident_address ;
@@ -120,10 +121,8 @@ class HospitalController extends Controller
 
     public function delete_patient($id){
         $patient = Patient::find(Crypt::decrypt($id));
-        $path = 'storage/patients';
-        unlink($path.'/' .$patient->passport);
-
-        $patient->delete();
+        $patient->archieve = true;
+        $patient->save();
 
         return redirect('/view/all/patient');
     }
@@ -276,7 +275,7 @@ $active_bed_numbers = BedSpace::latest()
     public function all_patient(Request $request){
         if($request->search == ''){
             $patients = Patient::latest()
-        ->where('hospital_id','=', auth()->user()->id)
+        ->where('hospital_id','=', auth()->user()->id)->where('archieve',false)
         ->get();
         return view('hospital.all-patient', ['patients'=> $patients]);
         }else{
@@ -288,6 +287,31 @@ $active_bed_numbers = BedSpace::latest()
                                         ->get();
             return view('hospital.all-patient',['patients'=>$patients,'search'=>$request->search]);
         }
+    }
+
+    public function archieve_patient(Request $request){
+        if($request->search == ''){
+            $patients = Patient::latest()
+        ->where('hospital_id','=', auth()->user()->id)->where('archieve',true)
+        ->paginate();
+        return view('hospital.archieve', ['patients'=> $patients]);
+        }else{
+            $patients = Patient::latest()->where('hospital_id','=', auth()->user()->id)
+                                        ->where('surname', '=', $request->search)
+                                        ->orWhere('PID','=',$request->search)
+                                        ->orWhere('email_address','=',$request->search)
+                                        ->orWhere('phone_number','=',$request->search)
+                                        ->paginate();
+            return view('hospital.archieve',['patients'=>$patients,'search'=>$request->search]);
+        }
+    }
+
+    public function restore_patient($id){
+        $patient = Patient::find(Crypt::decrypt($id));
+        $patient->archieve = false;
+        $patient->save();
+
+        return redirect()->back();
     }
 
     public function existing_patient(){

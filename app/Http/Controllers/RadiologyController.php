@@ -64,7 +64,7 @@ class RadiologyController extends Controller
         $fileModel->upload_id = Crypt::decrypt($id);
         $fileModel->save();
 
-        return redirect('/hospital/dashboard');
+        return redirect()->back();
         }
     }
 

@@ -64,6 +64,8 @@ Route::get('/bed/history',[HospitalController::class, 'all_history']);
 Route::get('/delete/bed/details/{id}', [HospitalController::class, 'delete_bed']);
 Route::get('/view/all/patient/action',[HospitalController::class, 'all_patient_search']);
 Route::get('/view/all/patient',[HospitalController::class, 'all_patient']);
+Route::get('/view/archieve/patient',[HospitalController::class, 'archieve_patient']);
+Route::get('/restore/patient/details/{id}',[HospitalController::class, 'restore_patient']);
 Route::get('/delete/patient/{id}',[HospitalController::class, 'delete_patient']);
 Route::get('/patient/details/{id}',[HospitalController::class, 'patient_details']);
 Route::post('/bed/space', [HospitalController::class, 'store_bed']);

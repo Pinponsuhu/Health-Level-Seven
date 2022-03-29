@@ -84,6 +84,7 @@
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user-injured mr-8 text-2xl"></i> <p class="text-sm">Patient management</p></li>
                 <a href="/view/all/patient"><li  class="text-sm py-2 ml-16 text-white">All Patient</li></a>
+                <a href="/view/archieve/patient"><li  class="text-sm py-2 ml-16 text-white">Archieved Patient</li></a>
                 <a href="/hospital/new/patient"><li class="text-sm py-2 ml-16 text-white">New Patient</li></a>
             </ul>
             <ul class="pl-4 mt-3 py-3">
@@ -94,7 +95,7 @@
             <ul class="pl-4 mt-3 py-3">
                 <li class="flex text-gray-50 items-center px-3"><i class="fa fa-user-cog mr-5 text-2xl"></i> <p class="text-sm">Admin</p></li>
                 <li class="text-sm py-2 ml-16 text-white"><a href="/admin/overview">Overview</a></li>
-                <li class="text-sm py-2 ml-16 text-white"><a href="/add/department">Departments</a></li>
+                <li class="text-sm py-2 ml-16 text-white"><a href="/add/department">Add Departments</a></li>
                 <li class="text-sm py-2 ml-16 text-white"><a href="/staff/registration">Staff Registration</a></li>
             </ul>
             <ul class="pl-4 mt-3 py-3">
