@@ -116,10 +116,10 @@
             <ul class="pl-4 mt-3 py-3">
                 <a href="/hospital/data/exchange"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-envelope mr-7 text-2xl"></i> <p class="text-sm">Chatbox</p></li></a>
             </ul>
-            <ul class="pl-4 mt-3 py-3">
+            <ul class="pl-4 mt-3 py-3 md:hidden">
                 <a href="/hospital/changing/password"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-lock mr-7 text-2xl"></i> <p class="text-sm">Change Password</p></li></a>
             </ul>
-            <ul class="pl-4 mt-3 py-3">
+            <ul class="pl-4 mt-3 py-3 md:hidden">
                 <a href="/logout"><li class="flex text-gray-50 items-center px-3"><i class="fa fa-power-off mr-7 text-2xl"></i> <p class="text-sm">Logout</p></li></a>
             </ul>
         </nav>

@@ -293,7 +293,7 @@ $active_bed_numbers = BedSpace::latest()
         if($request->search == ''){
             $patients = Patient::latest()
         ->where('hospital_id','=', auth()->user()->id)->where('archieve',true)
-        ->paginate();
+        ->paginate(15);
         return view('hospital.archieve', ['patients'=> $patients]);
         }else{
             $patients = Patient::latest()->where('hospital_id','=', auth()->user()->id)
@@ -301,7 +301,7 @@ $active_bed_numbers = BedSpace::latest()
                                         ->orWhere('PID','=',$request->search)
                                         ->orWhere('email_address','=',$request->search)
                                         ->orWhere('phone_number','=',$request->search)
-                                        ->paginate();
+                                        ->paginate(15);
             return view('hospital.archieve',['patients'=>$patients,'search'=>$request->search]);
         }
     }
