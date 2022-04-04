@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class NewHospitalController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('superadmin');
-    // }
+    public function __construct()
+    {
+        $this->middleware('superadmin');
+    }
 
     public function register(){
         return view('super-admin.register');
@@ -54,8 +54,21 @@ class NewHospitalController extends Controller
         // $request->validate([
         //     'email' => 'unique:table,column,except,id'
         // ])
-        $hospitals = User::latest()->paginate();
+
+        $hospitals = User::latest()->paginate(15);
         return view('super-admin.hospital-list',['hospitals'=>$hospitals]);
+    }
+
+    public function hospital_search(Request $request){
+        // dd('shaba');
+        $request->validate([
+            'search' => 'required'
+        ]);
+
+        $hospital = User::where('hospital_name', $request->search)->orWhere('HID',$request->search)->first();
+        // dd($hospital);
+
+        return view('super-admin.search-hospital',['hospital' => $hospital]);
     }
 
     public function hospital_details($id){

@@ -72,7 +72,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($hospitals as $hospital)
                         <tr>
                             <td class=" py-3 bg-green-100 px-3 text-center capitalize">{{ $hospital->hospital_name }}</td>
                             <td class=" py-3 bg-green-100 px-3 text-center capitalize">{{ $hospital->HID }}</td>
@@ -81,14 +80,8 @@
                             <td class=" py-3 bg-white px-3 text-center">{{ $hospital->email_address }}</td>
                             <td class="px-3 bg-green-100"><a href="/super/admin/hospital/details/{{ Crypt::encrypt($hospital->id) }}" class="px-5 py-2 bg-blue-500 text-white rounded-md">More</a></td>
                         </tr>
-                    @endforeach
                 </tbody>
             </table>
-        </div>
-        <div class="mt-3">
-            {{-- @if ($search) --}}
-                {{ $hospitals->links() }}
-            {{-- @endif --}}
         </div>
     </div>
 

@@ -198,6 +198,7 @@ Route::post('/super/admin/login',[SuperAdminLogin::class, 'login']);
 Route::get('/super/admin/new/hospital',[NewHospitalController::class, 'register']);
 Route::post('/super/admin/new/hospital',[NewHospitalController::class, 'store_reg']);
 Route::get('/super/admin/hospital/list',[NewHospitalController::class, 'all_hospital']);
+Route::get('/super/admin/hospital/search',[NewHospitalController::class, 'hospital_search']);
 Route::get('/super/admin/hospital/details/{id}',[NewHospitalController::class, 'hospital_details']);
 Route::get('/super/admin/settings',[SuperAdminController::class, 'setting']);
 Route::get('/super/admin/all/admins',[SuperAdminController::class, 'all_admin']);
