@@ -73,7 +73,7 @@
             </div>
             <div class="my-2">
                 <label class="font-semibold text-md block mb-1">Hospital Email Address</label>
-                <input type="text" value="{{ old('email_address') }}" name="email_address" placeholder="Enter Hospital Email" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block">
+                <input type="email" value="{{ old('email_address') }}" name="email_address" placeholder="Enter Hospital Email" class="capitalize border-l-4 border-green-500 w-full rounded-md p-3 shadow-md outline-none block">
                 @error('email_address')
                     <p class="text-sm text-red-500">{{ $message }}</p>
                 @enderror

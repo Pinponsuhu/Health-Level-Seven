@@ -24,8 +24,8 @@ class NewHospitalController extends Controller
             'hospital_logo' => 'mimes:png,jpg,jpeg|required',
             'hospital_name' => 'required|min:2',
             'head_of_hospital' => 'required',
-            'email_address' => 'required|email',
-            'phone_number' => 'required|numeric',
+            'email_address' => 'required|unique:users,email_address|email',
+            'phone_number' => 'required|numeric|unique:users,phone_number',
             'bed_number' => 'required|numeric',
             'shelf_number' => 'required|numeric',
             'hospital_address' => 'required',
@@ -50,7 +50,10 @@ class NewHospitalController extends Controller
         return redirect('/super/admin/index');
     }
 
-    public function all_hospital(){
+    public function all_hospital(Request $request){
+        // $request->validate([
+        //     'email' => 'unique:table,column,except,id'
+        // ])
         $hospitals = User::latest()->paginate();
         return view('super-admin.hospital-list',['hospitals'=>$hospitals]);
     }
