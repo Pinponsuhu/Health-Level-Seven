@@ -16,9 +16,9 @@ class SuperAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        // if(auth()->guard('superadmin')->check() == false){
-        //     return redirect('/super/admin/login');
-        // }
-        // return $next($request);
+        if(auth()->guard('superadmin')->check() == false){
+            return redirect('/super/admin/login');
+        }
+        return $next($request);
     }
 }
