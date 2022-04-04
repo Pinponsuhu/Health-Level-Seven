@@ -52,7 +52,7 @@
         <form action="/super/admin/password/{{ Crypt::encrypt($id) }}" class="w-5/12 mx-auto" method="POST">
             @csrf
             <input type="text" autocomplete="off" name="password" placeholder="New password" class="border-l-4 outline-none border-green-500 px-3 py-3 text-md rounded-md shadow-md bg-white block mt-3 w-full" id="">
-            @error('new_password')
+            @error('password')
             <p class="text-sm text-red-500">{{ $message }}</p>
         @enderror
             <input type="text" autocomplete="off" name="password_confirmation" placeholder="Confirm New password" class="border-l-4 outline-none border-green-500 px-3 py-3 text-md rounded-md shadow-md bg-white block mt-3 w-full" id="">

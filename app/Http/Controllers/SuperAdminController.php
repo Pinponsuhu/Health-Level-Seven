@@ -162,12 +162,15 @@ class SuperAdminController extends Controller
             'password' =>'required|confirmed',
         ]);
         $admin = SuperAdmin::find(auth()->guard('superadmin')->user()->id);
-        if (Hash::check($request->old_password, $admin->password)) {
+        // Hash::check(request('old_password'), $admin->password);
+
+        if (Hash::check($request->old_password, $admin->password) == true) {
             $admin->password = Hash::make($request->password);
             $admin->save();
             Auth::guard('superadmin')->logout();
+            return redirect('/super/admin/login');
         }else{
-            return back();
+            return back()->with('err', 'Old Password Incorrect');
         }
     }
 
@@ -265,7 +268,9 @@ class SuperAdminController extends Controller
         $hospital->password = Hash::make($request->password);
         $hospital->save();
 
-        return redirect('/super/admin/index');
+
+        auth()->logout();
+        return redirect('/super/admin/login');
     }
 
     public function all_complain($status){
@@ -379,7 +384,7 @@ class SuperAdminController extends Controller
 
     public function delete_department($id){
         $department = Department::find(Crypt::decrypt($id));
-        
+
         $department->delete();
         return redirect('super/admin/hospital/list');
     }

@@ -50,6 +50,9 @@
         <a href="/super/admin/index" class="flex gap-x-2 items-center mb-4"><i class="fa fa-arrow-left"></i> Dashboard</a>
         <h1 class="text-xl font-bold mb-4 text-green-500">Change Password</h1>
         <form action="/super/admin/settings/change/password" class="md:w-5/12 mx-auto" method="POST">
+            @if (Session('err'))
+                <p class="text-red-500 my-2 font-bold">{{ Session('err') }}</p>
+            @endif
             @csrf
             <input type="text" autocomplete="off" name="old_password" placeholder="Old password" class="border-l-4 outline-none border-green-500 px-3 py-3 text-md rounded-md shadow-md bg-white block mt-3 w-full" id="">
             @error('old_password')
