@@ -28,6 +28,7 @@ class CreatePatientsTable extends Migration
             $table->unsignedInteger('hospital_id');
             $table->string('next_of_kin');
             $table->string('next_of_kin_number1');
+            $table->boolean('achieve');
             $table->string('next_of_kin_number2')->nullable();
             $table->string('PID')->unique();
             $table->foreign('hospital_id')->references('id')->on('users')->onDelete('cascade');

@@ -41,7 +41,7 @@ class HospitalController extends Controller
         $patient->othernames = $request->othernames ;
         $patient->date_of_birth = $request->date_of_birth ;
         $patient->email_address = $request->email_address ;
-        $patient->achieve = false ;
+        $patient->achieve = false;
         $patient->state_of_origin = $request->state_of_origin ;
         $patient->occupation = $request->occupation ;
         $patient->resident_address = $request->resident_address ;
