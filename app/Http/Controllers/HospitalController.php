@@ -121,7 +121,7 @@ class HospitalController extends Controller
 
     public function delete_patient($id){
         $patient = Patient::find(Crypt::decrypt($id));
-        $patient->archieve = true;
+        $patient->achieve = true;
         $patient->save();
 
         return redirect('/view/all/patient');
@@ -275,7 +275,7 @@ $active_bed_numbers = BedSpace::latest()
     public function all_patient(Request $request){
         if($request->search == ''){
             $patients = Patient::latest()
-        ->where('hospital_id','=', auth()->user()->id)->where('archieve',false)
+        ->where('hospital_id','=', auth()->user()->id)->where('achieve',false)
         ->get();
         return view('hospital.all-patient', ['patients'=> $patients]);
         }else{
@@ -292,7 +292,7 @@ $active_bed_numbers = BedSpace::latest()
     public function archieve_patient(Request $request){
         if($request->search == ''){
             $patients = Patient::latest()
-        ->where('hospital_id','=', auth()->user()->id)->where('archieve',true)
+        ->where('hospital_id','=', auth()->user()->id)->where('achieve',true)
         ->paginate(15);
         return view('hospital.archieve', ['patients'=> $patients]);
         }else{
@@ -308,7 +308,7 @@ $active_bed_numbers = BedSpace::latest()
 
     public function restore_patient($id){
         $patient = Patient::find(Crypt::decrypt($id));
-        $patient->archieve = false;
+        $patient->achieve = false;
         $patient->save();
 
         return redirect()->back();

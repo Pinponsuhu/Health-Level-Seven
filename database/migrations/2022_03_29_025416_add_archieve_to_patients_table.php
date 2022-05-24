@@ -14,7 +14,7 @@ class AddArchieveToPatientsTable extends Migration
     public function up()
     {
         Schema::table('patients', function (Blueprint $table) {
-            $table->boolean('archieve');
+            $table->boolean('achieve');
         });
     }
 
@@ -26,7 +26,7 @@ class AddArchieveToPatientsTable extends Migration
     public function down()
     {
         Schema::table('patients', function (Blueprint $table) {
-            $table->dropColumn('archieve');
+            $table->dropColumn('achieve');
         });
     }
 }
