@@ -126,7 +126,7 @@ Route::get('/hospital/reply/complain/{id}',[HospitalComplaintController::class, 
 Route::post('/hospital/reply/complain/{id}',[HospitalComplaintController::class, 'send_reply_complaint']);
 Route::get('/hospital/dataex/send',[HospitalDataExchange::class, 'send_msg']);
 //testing file
-Route::post('/hospital/datex/send', [HospitalDataExchange::class, 'send_file']);
+Route::post('/hospital/datex/send/file', [HospitalDataExchange::class, 'send_file'])->name('store-file');
 //request controller
 Route::get('/request/{status}',[HospitalRequestController::class, 'show']);
 Route::get('/request/track/{id}',[HospitalRequestController::class, 'track']);

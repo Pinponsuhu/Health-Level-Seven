@@ -45,39 +45,6 @@ background: #095134;
 </body>
 <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 <script>
-                $(document).ready(function (e) {
- $("#formiii").on('submit',(function(e) {
-  e.preventDefault();
-  $.ajax({
-         url: "http://127.0.0.1:8000/hospital/datex/send",
-   type: "POST",
-   data:  new FormData(this),
-   contentType: false,
-         cache: false,
-   processData:false,
-
-   success: function(data)
-      {
-          console.log(data);
-    if(data=='invalid')
-    {
-     // invalid file format.
-     $("#err").html("Invalid File !").fadeIn();
-    }
-    else
-    {
-     // view uploaded file.
-     $("#preview").html(data).fadeIn();
-     $("#form")[0].reset();
-    }
-      },
-     error: function(e)
-      {
-    $("#err").html(e).fadeIn();
-      }
-    });
- }));
-});
     var receiver_id = "";
     var my_id = "{{ auth()->user()->id }}";
      $(document).ready(function () {
@@ -86,7 +53,6 @@ background: #095134;
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
          });
-        });
     // Pusher.logToConsole = true;
 
 var pusher = new Pusher('2679c497925c8ac812ee', {
@@ -131,12 +97,104 @@ channel.bind('my-event', function(data) {
                     }
                 });
             });
+        $(document).on('keyup','.send-msg #send-msg', function (e) {
+            var message = $(this).val();
+            if(e.keyCode == 13 && message != '' && receiver_id != ''){
+                var datastr = "receiver_id=" + receiver_id + "&message=" + message + "&msg_type= text";
+                $.ajax({
+                    type: "get",
+                    url: "/hospital/dataex/send",
+                    cache: false,
+                    data: datastr,
+                    success: function (data) {
+                $(this).val('');
+                    },
+                    error: function (jqXHR, status, err) {
+                        console.log(err);
+                    },
+                    complete: function(){
+                        scrollToBottom();
+                    }
+                });
+            }
+        });
+//         $('#send-file').on('change',function(e) {
 
-        $(document).on('change', '.send-msg #send-file', function(e){
-            $(this).closest('form').submit();
-            e.preventDefault();
-            });
+//         alert('daddy');
+// e.preventDefault();
+// var formData = new FormData(this);
+// $.ajax({
+// type:'POST',
+// url: "/hospital/datex/send/file",
+// data: formData,
+// cache:false,
+// contentType: false,
+// processData: false,
+// success: (data) => {
+// this.reset();
+// alert('File has been uploaded successfully');
+// console.log(data);
+// },
+// error: function(data){
+// console.log(data);
+// }
+// });
+// });
+        // $(document).on('change', '.send-msg #send-file',function (e){
+        //     // var file_data = $('.send-msg #send-file').prop('file');
+        //     // var form_data = new FormData();
+        //     // form_data.append('file', file_data);
+        //     file = $(".send-msg #send-file").prop('files')[0];
+        //     console.log(file);
+        //     if(file.length > 0){
+        //  var fd = new FormData();
 
+        //  // Append data
+        //  fd.append('file',file[0]);
+        //  fd.append('_token',CSRF_TOKEN);
+        // console.log(fd);
+        // $.ajax({
+        //    url: "/sendd",
+        //    method: 'post',
+        //    data: fd,
+        //    contentType: false,
+        //    processData: false,
+        //    dataType: 'json',
+        //    success: function(response){}
+        // });
+        //     }
+        // //     $.ajax({
+        // //     url: "/send",
+        // //     type: "POST",
+        // //     data: message,
+        // //     contentType: false,
+        // //     cache: false,
+        // //     processData:false,
+        // //     success: function(data){
+        // //         console.log(data);
+        // //     }
+        // // });
+        // });
+    });
+
+    $(document).ready(function() {
+    $('#send-file').change(function(){
+        var file_data = $('#send-file').prop('files')[0];
+        var form_data = new FormData();
+        form_data.append('file', file_data);
+        $.ajax({
+            url: "/hospital/datex/send/file",
+            type: "post",
+            data: form_data,
+            contentType: false,
+            cache: false,
+            processData:false,
+            success: function(data){
+                console.log(data);
+            }
+        });
+    });
+});
     function scrollToBottom() {
         $('.msg-sec').scrollTop($('.msg-sec')[0].scrollHeight);
     }

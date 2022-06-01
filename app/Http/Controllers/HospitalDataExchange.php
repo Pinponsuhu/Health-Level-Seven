@@ -60,6 +60,36 @@ class HospitalDataExchange extends Controller
     }
 
     public function send_file(Request $request){
-       dd($request->all());
+        // print_r($request->all());
+
+       $dest = '/public/message_file';
+       $path = $request->file('file')->store($dest);
+        $from = auth()->user()->id;
+        $to = $request->reciever;
+        $content = str_replace('public/message_file/','',$path);
+        $type = 'file';
+
+        $data = new Message;
+            $data->from = $from;
+        $data->to = $to;
+        $data->text = $type;
+        $data->content = $content;
+        $data->is_read = 0;
+        $data->save();
+
+        $options = array(
+            'cluster' => 'ap1',
+            'useTLS' => true
+        );
+
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            $options
+        );
+
+        $data = ['from' => $from, 'to'=>$to];
+        $pusher->trigger('my-channel','my-event', $data);
     }
 }
